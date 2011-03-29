@@ -1,4 +1,5 @@
 # Django settings for hojehatransportes project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -73,6 +74,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+	'hat.middleware.MultipleProxyMiddleware',
 )
 
 ROOT_URLCONF = 'hojehatransportes.urls'
@@ -81,6 +83,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+	"%s/templates" % os.getcwd()
 )
 
 INSTALLED_APPS = (
