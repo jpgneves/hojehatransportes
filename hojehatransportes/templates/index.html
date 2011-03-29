@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Hoje há transportes?</title>
+	<link rel="stylesheet" href="http://{{ host }}/static/reset.css"/>
+	<link rel="stylesheet" href="http://{{ host }}/static/transportes.css"/>
+</head>
+<body>
+<h1>Hoje há greves? <span>Veja se consegue chegar ao trabalho.</span></h1>
+<div id="filterbar">
+	Filtros:
+	<ul>
+		<li class="on">Comboios</li>
+		<li class="on">Metro</li>
+		<li>Autocarros</li>
+		<li class="on">Barcos</li>
+		<li>Outros Serviços</li>
+	</ul>
+</div>
+
+{% if strikes %}
+	<ul>
+		{% for strike in strikes %}
+			<li>
+				<p>{{ strike.description }}</p>
+			</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<p>Woohoo! N&atilde;o h&aacute; greves, podemos ir trabalhar! :D</p>
+{% endif %}
+
+</body>
+</html>
