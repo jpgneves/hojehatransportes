@@ -1,0 +1,166 @@
+body {
+	width: 800px;
+	font: 11pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	color: #2a2a2a;
+	margin: auto;
+	position: relative;
+}
+
+h1 {
+	position: relative;
+	padding-bottom: 15px;
+	font: bold 36pt Georgia, "Times New Roman", Times, serif;
+	margin: 20px;
+	width: 430px;
+	color: #727272;
+	text-shadow: rgba(0,0,0,0.26) 2px 2px 0;
+}
+
+h1 span {
+	font-size: small;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-shadow: none;
+}
+
+
+#filterbar {
+	position: absolute;
+	width: 250px;
+	right: 0;
+	margin: 15px;
+	top: 0;
+}
+
+#filterbar li {
+	display: inline;
+	margin-right: 10px;
+	line-height: 1.4em;
+	padding: 0 3px;
+	border: 1px solid silver;
+	-webkit-border-radius: 2px;
+}
+
+#filterbar li.on {
+	background-color: #c8e0be;
+	border-color: #79df51;
+	color: #1b6100;
+}
+
+
+#meses {
+	margin: 60px 15px;
+}
+
+#meses > li {
+	display: table-row;
+	position: relative;
+}
+
+#meses > li > * {
+	float: left;
+}
+
+.dias {
+	display: table-cell;
+}
+
+.transportes {
+	width: 614px;
+	margin-left: 5px;
+	padding-left: 5px;
+	margin-bottom: 25px;
+	border-left: 1px solid black;
+}
+
+.transportes > li {
+	position: relative;
+	padding: 10px;
+	display: table-row;
+}
+
+.transportes > li {
+	position: relative;
+	padding: 10px;
+	display: table-row;
+}
+
+.transportes > li:nth-child(even) {
+	background-color: rgba(203,203,203,0.3);
+}
+
+.dias > li {
+	clear: both;
+	display: table-row;
+}
+
+.dias > li > * {
+	float: left;
+}
+
+/* @group Labels */
+
+span.mes,
+#meses > li > span {
+	width: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: table-cell;
+	font: 20pt Georgia, "Times New Roman", Times, serif;
+	margin-top: 10px;
+}
+
+span.dia,
+.dias > li > span {
+	font: 30pt Georgia, "Times New Roman", Times, serif;
+	width: 45px;
+}
+
+span.transporte,
+.transportes > li > span {
+	float: left;
+	width: 100px;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+	margin: 10px;
+	font: 16pt Georgia, "Times New Roman", Times, serif;
+}
+
+.mensagens div.time {
+	display: inline-block;
+	width: 115px;
+}
+
+.mensagens span.time {
+	font-size: medium;
+}
+
+.mensagens .time.end:before {
+	content: " até ";
+	font-size: 9pt;
+	opacity: 0.7;
+}
+
+.mensagens {
+	display: table-cell;
+	vertical-align: middle;
+	margin: 10px 0px;
+	width: 100%;
+}
+
+.mensagens li {
+	margin: 10px;
+	display: inline-block;
+	font-family: Georgia, "Times New Roman", Times, serif;
+
+}
+
+/* @end */
+
+.important {
+	font-weight: bold;
+	color: darkred;
+}
