@@ -1,0 +1,13 @@
+Prerequisites:
+	- Django 1.2
+	- Python 2.6
+	
+On the first run (or when models are heavily changed):
+	python manage.py syncdb
+	
+Afterwards:
+	python manage.py runserver
+	
+The app will be running on http://localhost:8000
+
+Admin console: http://<url>/admin

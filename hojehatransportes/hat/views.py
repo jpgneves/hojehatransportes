@@ -1,4 +1,4 @@
-from hat.models import Strike
+from hat.models import Strike, Region
 #from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 from django.http import HttpResponseNotFound
@@ -7,7 +7,9 @@ from datetime import datetime
 
 def index(request):
 	latest_strikes = Strike.objects.filter(start_date__gte=datetime.now()).order_by('-start_date')[:10]
-	return render_to_response('index.html', { 'strikes': latest_strikes, 'host': request.get_host() })
+	regions = Region.objects.all()
+	context = { 'strikes': latest_strikes, 'regions': regions, 'host': request.get_host() }
+	return render_to_response('index.html', context)
 
 @require_POST
 def submit(request):

@@ -15,14 +15,21 @@ class Company(models.Model):
 	
 	name = models.CharField(max_length=30)
 	transport_type = models.CharField(max_length=1, choices=TRANSPORT_CHOICES)
+	
+	def __unicode__(self):
+		return self.name
+
+class Region(models.Model):
+	"""Represents a region"""
+	
+	name = models.CharField(max_length=30)
+	
+	def __unicode__(self):
+		return self.name
+		
 
 class Strike(models.Model):
 	""" Represents a strike entry in a given company """
-	
-	REGION_CHOICES = (
-		("L", "Lisbon"),
-		("P", "Porto")
-	)
 	
 	company = models.ForeignKey(Company)
 	start_date = models.DateTimeField()
@@ -30,4 +37,7 @@ class Strike(models.Model):
 	description = models.CharField(max_length=255)
 	upvotes = models.PositiveIntegerField()
 	downvotes = models.PositiveIntegerField()
-	region = models.CharField(max_length=1, choices=REGION_CHOICES)
+	region = models.ForeignKey(Region)
+	
+	def __unicode__(self):
+		return "%s - %s : %s" % (self.start_date, self.end_date, self.company)
