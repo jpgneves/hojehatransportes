@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Hoje há transportes?</title>
-	<link rel="stylesheet" href="http://{{ host }}/static/reset.css"/>
-	<link rel="stylesheet" href="http://{{ host }}/static/transportes.css"/>
+	<link rel="stylesheet" href="http://{{ statichost }}/static/reset.css"/>
+	<link rel="stylesheet" href="http://{{ statichost }}/static/transportes.css"/>
 </head>
 <body>
 <h1>Hoje há greves? <span>Veja se consegue chegar ao trabalho.</span></h1>
@@ -25,13 +25,33 @@
 </div>
 
 {% if strikes %}
-	<ul>
-		{% for strike in strikes %}
+<ul id="meses">
+	{% for month in strikes.values %}
+	<li>
+		<span class="mes">{{ month.nome }}</span>
+		<ul class="dias">
+			{% for dia, transportes in month.dias.items %}
 			<li>
-				<p>{{ strike.description }}</p>
+				<span class="dia">{{ dia }}</span>
+				<ul class="transportes">
+					{% for transporte, strikes in transportes.items %}
+					<li><span>{{transporte}}</span>
+						<ul class="mensagens">
+							{% for strike in strikes %}
+							<li><div class="time"><span class="time start">{{strike.start_date|date:"G:i"}}</span><span class="time end">{{strike.end_date|date:"G:i"}}</span></div>
+								{{strike.description}}</li>
+							{% endfor %}
+						</ul><!-- mensagens -->
+					</li>
+					{% endfor %}
+				</ul><!-- transportes -->
 			</li>
-		{% endfor %}
-	</ul>
+			{% endfor %}
+		</ul>
+	</li>
+	{% endfor %}
+</ul>
+
 {% else %}
 	<p>Woohoo! N&atilde;o h&aacute; greves, podemos ir trabalhar! :D</p>
 {% endif %}

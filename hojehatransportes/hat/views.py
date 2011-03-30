@@ -1,15 +1,38 @@
+# coding=utf-8
 from hat.models import Strike, Region
 #from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
-from datetime import datetime
+import locale
+from datetime import datetime, date
+
+locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
 def index(request):
 	latest_strikes = Strike.objects.filter(start_date__gte=datetime.now()).order_by('-start_date')[:10]
 	regions = Region.objects.all()
-	context = { 'strikes': latest_strikes, 'regions': regions, 'host': request.get_host() }
+	
+	strikes = {}
+	
+	for strike in latest_strikes:
+		m = strike.start_date.strftime("%m")
+		d = strike.start_date.strftime("%d")
+		
+		if not strikes.has_key(m):
+			strikes[m] = {"nome":strike.start_date.strftime("%B"), "dias":{}}
+		if not strikes[m]["dias"].has_key(d):
+			strikes[m]["dias"][d] = {}
+		if not strikes[m]["dias"][d].has_key(strike.company):
+			strikes[m]["dias"][d][strike.company] = []
+		strikes[m]["dias"][d][strike.company].append(strike)
+	
+	context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host() }
+	
+	#alterar
+	context['statichost']="localhost/~carlos/hojehatransportes/hojehatransportes"
+	
 	return render_to_response('index.html', context)
 
 @require_POST
