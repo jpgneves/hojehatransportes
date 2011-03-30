@@ -1,7 +1,7 @@
 from hat.models import Strike, Region
 #from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
-from django.http import HttpResponseServerError
+from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import datetime
@@ -31,6 +31,7 @@ def upvote(request):
 	else:
 		strike.upvotes += 1
 		strike.save()
+		return HttpResponse()
 	
 @require_POST
 def downvote(request):
@@ -47,3 +48,4 @@ def downvote(request):
 	else:
 		strike.downvotes += 1
 		strike.save()
+		return HttpResponse()
