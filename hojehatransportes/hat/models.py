@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 
@@ -6,11 +7,11 @@ class Company(models.Model):
 	""" Represents a company and associated transport type """
 	
 	TRANSPORT_CHOICES = (
-		("T", "Train"),
-		("S", "Subway"),
-		("B", "Bus"),
-		("F", "Ferry"),
-		("A", "Airplane")
+		("T", _("Train")),
+		("S", _("Subway")),
+		("B", _("Bus")),
+		("F", _("Ferry")),
+		("A", _("Airplane"))
 	)
 	
 	name = models.CharField(max_length=30)
