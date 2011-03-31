@@ -1,5 +1,5 @@
 # coding=utf-8
-from hat.models import Strike, Region
+from hat.models import Strike, Region, Company
 #from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse, HttpResponseServerError
@@ -12,6 +12,7 @@ locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
 def index(request):
 	latest_strikes = Strike.objects.filter(start_date__gte=datetime.now()).order_by('-start_date')[:10]
+	companies = Company.objects.all()
 	regions = Region.objects.all()
 	
 	strikes = {}
@@ -28,7 +29,7 @@ def index(request):
 			strikes[m]["dias"][d][strike.company] = []
 		strikes[m]["dias"][d][strike.company].append(strike)
 	
-	context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host() }
+	context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
 	
 	#alterar
 	context['statichost']="localhost/~carlos/hojehatransportes/hojehatransportes"
