@@ -2,14 +2,29 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<title>Hoje há transportes?</title>
+	<title>Hoje há greves?</title>
 	<link rel="stylesheet" href="http://{{ statichost }}/reset.css"/>
 	<link rel="stylesheet" href="http://{{ statichost }}/transportes.css"/>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-6001242-5']);
+  _gaq.push(['_setDomainName', '.hagreves.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 </head>
 <body>
 <h1>Hoje há greves? <span>Veja se consegue chegar ao trabalho.</span>
 <iframe id="fb" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhagreves.com&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></h1>
-{% if strikes %}
+{% if false %}
 <div id="filterbar">
 	Transportes:
 	<ul id="transportes-filter">
@@ -52,22 +67,6 @@
 {% else %}
 	<p>Woohoo! N&atilde;o h&aacute; greves, podemos ir trabalhar! :D</p>
 {% endif %}
-
-
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-6001242-5']);
-  _gaq.push(['_setDomainName', '.hagreves.com']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
 
 </body>
 </html>
