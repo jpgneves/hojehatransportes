@@ -8,7 +8,7 @@ body {
 
 h1 {
 	position: relative;
-	padding-bottom: 15px;
+	padding-bottom: 19px;
 	font: bold 36pt Georgia, "Times New Roman", Times, serif;
 	margin: 20px;
 	width: 430px;
@@ -164,3 +164,11 @@ span.transporte,
 	font-weight: bold;
 	color: darkred;
 }
+
+iframe#fb {
+	position: absolute;
+	bottom: -3px;
+	right: 99px;
+}
+
+
