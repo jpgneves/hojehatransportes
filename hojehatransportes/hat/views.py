@@ -32,7 +32,8 @@ def index(request):
 	context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
 	
 	#alterar
-	context['statichost']="localhost/~carlos/hojehatransportes/hojehatransportes"
+	#context['statichost']="localhost/~carlos/hojehatransportes/hojehatransportes/static"
+	context['statichost']="static.hagreve.com"
 	
 	return render_to_response('index.html', context)
 
