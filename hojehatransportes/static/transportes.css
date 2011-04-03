@@ -1,3 +1,5 @@
+/* @override http://static.hagreve.com/transportes.css */
+
 body {
 	width: 800px;
 	font: 11pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
@@ -168,7 +170,7 @@ span.transporte,
 iframe#fb {
 	position: absolute;
 	bottom: -3px;
-	right: 99px;
+	right: 60px;
 }
 
 
