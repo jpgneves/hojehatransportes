@@ -1,17 +1,18 @@
 # coding=utf-8
-from hat.models import Strike, Region, Company
+from models import Strike, Region, Company
 #from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse, HttpResponseServerError
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.datastructures import SortedDict
 import locale
 from datetime import datetime, date
 
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
 def index(request):
-	latest_strikes = Strike.objects.filter(start_date__gte=datetime.now()).order_by('-start_date')[:10]
+	latest_strikes = Strike.objects.filter(start_date__gte=datetime.today()).order_by('start_date')[:10]
 	companies = Company.objects.all()
 	regions = Region.objects.all()
 	
@@ -22,13 +23,16 @@ def index(request):
 		d = strike.start_date.strftime("%d")
 		
 		if not strikes.has_key(m):
-			strikes[m] = {"nome":strike.start_date.strftime("%B"), "dias":{}}
+			strikes[m] = {"nome":strike.start_date.strftime("%B"), "dias":SortedDict()}
 		if not strikes[m]["dias"].has_key(d):
 			strikes[m]["dias"][d] = {}
 		if not strikes[m]["dias"][d].has_key(strike.company):
 			strikes[m]["dias"][d][strike.company] = []
 		strikes[m]["dias"][d][strike.company].append(strike)
 	
+	#strikes['04']["dias"] = sorted(strikes['04']["dias"])
+
+
 	context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
 	
 	#alterar
