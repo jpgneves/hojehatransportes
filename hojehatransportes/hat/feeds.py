@@ -22,8 +22,11 @@ class RssFeed(Feed):
         return strike.company.name + ' - ' + strike.region.name
 
     def item_description(self, strike):
-        return strike.description
+        return 'Greve da empresa ' + strike.company.name + '\n' + 'De ' + str(strike.start_date) + ' a ' + str(strike.end_date.strftime) + '\n' + strike.description
 
     def item_link(self, strike):
         return 'https://hagreve.com'
+
+    def item_pubdate(self, strike):
+        return strike.start_date
 
