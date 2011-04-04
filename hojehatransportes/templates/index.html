@@ -68,7 +68,7 @@
 							{% else %}
 								<li {% if strike.canceled %} class="canceled" {% endif %}>
 							{% endif %}
-								<div class="msg">{{strike.description}}</div></li>
+								<div class="msg">{{strike.description}}{% if strike.source_link %} <a href="{{strike.source_link}}" title="Fonte oficial" class="source">Fonte</a>{% endif %}</div></li>
 							{% endfor %}
 						</ul><!-- mensagens -->
 					</li>
