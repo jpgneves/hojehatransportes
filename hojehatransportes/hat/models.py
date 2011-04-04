@@ -39,9 +39,11 @@ class Strike(models.Model):
 	start_date = models.DateTimeField()
 	end_date = models.DateTimeField()
 	description = models.CharField(max_length=255)
-	upvotes = models.PositiveIntegerField()
-	downvotes = models.PositiveIntegerField()
+	upvotes = models.PositiveIntegerField(default=0)
+	downvotes = models.PositiveIntegerField(default=0)
 	region = models.ForeignKey(Region)
+	canceled = models.BooleanField(default=False)
+	source_link = models.URLField()
 	
 	def __unicode__(self):
 		return "%s - %s : %s" % (self.start_date, self.end_date, self.company)
