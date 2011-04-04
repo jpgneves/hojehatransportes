@@ -16,4 +16,6 @@ urlpatterns = patterns('',
 	(r'^$', 'hat.views.index'),
 	(r'^upgoat', 'hat.views.upvote'),
 	(r'^downgoat', 'hat.views.downvote'),
+	(r'^submit$', 'hat.views.submit'),
+	(r'^thanks', 'hat.views.thanks')
 )

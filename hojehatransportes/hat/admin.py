@@ -4,7 +4,8 @@ from django.contrib import admin
 class StrikeAdmin(admin.ModelAdmin):
 	fieldsets = [
 		(None, {'fields': ['company', 'region', 'description', 'canceled', 'source_link']}),
-		('Strike dates', {'fields': ['start_date', 'end_date']})
+		('Strike dates', {'fields': ['start_date', 'end_date']}),
+		('Approve', {'fields': ['approved']})
 	]
 
 admin.site.register(Company)
