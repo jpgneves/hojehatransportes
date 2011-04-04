@@ -17,6 +17,9 @@ class Company(models.Model):
 	name = models.CharField(max_length=30)
 	transport_type = models.CharField(max_length=1, choices=TRANSPORT_CHOICES)
 	
+	class Meta:
+		verbose_name_plural = "companies"
+	
 	def __unicode__(self):
 		return self.name
 
