@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+from hat.feeds import RssFeed
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -16,4 +17,5 @@ urlpatterns = patterns('',
 	(r'^$', 'hat.views.index'),
 	(r'^upgoat', 'hat.views.upvote'),
 	(r'^downgoat', 'hat.views.downvote'),
+    (r'^rss', RssFeed())
 )
