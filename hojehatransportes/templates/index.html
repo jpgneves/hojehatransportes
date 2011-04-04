@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<title>Hoje há greves?</title>
-	<link rel="stylesheet" href="http://{{ statichost }}/reset.css"/>
-	<link rel="stylesheet" href="http://{{ statichost }}/transportes.css"/>
-
+<meta charset="utf-8"/>
+<meta property="og:title" content="Hoje há greve?" /> 
+<meta property="og:type" content="website" /> 
+<meta property="og:site_name" content="Hoje há greve?" />
+<title>Hoje há greve?</title>
+<link rel="stylesheet" href="http://{{ statichost }}/reset.css"/>
+<link rel="stylesheet" href="http://{{ statichost }}/transportes.css"/>
+<meta name="google-site-verification" content="0lRRTSuqRs5PRoM9qJDfObwAbBCfYLW-M7f13RPLPbE" />
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-6001242-5']);
-  _gaq.push(['_setDomainName', '.hagreves.com']);
+  _gaq.push(['_setAccount', 'UA-22490667-1']);
+  _gaq.push(['_setDomainName', '.hagreve.com']);
   _gaq.push(['_trackPageview']);
 
   (function() {
@@ -22,8 +25,14 @@
 </script>
 </head>
 <body>
-<h1>Hoje há greves? <span>Veja se consegue chegar ao trabalho.</span>
-<iframe id="fb" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhagreves.com&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></h1>
+<h1>Hoje há greve? <span>Veja se consegue chegar ao trabalho.</span>
+<div id="sn"><a href="http://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<iframe id="fb" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhagreve.com&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></div></h1>
+
+<div id="submit">
+	Enviem-nos informações sobre futuras greves para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a>.
+</div>
+
 {% if false %}
 <div id="filterbar">
 	Transportes:
@@ -34,7 +43,6 @@
 	</ul>
 </div>
 {% endif %}
-
 
 {% if strikes %}
 <ul id="meses">
@@ -50,8 +58,8 @@
 					<li class="transporte {{transporte}}"><span>{{transporte}}</span>
 						<ul class="mensagens">
 							{% for strike in strikes %}
-							<li><div class="time"><span class="time start">{{strike.start_date|date:"G:i"}}</span><span class="time end">{{strike.end_date|date:"G:i"}}</span></div>
-								{{strike.description}}</li>
+							{% if strike.start_date != strike.end_date %}<li class="wtime"><div class="time"><span class="time start">{{strike.start_date|date:"G:i"}}</span><span class="time end">{{strike.end_date|date:"G:i"}}</span></div>{% else %}<li>{% endif %}
+								<div class="msg">{{strike.description}}</div></li>
 							{% endfor %}
 						</ul><!-- mensagens -->
 					</li>
@@ -67,6 +75,8 @@
 {% else %}
 	<p>Woohoo! N&atilde;o h&aacute; greves, podemos ir trabalhar! :D</p>
 {% endif %}
-
+<p><br/>&nbsp;</p>
+<div id="disclaimer"><strong>Atenção:</strong> Toda a informação contida neste site é apenas informativa e não é garantida a sua correcção. Deverá sempre consultar informações junto das empresas aqui referidas. Não nos responsabilizamos por despedimentos por ficar em casa a preguiçar ou qualquer outra coisa seja ela qual for.<br/>Este site não está afiliado a qualquer empresa ou sindicato.</div>
+<div id="fotter">&copy; 2011 &mdash; <a href="http://twitter.com/jpgneves" title="@jpgneves">João Neves</a> e <a href="http://twitter.com/carlosefonseca" title="@carlosefonseca">Carlos Fonseca</a> &mdash; <a href="mailto:info@hagreve.com">info@hagreve.com</a></div>
 </body>
 </html>

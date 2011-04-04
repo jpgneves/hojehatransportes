@@ -8,6 +8,10 @@ body {
 	position: relative;
 }
 
+a {
+	color: #000;
+}
+
 h1 {
 	position: relative;
 	padding-bottom: 19px;
@@ -28,12 +32,16 @@ h1 span {
 }
 
 
-#filterbar {
+#filterbar, #submit {
 	position: absolute;
 	width: 250px;
 	right: 0;
 	margin: 15px;
 	top: 0;
+}
+
+#submit {
+	text-align: center;
 }
 
 #filterbar li {
@@ -70,8 +78,8 @@ h1 span {
 }
 
 .transportes {
-	width: 614px;
-	margin-left: 5px;
+	width: 610px;
+	margin-left: 9px;
 	padding-left: 5px;
 	margin-bottom: 25px;
 	border-left: 1px solid black;
@@ -133,7 +141,8 @@ span.transporte,
 
 .mensagens div.time {
 	display: inline-block;
-	width: 115px;
+	width: 70px;
+	text-align: center;
 }
 
 .mensagens span.time {
@@ -157,7 +166,13 @@ span.transporte,
 	margin: 10px;
 	display: inline-block;
 	font-family: Georgia, "Times New Roman", Times, serif;
+}
 
+.mensagens li.wtime div.msg {
+	display: inline-block;
+	vertical-align: top;
+	width: 380px;
+	padding-left: 10px;
 }
 
 /* @end */
@@ -167,10 +182,33 @@ span.transporte,
 	color: darkred;
 }
 
-iframe#fb {
-	position: absolute;
-	bottom: -3px;
-	right: 60px;
+#fotter, #fotter a,
+#disclaimer {
+	padding: 30px 0;
+	text-align: center;
+	color: grey;
+	border-top: 1px solid #ccc;
+	width: 60%;
+	margin: auto;
+	text-decoration: none;
+}
+
+#disclaimer {
+	width: inherit;
+	text-align: justify;
+}
+
+#fotter a:hover {
+	text-decoration: underline;
 }
 
 
+strong {
+	font-weight: bold;
+}
+
+#sn {
+	position: absolute;
+	bottom: -13px;
+	right: 0;
+}
