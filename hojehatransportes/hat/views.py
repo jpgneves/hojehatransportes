@@ -1,11 +1,13 @@
 # coding=utf-8
 from models import Strike, Region, Company
-#from django.views.decorators.csrf import csrf_protect
+from forms import SubmitForm
+from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
-from django.http import HttpResponse, HttpResponseServerError
+from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.datastructures import SortedDict
+from django.template import RequestContext
 import locale
 from datetime import datetime, date
 
@@ -40,10 +42,9 @@ def index(request):
 	context['statichost']="static.hagreve.com"
 	
 	return render_to_response('index.html', context)
-
-@require_POST
-def submit(request):
-	pass
+	
+def thanks(request):
+	return render_to_response('thanks.html', {'statichost': 'static.hagreve.com'})
 
 @require_POST
 def upvote(request):
@@ -78,3 +79,15 @@ def downvote(request):
 		strike.downvotes += 1
 		strike.save()
 		return HttpResponse()
+
+@csrf_protect
+def submit(request):
+	if request.method == 'POST':
+		form = SubmitForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect('/thanks')
+	else:
+		form = SubmitForm()
+		
+	return render_to_response('submit.html', { 'form': form, 'statichost': 'static.hagreve.com' }, context_instance=RequestContext(request))
