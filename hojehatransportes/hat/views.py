@@ -12,7 +12,7 @@ from datetime import datetime, date
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
 def index(request):
-	latest_strikes = Strike.objects.filter(start_date__gte=datetime.today()).order_by('start_date')[:10]
+	latest_strikes = Strike.objects.filter(start_date__gte=datetime.today().date()).order_by('start_date')[:10]
 	companies = Company.objects.all()
 	regions = Region.objects.all()
 	
