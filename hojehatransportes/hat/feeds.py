@@ -31,7 +31,7 @@ class RssFeed(Feed):
     description_template = 'feeds/rss_description.html'
 
     def item_summary(self, strike):
-        return strike.description
+        return strike.company.name + ' - ' + strike.region.name
 
     def item_link(self, strike):
         return 'http://hagreve.com'
