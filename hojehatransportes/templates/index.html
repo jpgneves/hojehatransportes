@@ -27,16 +27,22 @@
 				<span class="dia">{{ dia }}</span>
 				<ul class="transportes">
 					{% for transporte, strikes in transportes.items %}
-					<li class="transporte {{transporte}}"><span>{{transporte}}</span>
+					<li class="transporte {{transporte}}">
+						<span>{{transporte}}</span>
 						<ul class="mensagens">
 							{% for strike in strikes %}
 							{% if strike.start_date != strike.end_date %}
-							<li class="wtime{% if strike.canceled %} canceled{% endif %}">
-								<div class="time"><span class="time start">{{strike.start_date|date:"G:i"}}</span><span class="time end">{{strike.end_date|date:"G:i"}}</span></div>
+							<li class="wtime{% if strike.canceled %} canceled{% else %} vevent{% endif %}">
+								<span class="summary" style="display:none;">Greve: {{transporte}}</span>
+								<div class="time">
+									<span class="time start"><abbr class="dtstart" title="{{strike.start_date|date:"c"}}">{{strike.start_date|date:"G:i"}}</abbr></span>
+									<span class="time end"><abbr class="dtend" title="{{strike.end_date|date:"c"}}">{{strike.end_date|date:"G:i"}}</abbr></span></div>
 							{% else %}
-								<li {% if strike.canceled %} class="canceled" {% endif %}>
+								<li class="{% if strike.canceled %}canceled{% else %}vevent{% endif %}">
+									<span class="summary" style="display:none;">Greve: {{transporte}}</span>
+									<abbr class="dtstart" title="{{strike.start_date|date:"Y-m-d"}}"></abbr>
 							{% endif %}
-								<div class="msg">{{strike.description}}{% if strike.source_link %} <a href="{{strike.source_link}}" title="Fonte oficial" class="source">Fonte</a>{% endif %}</div></li>
+								<div class="msg"><span class="description">{{strike.description}}</span>{% if strike.source_link %} <a href="{{strike.source_link}}" title="Fonte oficial" class="source">Fonte</a>{% endif %}</div></li>
 							{% endfor %}
 						</ul><!-- mensagens -->
 					</li>
