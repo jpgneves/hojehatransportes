@@ -54,6 +54,8 @@ class IcsFeed(Events):
         return strike.company.name + ' - ' + strike.region.name
 
     def item_start(self, strike):
+        if strike.start_date == strike.end_date:
+          return strike.start_date.date()
         return strike.start_date
 
     def item_end(self, strike):
