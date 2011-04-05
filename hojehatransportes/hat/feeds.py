@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.syndication.views import Feed
+from django.utils.feedgenerator import Atom1Feed
 from django_cal.views import Events
 from datetime import datetime, date
 import django_cal
@@ -19,8 +20,12 @@ def strikeItems():
 class RssFeed(Feed):
     """Generate an RSS of the strikes"""
     title = u'Hoje há greve?'
-    link = '/'
+    link = 'http://hagreve.com'
     description = u'Veja se consegue chegar ao trabalho. Lembre-se que as informações podem estar desactualizadas.'
+    author_name = 'hagreve.com'
+    author_link = 'http://hagreve.com'
+    author_email = 'info@hagreve.com'
+    copyright = 'hagreve.com, ' + str(datetime.now().year)
 
     def items(self):
         return strikeItems()
@@ -39,6 +44,9 @@ class RssFeed(Feed):
     def item_pubdate(self, strike):
         return strike.start_date
 
+class AtomFeed(RssFeed):
+    feed_type = Atom1Feed
+    subtitle = RssFeed.description
 
 class IcsFeed(Events):
     def cal_name(self):
