@@ -22,17 +22,13 @@ class RssFeed(Feed):
     def items(self):
         return strikeItems()
 
-    def item_summary(self, strike):
-        return strike.description
-
     def item_title(self, strike):
         return strike.company.name + ' - ' + strike.region.name
 
-    def item_description(self, strike):
-        times = ''
-        if strike.start_date != strike.end_date:
-          items = 'De ' + str(strike.start_date) + ' a ' + str(strike.end_date) + '\n'
-        return 'Greve da empresa ' + strike.company.name + '\n' + times + '\n' + strike.description
+    description_template = 'feeds/rss_description.html'
+
+    def item_summary(self, strike):
+        return strike.description
 
     def item_link(self, strike):
         return 'http://hagreve.com'

@@ -1,0 +1,5 @@
+Greve da empresa {{ obj.company.name }} ({{ obj.region.name }})<br />
+{% if obj.start_date != obj.end_date %}
+De {{ obj.start_date }} a {{ obj.end_date }} <br />
+{% endif %}
+<p>{{ obj.description }}</p>
