@@ -51,7 +51,7 @@ class IcsFeed(Events):
         return strikeItems()
 
     def item_summary(self, strike):
-        return strike.description
+        return 'Greve da ' + strike.company.name + ' - ' + strike.region.name
 
     def item_title(self, strike):
         return strike.company.name + ' - ' + strike.region.name
