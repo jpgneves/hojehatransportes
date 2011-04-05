@@ -4,10 +4,13 @@ from django_cal.views import Events
 from datetime import datetime, date
 import django_cal
 import locale
+import dateutil
 
 from hat.models import Strike, Region
 
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
+
+tzlx = dateutil.tz.gettz('Europe/Lisbon')
 
 def strikeItems():
     return Strike.objects.filter(start_date__gte=datetime.today().date()).exclude(canceled=True).order_by('start_date')[:10]
@@ -56,7 +59,7 @@ class IcsFeed(Events):
     def item_start(self, strike):
         if strike.start_date == strike.end_date:
           return strike.start_date.date()
-        return strike.start_date
+        return strike.start_date.replace(tzinfo=tzlx)
 
     def item_end(self, strike):
         return strike.end_date
