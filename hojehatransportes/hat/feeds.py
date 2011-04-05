@@ -64,7 +64,7 @@ class IcsFeed(Events):
     def item_end(self, strike):
         return strike.end_date
 
-    def item_description(self, strike):
+    def item_comment(self, strike):
         return 'Greve da empresa ' + strike.company.name + '\n' + 'De ' + str(strike.start_date) + ' a ' + str(strike.end_date.strftime) + '\n' + strike.description
 
     def item_link(self, strike):
