@@ -1,0 +1,33 @@
+/* @override http://whatever.local/~carlos/hojehatransportes/hojehatransportes/static/mobile.css */
+
+body {
+}
+
+
+
+
+h1 {
+	position: relative;
+	padding-bottom: 19px;
+	font: bold 36pt Georgia, "Times New Roman", Times, serif;
+	margin: 5px;
+	width: 430px;
+	color: #727272;
+	text-shadow: rgba(0,0,0,0.26) 1px 1px 0;
+	font-size: 2.5em;
+}
+
+
+h1 span {
+	font-size: small;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-shadow: none;
+}
+
+
+#meses li ul.dias {
+	
+}
