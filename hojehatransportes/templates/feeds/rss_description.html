@@ -1,0 +1,20 @@
+{% spaceless %}
+
+Greve da empresa {{ obj.company.name }} ({{ obj.region.name }})<br />
+
+{% if obj.all_day or obj.start_date == obj.end_date %}{# All-day events #}
+Dia {{ obj.start_date.date }}
+{% else %}
+
+{# Same date #}
+{% if obj.start_date.date == obj.end_date.date %}
+De {{ obj.start_date.date }} às {{ obj.start_date|time:"H:i" }} até às {{ obj.end_date|time:"H:i" }}
+
+{% else %}
+{# Different date #}
+De {{ obj.start_date }} a {{ obj.end_date }}
+
+{% endif %}
+{% endif %}<br />
+<p>{{ obj.description }}</p>
+{% endspaceless %}
