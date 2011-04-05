@@ -9,6 +9,10 @@ from hat.models import Strike, Region
 
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
+def strikeItems():
+    return Strike.objects.filter(start_date__gte=datetime.today().date()).exclude(canceled=True).order_by('start_date')[:10]
+
+
 class RssFeed(Feed):
     """Generate an RSS of the strikes"""
     title = u'Hoje há greve?'
@@ -16,7 +20,7 @@ class RssFeed(Feed):
     description = u'Veja se consegue chegar ao trabalho. Lembre-se que as informações podem estar desactualizadas.'
 
     def items(self):
-        return Strike.objects.filter(start_date__gte=datetime.today().date()).order_by('start_date')[:10]
+        return strikeItems()
 
     def item_summary(self, strike):
         return strike.description
@@ -25,7 +29,10 @@ class RssFeed(Feed):
         return strike.company.name + ' - ' + strike.region.name
 
     def item_description(self, strike):
-        return 'Greve da empresa ' + strike.company.name + '\n' + 'De ' + str(strike.start_date) + ' a ' + str(strike.end_date) + '\n\n' + strike.description
+        times = ''
+        if strike.start_date != strike.end_date:
+          items = 'De ' + str(strike.start_date) + ' a ' + str(strike.end_date) + '\n'
+        return 'Greve da empresa ' + strike.company.name + '\n' + times + '\n' + strike.description
 
     def item_link(self, strike):
         return 'http://hagreve.com'
@@ -42,7 +49,7 @@ class IcsFeed(Events):
         return u'Veja se consegue chegar ao trabalho. Lembre-se que as informações podem estar desactualizadas.'
 
     def items(self):
-        return Strike.objects.filter(start_date__gte=datetime.today().date()).order_by('start_date')[:10]
+        return strikeItems()
 
     def item_summary(self, strike):
         return strike.description
