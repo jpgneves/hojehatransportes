@@ -19,7 +19,7 @@ def strikeItems():
 class RssFeed(Feed):
     """Generate an RSS of the strikes"""
     title = u'Hoje há greve?'
-    link = ''
+    link = '/'
     description = u'Veja se consegue chegar ao trabalho. Lembre-se que as informações podem estar desactualizadas.'
 
     def items(self):
