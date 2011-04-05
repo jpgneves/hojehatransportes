@@ -97,4 +97,14 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 	'hojehatransportes.hat',
+	'social_auth'
+)
+
+# Auth
+
+AUTHENTICATION_BACKENDS = (
+	'social_auth.backends.twitter.TwitterBackend',
+	'social_auth.backends.facebook.FacebookBackend',
+	'social_auth.backends.google.GoogleBackend',
+	'social_auth.backends.OpenIDBackend'
 )
