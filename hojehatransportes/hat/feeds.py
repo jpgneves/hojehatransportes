@@ -70,6 +70,8 @@ class IcsFeed(Events):
         return strike.start_date.replace(tzinfo=tzlx)
 
     def item_end(self, strike):
+        if strike.start_date == strike.end_date:
+          return strike.end_date.date()
         return strike.end_date.replace(tzinfo=tzlx)
 
     def item_comment(self, strike):
