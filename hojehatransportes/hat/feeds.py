@@ -70,7 +70,7 @@ class IcsFeed(Events):
         return strike.start_date.replace(tzinfo=tzlx)
 
     def item_end(self, strike):
-        return strike.end_date
+        return strike.end_date.replace(tzinfo=tzlx)
 
     def item_comment(self, strike):
         return 'Greve da empresa ' + strike.company.name + '\n' + 'De ' + str(strike.start_date) + ' a ' + str(strike.end_date.strftime) + '\n' + strike.description
