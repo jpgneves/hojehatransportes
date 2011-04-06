@@ -2,7 +2,7 @@
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Atom1Feed
 from django_cal.views import Events
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 import django_cal
 import locale
 import dateutil
@@ -65,13 +65,13 @@ class IcsFeed(Events):
         return strike.company.name + ' - ' + strike.region.name
 
     def item_start(self, strike):
-        if strike.start_date == strike.end_date:
+        if strike.start_date == strike.end_date or strike.all_day:
           return strike.start_date.date()
         return strike.start_date.replace(tzinfo=tzlx)
 
     def item_end(self, strike):
-        if strike.start_date == strike.end_date:
-          return strike.end_date.date()
+        if strike.start_date == strike.end_date or strike.all_day:
+          return strike.end_date.date() + timedelta(days=1)
         return strike.end_date.replace(tzinfo=tzlx)
 
     def item_comment(self, strike):
