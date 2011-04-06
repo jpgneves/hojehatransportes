@@ -49,6 +49,8 @@ class AtomFeed(RssFeed):
     subtitle = RssFeed.description
 
 class IcsFeed(Events):
+    filename = 'greves.ics'
+
     def cal_name(self):
         return u'Hoje há greve?'
 
