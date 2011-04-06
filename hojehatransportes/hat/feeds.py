@@ -2,7 +2,7 @@
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Atom1Feed
 from django_cal.views import Events
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 import django_cal
 import locale
 import dateutil
@@ -28,7 +28,7 @@ class RssFeed(Feed):
     copyright = 'hagreve.com, ' + str(datetime.now().year)
 
     def items(self):
-        return strikeItems()
+        return strikeItems().reverse()
 
     def item_title(self, strike):
         return strike.company.name + ' - ' + strike.region.name
@@ -65,15 +65,20 @@ class IcsFeed(Events):
         return strike.company.name + ' - ' + strike.region.name
 
     def item_start(self, strike):
-        if strike.start_date == strike.end_date:
+        if strike.start_date == strike.end_date or strike.all_day:
           return strike.start_date.date()
         return strike.start_date.replace(tzinfo=tzlx)
 
     def item_end(self, strike):
-        return strike.end_date
+        if strike.start_date == strike.end_date or strike.all_day:
+          return strike.end_date.date() + timedelta(days=1)
+        return strike.end_date.replace(tzinfo=tzlx)
 
-    def item_comment(self, strike):
-        return 'Greve da empresa ' + strike.company.name + '\n' + 'De ' + str(strike.start_date) + ' a ' + str(strike.end_date.strftime) + '\n' + strike.description
+    def item_description(self, strike):
+        return self.item_comment(strike)
+
+    def item_comment(self, strike): #TODO: Correct this for all-day events
+        return 'Greve da empresa ' + strike.company.name + '\n' + 'De ' + str(strike.start_date) + ' a ' + str(strike.end_date) + '\n' + strike.description
 
     def item_link(self, strike):
         return 'https://hagreve.com'
