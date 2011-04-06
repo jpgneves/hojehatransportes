@@ -74,8 +74,11 @@ class IcsFeed(Events):
           return strike.end_date.date() + timedelta(days=1)
         return strike.end_date.replace(tzinfo=tzlx)
 
-    def item_comment(self, strike):
-        return 'Greve da empresa ' + strike.company.name + '\n' + 'De ' + str(strike.start_date) + ' a ' + str(strike.end_date.strftime) + '\n' + strike.description
+    def item_description(self, strike):
+        return self.item_comment(strike)
+
+    def item_comment(self, strike): #TODO: Correct this for all-day events
+        return 'Greve da empresa ' + strike.company.name + '\n' + 'De ' + str(strike.start_date) + ' a ' + str(strike.end_date) + '\n' + strike.description
 
     def item_link(self, strike):
         return 'https://hagreve.com'
