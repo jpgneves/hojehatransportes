@@ -37,14 +37,10 @@ def index(request):
 
 	context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
 	
-	#alterar
-	#context['statichost']="localhost/~carlos/hojehatransportes/hojehatransportes/static"
-	context['statichost']="static.hagreve.com"
-	
 	return render_to_response('index.html', context)
 	
 def thanks(request):
-	return render_to_response('thanks.html', {'statichost': 'static.hagreve.com'})
+	return render_to_response('thanks.html')
 
 @require_POST
 def upvote(request):
@@ -90,4 +86,4 @@ def submit(request):
 	else:
 		form = SubmitForm()
 		
-	return render_to_response('submit.html', { 'form': form, 'statichost': 'static.hagreve.com' }, context_instance=RequestContext(request))
+	return render_to_response('submit.html', { 'form': form }, context_instance=RequestContext(request))
