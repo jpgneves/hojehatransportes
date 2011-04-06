@@ -28,7 +28,7 @@ class RssFeed(Feed):
     copyright = 'hagreve.com, ' + str(datetime.now().year)
 
     def items(self):
-        return strikeItems()
+        return strikeItems().reverse()
 
     def item_title(self, strike):
         return strike.company.name + ' - ' + strike.region.name
