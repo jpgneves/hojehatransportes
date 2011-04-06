@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8"/>
 <title>Hoje há greve?</title>
-<link rel="stylesheet" href="http://static.hagreve.com/reset.css"/>
-<link rel="stylesheet" href="http://static.hagreve.com/transportes.css"/>
+<link rel="stylesheet" href="http://169.254.72.168/~carlos/hojehatransportes/hojehatransportes/static/reset.css"/>
+<link rel="stylesheet" href="http://169.254.72.168/~carlos/hojehatransportes/hojehatransportes/static/desktop.css" media="(min-width:481px)"/>
+<link rel="stylesheet" href="http://169.254.72.168/~carlos/hojehatransportes/hojehatransportes/static/mobile.css"  media="only screen and (max-width:480px)"/>
 <meta property="og:title" content="Hoje há Greve?" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://hagreve.com" />
@@ -15,6 +16,7 @@
 <link rel="alternate" type="application/rss+xml" title="Hoje há greve?" href="http://hagreve.com/rss" /> 
 <meta name="google-site-verification" content="0lRRTSuqRs5PRoM9qJDfObwAbBCfYLW-M7f13RPLPbE" />
 <link rel="profile" href="http://microformats.org/profile/hcalendar">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;">
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -31,13 +33,23 @@
 </script>
 </head>
 <body>
-<h1>Hoje há greve? <span>Veja se consegue chegar ao trabalho.</span>
-<div id="sn"><a href="http://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-<iframe id="fb" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhagreve.com&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></div></h1>
+<h1>Hoje há greve? <span>Veja se consegue chegar ao trabalho.</span></h1>
 {% block content %}
 
 {% endblock %}
-<p><br/>&nbsp;</p>
+<div id="snAndSubmit">
+	<div id="sn">
+		<a href="http://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+		<iframe id="fb" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhagreve.com&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></div>
+	<div id="submit">
+		Enviem-nos informações sobre futuras greves para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a>.
+		<p id="subscribe" style="margin-top:8px;">Subscrever: 
+			<a type="text/calendar" href="webcal://hagreve.com/ics" id="ics" title="Subscreva ao calendário de greves na sua aplicação de calendário">iCal</a> 
+			<a href="rss" id="rss" title="Subscreva à lista de greves no seu leitor de RSS">RSS</a>
+		</p>
+	</div>
+</div>
+
 <div id="disclaimer"><strong>Atenção:</strong> Toda a informação contida neste site é apenas informativa e não é garantida a sua correcção. Deverá sempre consultar informações junto das empresas aqui referidas. Não nos responsabilizamos por despedimentos por ficar em casa a preguiçar ou qualquer outra coisa seja ela qual for.<br/>Este site não está afiliado a qualquer empresa ou sindicato.</div>
 <div id="fotter">&copy; 2011 &mdash; <a href="http://twitter.com/jpgneves" title="@jpgneves">João Neves</a>, <a href="http://twitter.com/carlosefonseca" title="@carlosefonseca">Carlos Fonseca</a> e <a href="http://twitter.com/filcab" title="@filcab">Filipe Cabecinhas</a> &mdash; <a href="mailto:info@hagreve.com">info@hagreve.com</a></div>
 </body>

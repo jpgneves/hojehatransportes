@@ -1,33 +1,237 @@
-/* @override http://whatever.local/~carlos/hojehatransportes/hojehatransportes/static/mobile.css */
+/* @override 
+	http://whatever.local/~carlos/hojehatransportes/hojehatransportes/static/mobile.css
+	http://169.254.72.168/~carlos/hojehatransportes/hojehatransportes/static/mobile.css
+*/
 
 body {
+	font: 11pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	color: #2a2a2a;
+}
+
+body > * {
+	padding: 5px;
+}
+
+a {
+	color: #000;
+}
+
+a.source {
+	text-indent: -5000px;
+	display: inline-block;
+	height: 15px;
+	background-image: url(http://localhost/~carlos/hojehatransportes/hojehatransportes/static/arrow-fonte.png);
+	background-position: -15px;
+	width: 58px;
+}
+
+/* @group Labels */
+
+span.mes,
+#meses > li > span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font: 20pt Georgia, "Times New Roman", Times, serif;
+	border-bottom: 1px solid silver;
+	display: block;
+	padding-right: 50px;
+	text-align: right;
+}
+
+span.dia,
+.dias > li > span {
+	display: table-cell;
+	width: 30px;
+	padding-left: 5px;
+	font: bold 20pt Georgia, "Times New Roman", Times, serif;
+}
+
+span.transporte,
+.transportes > li > span {
+	text-align: center;
+	font: 16pt Georgia, "Times New Roman", Times, serif;
+}
+
+.mensagens span.time {
+	font-size: medium;
+}
+
+.mensagens .time.end:before {
+	content: " até ";
+	font-size: 9pt;
+	opacity: 0.7;
 }
 
 
 
+.mensagens li.wtime div.msg {
+}
+
+/* @end */
+
+.important {
+	font-weight: bold;
+	color: darkred;
+}
+
+
+strong {
+	font-weight: bold;
+}
+
+
+.canceled:after {
+	content: "";
+	background-image: url(desconvocada.png);
+	display: block;
+	width: 173px;
+	height: 50px;
+	position: absolute;
+	top: -11px;
+	left: 150px;
+}
+
+ul.mensagens > li {
+	position: relative;
+	margin-bottom: 10px;
+}
 
 h1 {
-	position: relative;
-	padding-bottom: 19px;
-	font: bold 36pt Georgia, "Times New Roman", Times, serif;
-	margin: 5px;
-	width: 430px;
 	color: #727272;
+	display: block;
+	position: inherit;
+	font: bold 36pt Georgia, "Times New Roman", Times, serif;
 	text-shadow: rgba(0,0,0,0.26) 1px 1px 0;
 	font-size: 2.5em;
 }
 
-
 h1 span {
 	font-size: small;
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 100%;
 	text-shadow: none;
+	position: inherit;
+	display: block;
+}
+
+#submit {
+	color: gray;
+	font-size: 10pt;
+}
+
+#submit a {
+	color: gray;
+}
+
+#meses {
+	margin-top: 10px;
+	display: block;
+	padding: 0;
+}
+
+#meses li ul.dias > li {
+	display: table-row;
+}
+
+ul.dias {
+	display: table;
+	border-collapse: separate;
+}
+
+ul.transportes {
+	display: table-cell;
+}
+
+li.transporte {
+	margin-bottom: 20px;
+	margin-left: 10px;
+}
+
+.dias > li:nth-child(odd) {
+	background-color: rgba(203,203,203,0.3);
+}
+
+.canceled:after {
+	content: "";
+	display: block;
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	top: -8px;
+	background: url(desconvocada.png) no-repeat center;
+	left: 0;
 }
 
 
-#meses li ul.dias {
-	
+#fotter,
+#disclaimer,
+#snAndSubmit {
+	padding: 15px 0;
+	text-align: center;
+	color: grey;
+	border-top: 1px solid #ccc;
+	font-size: 9pt;
+	position: relative;
+}
+
+#fotter a {
+	white-space: nowrap;
+	color: grey;
+}
+
+
+p#subscribe {
+	text-align: left;	
+	padding-left: 5px;
+}
+
+#sn {
+	position: absolute;
+	bottom: 8px;
+	right: 0;
+}
+
+li.transporte > span {
+	font-weight: bold;
+}
+
+@media only screen and (max-device-width:300px) {
+h1 {
+	font-size: 2em;
+}
+
+h1 span {
+}
+
+li.transporte > span{
+	font-size: 14pt;
+}
+
+li.transporte {
+	margin-left: inherit;
+}
+
+span.dia,
+.dias > li > span {
+	font-size: 15pt;
+}
+
+
+#sn {
+	bottom: -13px;
+	width: 100%;
+}
+
+
+
+p#subscribe {
+	text-align: center;	
+	padding-left: 0;
+}
+
+#snAndSubmit {
+	margin-bottom: 18px;
+}
+
+#fotter {
+	line-height: 1.5em;
+}
 }
