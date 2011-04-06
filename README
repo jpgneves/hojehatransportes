@@ -1,6 +1,7 @@
 Prerequisites:
 	- Django 1.2
 	- Python 2.6
+	- vobject
 	
 On the first run (or when models are heavily changed):
 	python manage.py syncdb
@@ -10,4 +11,4 @@ Afterwards:
 	
 The app will be running on http://localhost:8000
 
-Admin console: http://<url>/admin
+Admin console: http://your-host/admin

@@ -37,7 +37,8 @@ class Strike(models.Model):
 	
 	company = models.ForeignKey(Company)
 	start_date = models.DateTimeField()
-	end_date = models.DateTimeField()
+	end_date = models.DateTimeField(blank=True, null=True)
+	all_day = models.BooleanField(default=False)
 	description = models.CharField(max_length=255)
 	upvotes = models.PositiveIntegerField(default=0)
 	downvotes = models.PositiveIntegerField(default=0)

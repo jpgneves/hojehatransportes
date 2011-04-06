@@ -32,7 +32,7 @@ TIME_ZONE = 'Europe/Lisbon'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-pt'
 
 SITE_ID = 1
 
@@ -97,4 +97,14 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 	'hojehatransportes.hat',
+	'social_auth'
+)
+
+# Auth
+
+AUTHENTICATION_BACKENDS = (
+	'social_auth.backends.twitter.TwitterBackend',
+	'social_auth.backends.facebook.FacebookBackend',
+	'social_auth.backends.google.GoogleBackend',
+	'social_auth.backends.OpenIDBackend'
 )
