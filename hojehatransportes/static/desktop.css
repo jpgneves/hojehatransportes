@@ -1,3 +1,5 @@
+/* @override http://static.hagreve.com/desktop.min.css */
+
 body {
 	width: 800px;
 	font: 11pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
@@ -239,11 +241,13 @@ a.source {
 	width: 15px;
 	height: 15px;
 	background-image: url(arrow-fonte.png);
+	margin-right: 43px;
 }
 
 a.source:hover {
 	background-position: -15px;
 	width: 58px;
+	margin-right: 0;
 }
 
 li.Hoje, li.Amanhã {
