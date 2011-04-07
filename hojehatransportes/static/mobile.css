@@ -20,7 +20,7 @@ a.source {
 	text-indent: -5000px;
 	display: inline-block;
 	height: 15px;
-	background-image: url(http://localhost/~carlos/hojehatransportes/hojehatransportes/static/arrow-fonte.png);
+	background-image: url(arrow-fonte.png);
 	background-position: -15px;
 	width: 58px;
 }
