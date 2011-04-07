@@ -20,12 +20,12 @@
   <span class="mes">{{ month.nome }}</span>
   <ul class="dias">
 {% for dia, diastuff in month.dias.items %}
-   <li class="{{diastuff.alias}}">
+   <li class="{{diastuff.alias}} {{diastuff.fix}}">
     <span class="dia ">{{dia}}</span>
+	{% if diastuff.alias %}<div class="alias">{{diastuff.alias}}</div>{%endif%}
     <ul class="transportes">
-{% if diastuff.alias %}<li class="alias">{{diastuff.alias}}</li>{%endif%}
 {% for transporte, strikes in diastuff.greves.items %}
-     <li class="transporte {{transporte}}">
+     <li class="transporte {{transporte|cut:" "}}">
       <span>{{transporte}}</span>
       <ul class="mensagens">
 {% for strike in strikes %}
