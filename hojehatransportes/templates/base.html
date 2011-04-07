@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8"/>
 <title>Há greve?</title>
-<link rel="stylesheet" href="http://static.hagreve.com/reset.css"/>
-<link rel="stylesheet" href="http://static.hagreve.com/desktop.css" media="(min-width:481px)"/>
-<link rel="stylesheet" href="http://static.hagreve.com/mobile.css"  media="only screen and (max-width:480px)"/>
+<link rel="stylesheet" href="http://static.hagreve.com/reset.min.css"/>
+<link rel="stylesheet" href="http://static.hagreve.com/desktop.min.css" media="(min-width:481px)"/>
+<link rel="stylesheet" href="http://static.hagreve.com/mobile.min.css"  media="only screen and (max-width:480px)"/>
 <meta property="og:title" content="Hoje há Greve?" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://hagreve.com" />
 <meta property="og:image" content="http://static.hagreve.com/hagreve.png" />
 <meta property="og:site_name" content="Hoje há Greve?" />
-<meta property="fb:admins" content="742114076,100000421780401" />
+<meta property="fb:admins" content="146062042128454" />
 <meta name="description=" content="Descubra quando são as próximas greves nos transportes públicos porugueses, e se tem que ir a pé até ao trabalho." />
 <link rel="alternate" type="application/rss+xml" title="Hoje há greve?" href="http://hagreve.com/rss" /> 
 <meta name="google-site-verification" content="0lRRTSuqRs5PRoM9qJDfObwAbBCfYLW-M7f13RPLPbE" />
@@ -21,20 +21,16 @@
 <link rel="apple-touch-icon-precomposed" media="screen and (resolution: 163dpi)" href="http://static.hagreve.com/apple-57.png" />
 <link rel="apple-touch-icon-precomposed" media="screen and (resolution: 132dpi)" href="http://static.hagreve.com/apple-72.png" />
 <link rel="apple-touch-icon-precomposed" media="screen and (resolution: 326dpi)" href="http://static.hagreve.com/apple-114.png" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
 <script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-22490667-1']);
-  _gaq.push(['_setDomainName', '.hagreve.com']);
-  _gaq.push(['_trackPageview']);
-
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-22490667-1']);
+_gaq.push(['_setDomainName', '.hagreve.com']);
+_gaq.push(['_trackPageview']);
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
 </script>
 </head>
 <body>
@@ -42,19 +38,13 @@
 {% block content %}
 
 {% endblock %}
-<div id="snAndSubmit">
-	<div id="sn">
-		<a href="http://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-		<iframe id="fb" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhagreve.com&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></div>
-	<div id="submit">
-		Enviem-nos informações sobre futuras greves para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a>.
-		<p id="subscribe" style="margin-top:8px;">Subscrever: 
-			<a type="text/calendar" href="webcal://hagreve.com/ics" id="ics" title="Subscreva ao calendário de greves na sua aplicação de calendário">iCal</a> 
-			<a href="rss" id="rss" title="Subscreva à lista de greves no seu leitor de RSS">RSS</a>
-		</p>
-	</div>
+<div id="snAndSubmit"><div id="sn">
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<iframe id="fb" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhagreve.com&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></div>
+<div id="submit">Enviem-nos informações sobre futuras greves para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a>.
+<p id="subscribe" style="margin-top:8px;">Subscrever: 
+<a type="text/calendar" href="webcal://hagreve.com/ics" id="ics" title="Subscreva ao calendário de greves na sua aplicação de calendário">iCal</a> <a href="rss" id="rss" title="Subscreva à lista de greves no seu leitor de RSS">RSS</a></p></div>
 </div>
-
 <div id="disclaimer"><strong>Atenção:</strong> Toda a informação contida neste site é apenas informativa e não é garantida a sua correcção. Deverá sempre consultar informações junto das empresas aqui referidas. Não nos responsabilizamos por despedimentos por ficar em casa a preguiçar ou qualquer outra coisa seja ela qual for.<br/>Este site não está afiliado a qualquer empresa ou sindicato.</div>
 <div id="fotter">&copy; 2011 &mdash; <a href="http://twitter.com/jpgneves" title="@jpgneves">João Neves</a>, <a href="http://twitter.com/carlosefonseca" title="@carlosefonseca">Carlos Fonseca</a> e <a href="http://twitter.com/filcab" title="@filcab">Filipe Cabecinhas</a> &mdash; <a href="mailto:info@hagreve.com">info@hagreve.com</a></div>
 </body>

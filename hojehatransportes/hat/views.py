@@ -9,7 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.datastructures import SortedDict
 from django.template import RequestContext
 import locale
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
@@ -18,8 +18,12 @@ def index(request):
 	companies = Company.objects.all()
 	regions = Region.objects.all()
 	
-	strikes = {}
+	strikes = SortedDict()
 	
+	hoje = datetime.today().strftime("%d")
+	amanha = datetime.today().date() + timedelta(days=1)
+	amanha = amanha.strftime("%d")
+
 	for strike in latest_strikes:
 		m = strike.start_date.strftime("%m")
 		d = strike.start_date.strftime("%d")
@@ -27,10 +31,22 @@ def index(request):
 		if not strikes.has_key(m):
 			strikes[m] = {"nome":strike.start_date.strftime("%B"), "dias":SortedDict()}
 		if not strikes[m]["dias"].has_key(d):
-			strikes[m]["dias"][d] = {}
-		if not strikes[m]["dias"][d].has_key(strike.company):
-			strikes[m]["dias"][d][strike.company] = []
-		strikes[m]["dias"][d][strike.company].append(strike)
+			strikes[m]["dias"][d] = {'greves':{}}
+		if not strikes[m]["dias"][d]['greves'].has_key(strike.company):
+			strikes[m]["dias"][d]['greves'][strike.company] = []
+		strikes[m]["dias"][d]['greves'][strike.company].append(strike)
+
+
+	fix = False
+	if strikes[m]["dias"].has_key(amanha):
+		strikes[m]["dias"][amanha]["alias"] = "Amanhã"
+		fix = True		
+
+	if strikes[m]["dias"].has_key(hoje):
+		strikes[m]["dias"][hoje]["alias"] = "Hoje"
+		if fix:
+			strikes[m]["dias"][hoje]["fix"] = "fixAmanha"
+
 	
 	#strikes['04']["dias"] = sorted(strikes['04']["dias"])
 
