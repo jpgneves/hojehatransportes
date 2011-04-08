@@ -14,7 +14,7 @@ locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 tzlx = dateutil.tz.gettz('Europe/Lisbon')
 
 def strikeItems():
-    return Strike.objects.filter(start_date__gte=datetime.today().date()).exclude(canceled=True).order_by('start_date')[:10]
+    return Strike.objects.filter(start_date__gte=datetime.today().date()).order_by('start_date')[:10]
 
 
 class RssFeed(Feed):
@@ -58,7 +58,7 @@ class IcsFeed(Events):
         return u'Veja se consegue chegar ao trabalho. Lembre-se que as informações podem estar desactualizadas.'
 
     def items(self):
-        return strikeItems()
+        return strikeItems().exclude(canceled=True)
 
     def item_summary(self, strike):
         return 'Greve da ' + strike.company.name + ' - ' + strike.region.name

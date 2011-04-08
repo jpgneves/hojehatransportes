@@ -1,7 +1,12 @@
 {% spaceless %}
 
-Greve da empresa {{ obj.company.name }} ({{ obj.region.name }})<br />
+{% if strike.canceled %}
+<style type="text/css">
+.canceled {text-decoration: line-through;}
+</style>
+Desconvocada: {% endif %}Greve da empresa {{ obj.company.name }} ({{ obj.region.name }})<br />
 
+{% if strike.canceled %}<div class="canceled">{% endif %}
 {% if obj.all_day or obj.start_date == obj.end_date %}{# All-day events #}
 Dia {{ obj.start_date.date }}
 {% else %}
@@ -17,4 +22,5 @@ De {{ obj.start_date }} a {{ obj.end_date }}
 {% endif %}
 {% endif %}<br />
 <p>{{ obj.description }}</p>
+{% if strike.canceled %}</div>{% endif %}
 {% endspaceless %}
