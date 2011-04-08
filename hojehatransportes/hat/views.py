@@ -36,16 +36,16 @@ def index(request):
 			strikes[m]["dias"][d]['greves'][strike.company] = []
 		strikes[m]["dias"][d]['greves'][strike.company].append(strike)
 
+	if len(strikes) > 0:
+		fix = False
+		if strikes[m]["dias"].has_key(amanha):
+			strikes[m]["dias"][amanha]["alias"] = "Amanhã"
+			fix = True		
 
-	fix = False
-	if strikes[m]["dias"].has_key(amanha):
-		strikes[m]["dias"][amanha]["alias"] = "Amanhã"
-		fix = True		
-
-	if strikes[m]["dias"].has_key(hoje):
-		strikes[m]["dias"][hoje]["alias"] = "Hoje"
-		if fix:
-			strikes[m]["dias"][hoje]["fix"] = "fixAmanha"
+		if strikes[m]["dias"].has_key(hoje):
+			strikes[m]["dias"][hoje]["alias"] = "Hoje"
+			if fix:
+				strikes[m]["dias"][hoje]["fix"] = "fixAmanha"
 
 	
 	#strikes['04']["dias"] = sorted(strikes['04']["dias"])
