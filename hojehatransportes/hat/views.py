@@ -1,7 +1,5 @@
 # coding=utf-8
 from models import Strike, Region, Company
-from forms import SubmitForm
-from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
@@ -91,15 +89,6 @@ def downvote(request):
 		strike.downvotes += 1
 		strike.save()
 		return HttpResponse()
-
-@csrf_protect
-def submit(request):
-	if request.method == 'POST':
-		form = SubmitForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('/thanks')
-	else:
-		form = SubmitForm()
 		
-	return render_to_response('submit.html', { 'form': form }, context_instance=RequestContext(request))
+def submit(request):
+	pass
