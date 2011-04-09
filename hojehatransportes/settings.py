@@ -102,9 +102,9 @@ INSTALLED_APPS = (
 
 # Auth
 
-AUTHENTICATION_BACKENDS = (
-	'social_auth.backends.twitter.TwitterBackend',
-	'social_auth.backends.facebook.FacebookBackend',
-	'social_auth.backends.google.GoogleBackend',
-	'social_auth.backends.OpenIDBackend'
-)
+#AUTHENTICATION_BACKENDS = (
+#	'social_auth.backends.twitter.TwitterBackend',
+#	'social_auth.backends.facebook.FacebookBackend',
+#	'social_auth.backends.google.GoogleBackend',
+#	'social_auth.backends.OpenIDBackend'
+#)
