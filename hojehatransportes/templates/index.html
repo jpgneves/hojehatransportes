@@ -30,7 +30,7 @@
       <ul class="mensagens">
 {% for strike in strikes %}
 {% if strike.start_date != strike.end_date %}
-       <li class="wtime{% if strike.canceled %} canceled{% else %} vevent{% endif %}">
+       <li class="wtime{% if strike.canceled %} canceled{% else %} vevent{% endif %}{% if strike.id in highlights %} highlight{% endif %}">
         <span class="summary" style="display:none;">Greve: {{transporte}}</span>
         <div class="time">
          <span class="time start"><abbr class="dtstart" title="{{strike.start_date|date:"c"}}">{{strike.start_date|date:"G:i"}}</abbr></span>
@@ -40,7 +40,7 @@
          <span class="summary" style="display:none;">Greve: {{transporte}}</span>
          <abbr class="dtstart" title="{{strike.start_date|date:"Y-m-d"}}"></abbr>
 {% endif %}
-        <div class="msg"><span class="description">{{strike.description}}</span>{% if strike.source_link %} <a href="{{strike.source_link}}" title="Fonte oficial" class="source">Fonte</a>{% endif %}</div></li>
+        <div class="msg"><span class="description">{{strike.description}}</span>{% if strike.source_link %} <a href="{{strike.source_link}}" title="Fonte oficial" class="source">Fonte</a>{% endif %}<a href="http://{{ host }}/strike/{{ strike.id }}" title="Link" class="source">Link</a></div></li>
 {% endfor %}
       </ul><!-- mensagens -->
      </li>
