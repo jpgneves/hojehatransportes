@@ -1,3 +1,4 @@
+LOGIN_URL = '/login'
 LOGIN_ERROR_URL = '/login-error'
 
 # Twitter login details
