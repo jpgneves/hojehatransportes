@@ -1,6 +1,7 @@
 # coding=utf-8
 from models import Strike, Region, Company
 from forms import SubmitForm
+from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect
@@ -54,7 +55,7 @@ def index(request):
 	context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
 	
 	return render_to_response('index.html', context)
-	
+
 def thanks(request):
 	return render_to_response('thanks.html')
 
@@ -92,6 +93,7 @@ def downvote(request):
 		strike.save()
 		return HttpResponse()
 		
+@login_required
 @csrf_protect
 def submit(request):
 	if request.method == 'POST':
@@ -103,3 +105,48 @@ def submit(request):
 		form = SubmitForm()
 
 	return render_to_response('submit.html', { 'form': form }, context_instance=RequestContext(request))
+	
+def submissions(request):
+	latest_strikes = Strike.objects.filter(start_date__gte=datetime.today().date()).order_by('start_date')
+	companies = Company.objects.all()
+	regions = Region.objects.all()
+	
+	strikes = SortedDict()
+	
+	hoje = datetime.today().strftime("%d")
+	amanha = datetime.today().date() + timedelta(days=1)
+	amanha = amanha.strftime("%d")
+
+	for strike in latest_strikes:
+		m = strike.start_date.strftime("%m")
+		d = strike.start_date.strftime("%d")
+		
+		if not strikes.has_key(m):
+			strikes[m] = {"nome":strike.start_date.strftime("%B"), "dias":SortedDict()}
+		if not strikes[m]["dias"].has_key(d):
+			strikes[m]["dias"][d] = {'greves':{}}
+		if not strikes[m]["dias"][d]['greves'].has_key(strike.company):
+			strikes[m]["dias"][d]['greves'][strike.company] = []
+		strikes[m]["dias"][d]['greves'][strike.company].append(strike)
+
+	if len(strikes) > 0:
+		fix = False
+		if strikes[m]["dias"].has_key(amanha):
+			strikes[m]["dias"][amanha]["alias"] = "Amanhã"
+			fix = True		
+
+		if strikes[m]["dias"].has_key(hoje):
+			strikes[m]["dias"][hoje]["alias"] = "Hoje"
+			if fix:
+				strikes[m]["dias"][hoje]["fix"] = "fixAmanha"
+
+	
+	#strikes['04']["dias"] = sorted(strikes['04']["dias"])
+
+
+	context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
+	
+	return render_to_response('submissions.html', context)
+
+def login(request):
+	return render_to_response('login.html')

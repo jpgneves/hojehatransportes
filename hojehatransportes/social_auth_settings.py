@@ -1,5 +1,7 @@
 LOGIN_URL = '/login'
-LOGIN_ERROR_URL = '/login-error'
+LOGIN_ERROR_URL = '/login-error/'
+
+SOCIAL_AUTH_DEFAULT_USERNAME = 'new_user'
 
 # Twitter login details
 TWITTER_CONSUMER_KEY = ''

@@ -2,6 +2,7 @@ Prerequisites:
 	- Django 1.2
 	- Python 2.6
 	- vobject
+	- django-social-auth
 	
 On the first run (or when models are heavily changed):
 	python manage.py syncdb
