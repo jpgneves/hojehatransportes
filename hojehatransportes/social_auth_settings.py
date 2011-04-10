@@ -1,5 +1,6 @@
 LOGIN_URL = '/login'
-LOGIN_ERROR_URL = '/login-error/'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_ERROR_URL = '/login-error'
 
 SOCIAL_AUTH_DEFAULT_USERNAME = 'new_user'
 
