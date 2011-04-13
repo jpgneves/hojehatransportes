@@ -46,6 +46,7 @@ class Strike(models.Model):
     canceled = models.BooleanField(default=False)
     source_link = models.URLField(blank=True)
     approved = models.BooleanField(default=False)
+    submitter = models.ForeignKey(models.User)
     
     def __unicode__(self):
         return "%s - %s : %s" % (self.start_date, self.end_date, self.company)
