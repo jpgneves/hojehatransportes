@@ -91,6 +91,6 @@ def downvote(request):
 		strike.downvotes += 1
 		strike.save()
 		return HttpResponse()
-
+		
 def submit(request):
-       pass
+	pass
