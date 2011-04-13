@@ -1,7 +1,5 @@
 # coding=utf-8
 from models import Strike, Region, Company
-from forms import SubmitForm
-from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
