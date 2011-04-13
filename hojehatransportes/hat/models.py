@@ -49,3 +49,7 @@ class Strike(models.Model):
 	
 	def __unicode__(self):
 		return "%s - %s : %s" % (self.start_date, self.end_date, self.company)
+
+	@models.permalink
+	def get_absolute_url(self):
+		return ('hat.views.index',  [str(self.id)])
