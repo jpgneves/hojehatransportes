@@ -92,14 +92,5 @@ def downvote(request):
 		strike.save()
 		return HttpResponse()
 
-@csrf_protect
 def submit(request):
-	if request.method == 'POST':
-		form = SubmitForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('/thanks')
-	else:
-		form = SubmitForm()
-		
-	return render_to_response('submit.html', { 'form': form }, context_instance=RequestContext(request))
+       pass
