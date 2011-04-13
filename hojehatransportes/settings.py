@@ -97,9 +97,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-<<<<<<< HEAD
     'hojehatransportes.hat',
-    #'social_auth'
+    'social_auth',
+    'south'
 )
 
 # Auth
@@ -109,8 +109,4 @@ AUTHENTICATION_BACKENDS = (
     'social_auth.backends.facebook.FacebookBackend',
     'social_auth.backends.google.GoogleBackend',
     'django.contrib.auth.backends.ModelBackend'
-=======
-	'hojehatransportes.hat',
-	'south',
->>>>>>> master
 )

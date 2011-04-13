@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
@@ -46,7 +47,7 @@ class Strike(models.Model):
     canceled = models.BooleanField(default=False)
     source_link = models.URLField(blank=True)
     approved = models.BooleanField(default=False)
-    submitter = models.ForeignKey(models.User)
+    submitter = models.ForeignKey(User)
     
     def __unicode__(self):
         return "%s - %s : %s" % (self.start_date, self.end_date, self.company)
