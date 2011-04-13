@@ -262,4 +262,31 @@ li.Hoje, li.Amanhã {
 	margin-left: 60px;
 }
 
+.buttons {
+	padding: 0;
+	margin: 0;
+}
+
+.buttons > li {
+	display: inline-block;
+	margin: 0px 10px;
+}
+
+.buttons > li > a {
+	padding: 7px 0 7px 35px;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+.buttons > li.google > a {
+	background-image: url(google_32.png);
+}
+
+.buttons > li.facebook > a {
+	background-image: url(facebook_32.png);
+}
+
+.buttons > li.twitter > a {
+	background-image: url(twitter_32.png);
+}
 
