@@ -22,5 +22,5 @@ urlpatterns = patterns('',
     (r'^rss', RssFeed()),
     (r'^atom', AtomFeed()),
     (r'^ics', IcsFeed()),
-    (r'^strike/(?P<highlight>\d+)$', 'hat.views.index'),
+    (r'^strike/(?P<highlight>\d+)$', 'hat.views.index', {}, 'strike_view'),
 )

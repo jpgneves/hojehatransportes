@@ -174,8 +174,8 @@ class RssFeed(Feed):
     def item_summary(self, strike):
         return strike.company.name + ' - ' + strike.region.name
 
-#    def item_link(self, strike):
-#        return 'http://hagreve.com'
+    def item_link(self, strike):
+        return strike.get_absolute_url().replace('example', 'hagreve')
 
     def item_pubdate(self, strike):
         return strike.start_date
@@ -219,5 +219,5 @@ class IcsFeed(Events):
         return 'Greve da empresa ' + strike.company.name + '\n' + 'De ' + str(strike.start_date) + ' a ' + str(strike.end_date) + '\n' + strike.description
 
     def item_link(self, strike):
-        return 'https://hagreve.com'
+        return strike.get_absolute_url().replace('example', 'hagreve')
 
