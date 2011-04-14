@@ -164,7 +164,7 @@ class RssFeed(Feed):
     copyright = 'hagreve.com, ' + str(datetime.now().year)
 
     def items(self):
-        return strikeItems().reverse().exclude(canceled=True)
+        return strikeItems().reverse()
 
     def item_title(self, strike):
         return strike.company.name + ' - ' + strike.region.name
@@ -194,7 +194,7 @@ class IcsFeed(Events):
         return u'Veja se consegue chegar ao trabalho. Lembre-se que as informações podem estar desactualizadas.'
 
     def items(self):
-        return strikeItems().exclude(canceled=True)
+        return filter((lambda x: not x.canceled), strikeItems())
 
     def item_summary(self, strike):
         return 'Greve da ' + strike.company.name + ' - ' + strike.region.name
