@@ -6,18 +6,9 @@ from datetime import datetime
 # Create your models here.
 
 class Company(models.Model):
-    """ Represents a company and associated transport type """
-    
-    TRANSPORT_CHOICES = (
-        ("T", _("Train")),
-        ("S", _("Subway")),
-        ("B", _("Bus")),
-        ("F", _("Ferry")),
-        ("A", _("Airplane"))
-    )
+    """ Represents a company """
     
     name = models.CharField(max_length=30)
-    transport_type = models.CharField(max_length=1, choices=TRANSPORT_CHOICES)
     
     class Meta:
         verbose_name_plural = "companies"
