@@ -25,40 +25,20 @@ def strikeItems():
 
 # LolFeed: Because "lol, Django". Search for CHANGE
 class LolFeed(Feed):
-  def __get_dynamic_attr(self, attname, obj, default=None):
-        try:
-            attr = getattr(self, attname)
-        except AttributeError:
-            return default
-        if callable(attr):
-            # Check func_code.co_argcount rather than try/excepting the
-            # function and catching the TypeError, because something inside
-            # the function may raise the TypeError. This technique is more
-            # accurate.
-            if hasattr(attr, 'func_code'):
-                argcount = attr.func_code.co_argcount
-            else:
-                argcount = attr.__call__.func_code.co_argcount
-            if argcount == 2: # one argument is 'self'
-                return attr(obj)
-            else:
-                return attr()
-        return attr
-
   def get_feed(self, obj, request):
         """
         Returns a feedgenerator.DefaultFeed object, fully populated, for
         this feed. Raises FeedDoesNotExist for invalid parameters.
         """
-        print "ARGH! ",
-        print Site._meta.installed,
-        print " (" + str(Site.objects.get_current()) + "), )",
-        print ", ",
-        print RequestSite(request)
-#        if Site._meta.installed:
-#            current_site = Site.objects.get_current()
-#        else:
-        current_site = RequestSite(request)
+        #print "ARGH! ",
+        #print Site._meta.installed,
+        #print " (" + str(Site.objects.get_current()) + "), )",
+        #print ", ",
+        #print RequestSite(request)
+        #if Site._meta.installed:
+        #    current_site = Site.objects.get_current()
+        #else:
+            current_site = RequestSite(request)
 
         link = self.__get_dynamic_attr('link', obj)
         link = add_domain(current_site.domain, link)
@@ -218,6 +198,6 @@ class IcsFeed(Events):
     def item_comment(self, strike): #TODO: Correct this for all-day events
         return 'Greve da empresa ' + strike.company.name + '\n' + 'De ' + str(strike.start_date) + ' a ' + str(strike.end_date) + '\n' + strike.description
 
-    def item_link(self, strike):
-        return strike.get_absolute_url().replace('example', 'hagreve')
+    #def item_link(self, strike):
+    #    return strike.get_absolute_url().replace('example', 'hagreve')
 
