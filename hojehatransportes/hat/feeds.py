@@ -19,9 +19,9 @@ locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
 tzlx = dateutil.tz.gettz('Europe/Lisbon')
 
- def strikeItems():
+def strikeItems():
      return Strike.objects.filter(start_date__gte=datetime.today().date()).order_by('start_date')[:10]
- 
+
 
 # LolFeed: Because "lol, Django". Search for CHANGE
 class LolFeed(Feed):
@@ -164,7 +164,7 @@ class RssFeed(Feed):
     copyright = 'hagreve.com, ' + str(datetime.now().year)
 
     def items(self):
-        return strikeItems().reverse()
+        return strikeItems().reverse().exclude(canceled=True)
 
     def item_title(self, strike):
         return strike.company.name + ' - ' + strike.region.name
@@ -194,7 +194,7 @@ class IcsFeed(Events):
         return u'Veja se consegue chegar ao trabalho. Lembre-se que as informações podem estar desactualizadas.'
 
     def items(self):
-        return strikeItems()
+        return strikeItems().exclude(canceled=True)
 
     def item_summary(self, strike):
         return 'Greve da ' + strike.company.name + ' - ' + strike.region.name
