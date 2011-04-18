@@ -47,8 +47,9 @@ class Strike(models.Model):
     # Model validation
     def clean(self):
         # Don't allow start dates after end dates
-        if self.start_date < self.end_date:
-            raise ValidationError('Start date cannot be after end date')
+        if self.end_date is not None:
+            if self.start_date > self.end_date:
+                raise ValidationError('Start date cannot be after end date')
         
         # Don't allow strikes starting in the past (in days)
         if self.start_date < datetime.today().date():
