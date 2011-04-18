@@ -5,7 +5,7 @@ from django import forms
 class StrikeAdminForm(forms.ModelForm):
     class Meta:
         model = Strike
-        widgets = {'description': forms.Textarea(attrs={'cols': 20, 'rows': 10})}
+        widgets = {'description': forms.Textarea(attrs={'cols': 60, 'rows': 10})}
         
     def clean(self):
         cleaned_data = self.cleaned_data
