@@ -40,7 +40,7 @@
          <span class="summary" style="display:none;">Greve: {{transporte}}</span>
          <abbr class="dtstart" title="{{strike.start_date|date:"Y-m-d"}}"></abbr>
 {% endif %}
-        <div class="msg">{% if strike.start_date.date != strike.end_date.date %}<p class="multiday">Até dia {{ strike.end_date.date|date:"j \de F" }}</p>{% endif %}<span class="description">{{strike.description}}</span>{% if strike.source_link %} <a href="{{strike.source_link}}" title="Fonte oficial" class="source">Fonte</a>{% endif %}</div></li>
+        <div class="msg">{% if strike.start_date.date != strike.end_date.date %}<p class="multiday">Até dia {{ strike.end_date.date|date:"j \de F" }}</p>{% endif %}<span class="description">{{strike.description|linebreaks}}</span>{% if strike.source_link %} <a href="{{strike.source_link}}" title="Fonte oficial" class="source">Fonte</a>{% endif %}</div></li>
 {% endfor %}
       </ul><!-- mensagens -->
      </li>
