@@ -12,7 +12,7 @@ from datetime import datetime, date, timedelta
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
 def index(request):
-    latest_strikes = Strike.objects.filter(start_date__gte=datetime.today().date()).order_by('start_date')[:10]
+    latest_strikes = Strike.objects.filter(end_date__gte=datetime.today().date()).order_by('start_date')[:10]
     companies = Company.objects.all()
     regions = Region.objects.all()
     
@@ -25,6 +25,9 @@ def index(request):
     for strike in latest_strikes:
         m = strike.start_date.strftime("%m")
         d = strike.start_date.strftime("%d")
+        
+        if d < hoje:
+            d = hoje
         
         if not strikes.has_key(m):
             strikes[m] = {"nome":strike.start_date.strftime("%B"), "dias":SortedDict()}
