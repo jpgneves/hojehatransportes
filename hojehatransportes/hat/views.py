@@ -26,7 +26,7 @@ def index(request):
         m = strike.start_date.strftime("%m")
         d = strike.start_date.strftime("%d")
         
-        if d < hoje:
+        if strike.start_date < datetime.today():
             d = hoje
         
         if not strikes.has_key(m):
