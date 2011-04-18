@@ -50,7 +50,3 @@ class Strike(models.Model):
         if self.end_date is not None:
             if self.start_date > self.end_date:
                 raise ValidationError('Start date cannot be after end date')
-        
-        # Don't allow strikes starting in the past (in days)
-        if self.start_date.date() < datetime.today().date():
-            raise ValidationError('Strike cannot start in the past')
