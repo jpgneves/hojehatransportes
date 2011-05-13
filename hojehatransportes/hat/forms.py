@@ -20,5 +20,8 @@ class SubmitForm(ModelForm):
             # Clear invalid data
             del cleaned_data["all_day"]
             del cleaned_data["end_date"]
+            
+        if all_day:
+            cleaned_data["end_date"] = cleaned_data["start_date"]
         
         return cleaned_data
