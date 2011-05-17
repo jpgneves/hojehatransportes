@@ -80,6 +80,8 @@ class IcsFeed(Events):
         return self.item_comment(strike)
 
     def item_comment(self, strike): #TODO: Correct this for all-day events
+        if strike.all_day:
+          return 'Greve da ' + strike.company.name + '\n' + 'Todo o dia ' + str(strike.start_date.date()) + '\n' + strike.description
         return 'Greve da ' + strike.company.name + '\n' + 'De ' + str(strike.start_date) + ' a ' + str(strike.end_date) + '\n' + strike.description
 
     def item_link(self, strike):
