@@ -1,5 +1,3 @@
-/* @override http://static.hagreve.com/desktop.min.css */
-
 body {
 	width: 800px;
 	font: 11pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
@@ -25,10 +23,12 @@ h1 {
 h1 span {
 	font-size: small;
 	position: absolute;
-	left: 0;
-	bottom: 0;
 	width: 100%;
 	text-shadow: none;
+	margin-top: 2px;
+	margin-left: 2px;
+	left: 0;
+	bottom: 0;
 }
 
 
@@ -193,13 +193,11 @@ span.transporte,
 	color: darkred;
 }
 
-#fotter,
-#disclaimer {
+#fotter {
 	padding: 30px 0;
 	text-align: center;
 	color: grey;
-	border-top: 1px solid #ccc;
-	width: 70%;
+	width: auto;
 	margin: auto;
 }
 
@@ -208,8 +206,14 @@ span.transporte,
 }
 
 #disclaimer {
-	width: inherit;
+	color: grey;
+	padding: 30px 0;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	width: auto;
 	text-align: justify;
+	margin-left: 20px;
+	margin-right: 20px;
 }
 
 
@@ -219,8 +223,8 @@ strong {
 
 #sn {
 	position: absolute;
-	top: 57px;
-	left: 278px;
+	top: 78px;
+	left: 22px;
 }
 
 
@@ -260,6 +264,11 @@ li.Hoje, li.Amanhã {
 	position: absolute;
 	margin-top: -16px;
 	margin-left: 60px;
+}
+
+p.nostrikes {
+	padding: 100px 0;
+	text-align: center;
 }
 
 

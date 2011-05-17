@@ -1,5 +1,11 @@
+/* @override http://localhost/~carlos/hagreve/hojehatransportes/static/mobile.min.css */
+
+* {
+    -webkit-text-size-adjust: none;
+}
+
 body {
-    font: 11pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    font: 1.0em "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
     color: #2a2a2a;
 }
  
@@ -109,7 +115,6 @@ h1 span {
  
 #submit {
     color: gray;
-    font-size: 10pt;
 }
  
 #submit a {
@@ -193,6 +198,7 @@ li.transporte > span {
 }
 
 @media only screen and (max-device-width:300px) {
+
 h1 {
     font-size: 2em;
 }
@@ -213,24 +219,29 @@ span.dia,
     font-size: 15pt;
 }
  
- 
-#sn {
-    bottom: -13px;
-    width: 100%;
+#fotter {
+    line-height: 1.5em;
 }
- 
- 
- 
+}
+
+#snAndSubmit {
+    margin-bottom: 18px;
+    font-size: 0.8em;
+}
+
 p#subscribe {
     text-align: center; 
     padding-left: 0;
 }
- 
-#snAndSubmit {
-    margin-bottom: 18px;
+
+#sn {
+    bottom: -13px;
+    width: 100%;
 }
- 
-#fotter {
-    line-height: 1.5em;
-}
+
+
+
+p.nostrikes {
+	padding: 30px 30px;
+	text-align: center;
 }
