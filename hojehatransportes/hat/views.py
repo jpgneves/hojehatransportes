@@ -52,10 +52,10 @@ def index(request):
     #strikes['04']["dias"] = sorted(strikes['04']["dias"])
 
 
-    context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
-    
-    return render_to_response('index.html', context)
-    
+	context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies, 'highlights': [int(highlight)] }
+	
+	return render_to_response('index.html', context)
+	
 def thanks(request):
     return render_to_response('thanks.html')
 

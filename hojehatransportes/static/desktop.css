@@ -108,6 +108,9 @@ h1 span {
 	background-color: rgba(203,203,203,0.3);
 }*/
 
+.highlight {
+  background-color: rgba(255,170,170,0.3);
+}
 
 .dias > li {
 	clear: both;
