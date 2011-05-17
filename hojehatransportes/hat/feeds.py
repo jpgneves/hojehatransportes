@@ -38,7 +38,7 @@ class LolFeed(Feed):
         #if Site._meta.installed:
         #    current_site = Site.objects.get_current()
         #else:
-            current_site = RequestSite(request)
+        current_site = RequestSite(request)
 
         link = self.__get_dynamic_attr('link', obj)
         link = add_domain(current_site.domain, link)
