@@ -5,11 +5,16 @@ REPO_URL = "git://github.com/jpgneves/hojehatransportes.git"
 env.user = "hagreve"
 
 def _deploy(path):
+    local("python manage.py schemamigration hat --auto")
+    local("git add hat/migrations/*.py")
+    local("git commit -m '[Fabric] Added new migrations'")
+    local("git push")
     with settings(warn_only=True):
         if run("test -d %s" % path).failed:
             run("git clone %s %s" % (REPO_URL, path))
     with cd(path):
         run("git pull")
+        run("python manage.py migrate hat")
         run("touch %s/../tmp/restart.txt" % path)
 
 def deploy_to_testing():

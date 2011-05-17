@@ -14,8 +14,9 @@ from datetime import datetime, date, timedelta
 
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
-def index(request):
-    latest_strikes = Strike.objects.filter(start_date__gte=datetime.today().date()).order_by('start_date')[:10]
+
+def index(request, highlight=''):
+    latest_strikes = Strike.objects.filter(end_date__gte=datetime.today().date()).order_by('start_date')[:10]
     companies = Company.objects.all()
     regions = Region.objects.all()
     
@@ -28,6 +29,9 @@ def index(request):
     for strike in latest_strikes:
         m = strike.start_date.strftime("%m")
         d = strike.start_date.strftime("%d")
+        
+        if strike.start_date < datetime.today():
+            d = hoje
         
         if not strikes.has_key(m):
             strikes[m] = {"nome":strike.start_date.strftime("%B"), "dias":SortedDict()}
@@ -51,10 +55,16 @@ def index(request):
     
     #strikes['04']["dias"] = sorted(strikes['04']["dias"])
 
-
     context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
     
     return render_to_response('index.html', context)
+
+	if highlight == '':
+	    highlight = '-1'
+
+	context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies, 'highlights': [int(highlight)] }
+	return render_to_response('index.html', context)
+	
 
 def thanks(request):
     return render_to_response('thanks.html')

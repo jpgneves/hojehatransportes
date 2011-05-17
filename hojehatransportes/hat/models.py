@@ -1,22 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
+from datetime import datetime
 
 # Create your models here.
 
 class Company(models.Model):
-    """ Represents a company and associated transport type """
-    
-    TRANSPORT_CHOICES = (
-        ("T", _("Train")),
-        ("S", _("Subway")),
-        ("B", _("Bus")),
-        ("F", _("Ferry")),
-        ("A", _("Airplane"))
-    )
+    """ Represents a company """
     
     name = models.CharField(max_length=30)
-    transport_type = models.CharField(max_length=1, choices=TRANSPORT_CHOICES)
     
     class Meta:
         verbose_name_plural = "companies"
@@ -51,3 +44,22 @@ class Strike(models.Model):
     
     def __unicode__(self):
         return "%s - %s : %s" % (self.start_date, self.end_date, self.company)
+    
+    def __unicode__(self):
+        return "%s - %s : %s" % (self.start_date, self.end_date, self.company)
+    
+    # Model validation
+    def clean(self):
+        # Don't allow start dates after end dates
+        if self.start_date < self.end_date:
+            raise ValidationError('Start date cannot be after end date')
+        
+        # Don't allow strikes starting in the past (in days)
+        if self.start_date < datetime.today().date():
+            raise ValidationError('Strike cannot start in the past')
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('strike_view',  [str(self.id)])
+    #def get_absolute_url(self):
+    #    return '/s/' + str(self.id)

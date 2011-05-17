@@ -5,6 +5,7 @@ from django import forms
 class StrikeAdminForm(forms.ModelForm):
     class Meta:
         model = Strike
+        widgets = {'description': forms.Textarea(attrs={'cols': 60, 'rows': 10})}
         
     def clean(self):
         cleaned_data = self.cleaned_data
@@ -29,6 +30,7 @@ class StrikeAdmin(admin.ModelAdmin):
         ('Strike dates', {'fields': ['start_date', 'all_day', 'end_date']}),
         ('Approve', {'fields': ['approved']})
     ]
+
     form = StrikeAdminForm
 
 admin.site.register(Company)
