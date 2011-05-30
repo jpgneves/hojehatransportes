@@ -8,11 +8,12 @@ from django.utils.datastructures import SortedDict
 from django.template import RequestContext
 import locale
 from datetime import datetime, date, timedelta
+from operator import itemgetter, attrgetter
 
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
 def index(request):
-    latest_strikes = Strike.objects.filter(end_date__gte=datetime.today().date()).order_by('start_date')[:10]
+    latest_strikes = Strike.objects.filter(end_date__gte=datetime.today().date()).order_by('start_date')[:20]
     companies = Company.objects.all()
     regions = Region.objects.all()
     
@@ -49,6 +50,10 @@ def index(request):
             strikes[m]["dias"][hoje]["alias"] = "Hoje"
             if fix:
                 strikes[m]["dias"][hoje]["fix"] = "fixAmanha"
+            for c in strikes[m]["dias"][hoje]["greves"]:
+                cc = strikes[m]["dias"][hoje]["greves"][c]
+                if len(cc) > 1:
+                    strikes[m]["dias"][hoje]["greves"][c] = sorted(cc, key=attrgetter('start_date.day'), reverse=True)
 
     
     #strikes['04']["dias"] = sorted(strikes['04']["dias"])
