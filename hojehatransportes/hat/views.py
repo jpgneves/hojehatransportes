@@ -53,7 +53,7 @@ def index(request):
             for c in strikes[m]["dias"][hoje]["greves"]:
                 cc = strikes[m]["dias"][hoje]["greves"][c]
                 if len(cc) > 1:
-                    strikes[m]["dias"][hoje]["greves"][c] = sorted(cc, key=attrgetter('start_date.day'), reverse=True)
+                    strikes[m]["dias"][hoje]["greves"][c] = sorted(cc, key=MYattrgetter('start_date.day'), reverse=True)
 
     
     #strikes['04']["dias"] = sorted(strikes['04']["dias"])
@@ -62,7 +62,25 @@ def index(request):
     context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
     
     return render_to_response('index.html', context)
-    
+
+
+def MYattrgetter(*items):
+    if len(items) == 1:
+        attr = items[0]
+        def g(obj):
+            return resolve_attr(obj, attr)
+    else:
+        def g(obj):
+            return tuple(resolve_att(obj, attr) for attr in items)
+    return g
+
+def resolve_attr(obj, attr):
+    for name in attr.split("."):
+        obj = getattr(obj, name)
+    return obj
+
+
+
 def thanks(request):
     return render_to_response('thanks.html')
 
