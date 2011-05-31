@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
@@ -42,7 +43,10 @@ class Strike(models.Model):
     approved = models.BooleanField(default=False)
     
     def __unicode__(self):
-        return "%s - %s : %s" % (self.start_date, self.end_date, self.company)
+        description = self.description
+        if len(description) > 25:
+            description = self.description[0:25] + u"…"
+        return "%s : %s - %s" % (self.start_date, self.company, description)
     
     # Model validation
     def clean(self):
