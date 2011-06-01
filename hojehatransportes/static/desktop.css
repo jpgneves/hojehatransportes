@@ -60,24 +60,24 @@ h1 span {
 }
 
 
-#meses {
+#months {
 	margin: 60px 15px;
 }
 
-#meses > li {
+#months > li {
 	display: table-row;
 	position: relative;
 }
 
-#meses > li > * {
+#months > li > * {
 	float: left;
 }
 
-.dias {
+.days {
 	display: table-cell;
 }
 
-.transportes {
+.companies {
 	width: 610px;
 	margin-left: 9px;
 	padding-left: 5px;
@@ -85,26 +85,26 @@ h1 span {
 	border-left: 1px solid black;
 }
 
-.Hoje.fixAmanha .transportes {
+.Hoje.fixTomorrow .companies {
 	margin-bottom: 35px;
 }
 
-.transportes > li {
+.companies > li {
 	position: relative;
 	padding: 10px;
 	display: table-row;
 }
 
-.transportes > li:nth-child(odd) {
+.companies > li:nth-child(odd) {
 	background-color: rgba(203,203,203,0.3);
 }
 
-/*.Hoje .transportes > li:nth-child(odd),
-.Amanhã .transportes > li:nth-child(odd) {
+/*.Hoje .companies > li:nth-child(odd),
+.Amanhã .companies > li:nth-child(odd) {
 	background-color: white;
 }
-.Hoje .transportes > li:nth-child(even),
-.Amanhã .transportes > li:nth-child(even) {
+.Hoje .companies > li:nth-child(even),
+.Amanhã .companies > li:nth-child(even) {
 	background-color: rgba(203,203,203,0.3);
 }*/
 
@@ -112,19 +112,19 @@ h1 span {
   background-color: rgba(255,170,170,0.3);
 }
 
-.dias > li {
+.days > li {
 	clear: both;
 	display: table-row;
 }
 
-.dias > li > * {
+.days > li > * {
 	float: left;
 }
 
 /* @group Labels */
 
-span.mes,
-#meses > li > span {
+span.month,
+#months > li > span {
 	width: 100px;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -133,16 +133,16 @@ span.mes,
 	margin-top: 10px;
 }
 
-span.dia,
-.dias > li > span {
+span.day,
+.days > li > span {
 	font: 30pt Georgia, "Times New Roman", Times, serif;
 	width: 45px;
 	position: relative;
 	margin-top: -2px;
 }
 
-span.transporte,
-.transportes > li > span {
+span.company,
+.companies > li > span {
 	float: left;
 	width: 100px;
 	text-align: center;
@@ -152,30 +152,30 @@ span.transporte,
 	font: 16pt Georgia, "Times New Roman", Times, serif;
 }
 
-.mensagens div.time {
+.strikes div.time {
 	display: inline-block;
 	width: 70px;
 	text-align: center;
 }
 
-.mensagens span.time {
+.strikes span.time {
 	font-size: medium;
 }
 
-.mensagens .time.end:before {
+.strikes .time.end:before {
 	content: " até ";
 	font-size: 9pt;
 	opacity: 0.7;
 }
 
-.mensagens {
+.strikes {
 	display: table-cell;
 	vertical-align: middle;
 	margin: 10px 0px;
 	width: 100%;
 }
 
-.mensagens li {
+.strikes li {
 	margin-bottom: -1px;
 	padding: 10px;
 	display: inline-block;
@@ -185,14 +185,14 @@ span.transporte,
 	border-top: 1px solid #CCC;
 }
 
-.mensagens li:last-child {
+.strikes li:last-child {
 	border-bottom: none;
 }
-.mensagens li:first-child {
+.strikes li:first-child {
 	border-top: none;
 }
 
-.mensagens li.wtime div.msg {
+.strikes li.wtime div.msg {
 	display: inline-block;
 	vertical-align: top;
 	width: 380px;

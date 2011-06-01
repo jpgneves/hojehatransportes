@@ -19,44 +19,44 @@ def index(request):
     
     strikes = SortedDict()
     
-    hoje = datetime.today().strftime("%d")
-    amanha = datetime.today().date() + timedelta(days=1)
-    amanha = amanha.strftime("%d")
+    todaysDay = datetime.today().strftime("%d")
+    tomorrow = datetime.today().date() + timedelta(days=1)
+    tomorrowsDay = tomorrow.strftime("%d")
 
     for strike in latest_strikes:
         m = strike.start_date.strftime("%m")
         d = strike.start_date.strftime("%d")
         
         if strike.start_date < datetime.today():
-            d = hoje
+            d = todaysDay
         
         if not strikes.has_key(m):
-            strikes[m] = {"nome":strike.start_date.strftime("%B"), "dias":SortedDict()}
-        if not strikes[m]["dias"].has_key(d):
-            strikes[m]["dias"][d] = {'greves':{}}
-        if not strikes[m]["dias"][d]['greves'].has_key(strike.company):
-            strikes[m]["dias"][d]['greves'][strike.company] = []
-        strikes[m]["dias"][d]['greves'][strike.company].append(strike)
+            strikes[m] = {"name":strike.start_date.strftime("%B"), "days":SortedDict()}
+        if not strikes[m]["days"].has_key(d):
+            strikes[m]["days"][d] = {'strikes':{}}
+        if not strikes[m]["days"][d]['strikes'].has_key(strike.company):
+            strikes[m]["days"][d]['strikes'][strike.company] = []
+        strikes[m]["days"][d]['strikes'][strike.company].append(strike)
 
 
     m = datetime.today().strftime("%m")
     if len(strikes) > 0 and strikes.has_key(m):
         fix = False
-        if strikes[m]["dias"].has_key(amanha):
-            strikes[m]["dias"][amanha]["alias"] = "Amanhã"
+        if strikes[m]["days"].has_key(tomorrowsDay):
+            strikes[m]["days"][tomorrowsDay]["alias"] = "Amanhã"
             fix = True        
 
-        if strikes[m]["dias"].has_key(hoje):
-            strikes[m]["dias"][hoje]["alias"] = "Hoje"
+        if strikes[m]["days"].has_key(todaysDay):
+            strikes[m]["days"][todaysDay]["alias"] = "Hoje"
             if fix:
-                strikes[m]["dias"][hoje]["fix"] = "fixAmanha"
-            for c in strikes[m]["dias"][hoje]["greves"]:
-                cc = strikes[m]["dias"][hoje]["greves"][c]
+                strikes[m]["days"][todaysDay]["fix"] = "fixTomorrow"
+            for c in strikes[m]["days"][todaysDay]["strikes"]:
+                cc = strikes[m]["days"][todaysDay]["strikes"][c]
                 if len(cc) > 1:
-                    strikes[m]["dias"][hoje]["greves"][c] = sorted(cc, key=MYattrgetter('start_date.day'), reverse=True)
+                    strikes[m]["days"][todaysDay]["strikes"][c] = sorted(cc, key=MYattrgetter('start_date.day'), reverse=True)
 
     
-    #strikes['04']["dias"] = sorted(strikes['04']["dias"])
+    #strikes['04']["days"] = sorted(strikes['04']["days"])
 
 
     context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
