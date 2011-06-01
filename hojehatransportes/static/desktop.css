@@ -6,6 +6,15 @@ body {
 	position: relative;
 }
 
+ul.strikes > li:hover a.permalink {
+	color: #aaa;
+}
+
+a.permalink {
+	text-decoration: none;
+	color: #d7d7d7;
+}
+
 a {
 	color: #000;
 }
