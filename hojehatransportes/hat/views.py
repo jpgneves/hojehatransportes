@@ -135,7 +135,7 @@ def submit(request):
     return render_to_response('submit.html', { 'form': form }, context_instance=RequestContext(request))
     
 def submissions(request):
-    latest_strikes = Strike.objects.filter(start_date__gte=datetime.today().date()).order_by('start_date')
+    latest_strikes = Strike.objects.filter(start_date__gte=datetime.today().date()).order_by('start_date').filter(approved=False)
     companies = Company.objects.all()
     regions = Region.objects.all()
     
