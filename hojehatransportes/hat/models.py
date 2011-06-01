@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
@@ -46,7 +47,10 @@ class Strike(models.Model):
         return "%s - %s : %s" % (self.start_date, self.end_date, self.company)
     
     def __unicode__(self):
-        return "%s - %s : %s" % (self.start_date, self.end_date, self.company)
+        description = self.description
+        if len(description) > 25:
+            description = self.description[0:25] + u"…"
+        return "%s : %s - %s" % (self.start_date, self.company, description)
     
     # Model validation
     def clean(self):

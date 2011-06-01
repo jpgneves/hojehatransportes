@@ -11,12 +11,12 @@ from django.utils.datastructures import SortedDict
 from django.template import RequestContext
 import locale
 from datetime import datetime, date, timedelta
+from operator import itemgetter, attrgetter
 
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
-
-def index(request, highlight=''):
-    latest_strikes = Strike.objects.filter(end_date__gte=datetime.today().date()).order_by('start_date')[:10]
+def index(request):
+    latest_strikes = Strike.objects.filter(end_date__gte=datetime.today().date()).order_by('start_date')[:20]
     companies = Company.objects.all()
     regions = Region.objects.all()
     
@@ -41,7 +41,9 @@ def index(request, highlight=''):
             strikes[m]["dias"][d]['greves'][strike.company] = []
         strikes[m]["dias"][d]['greves'][strike.company].append(strike)
 
-    if len(strikes) > 0:
+
+    m = datetime.today().strftime("%m")
+    if len(strikes) > 0 and strikes.has_key(m):
         fix = False
         if strikes[m]["dias"].has_key(amanha):
             strikes[m]["dias"][amanha]["alias"] = "Amanhã"
@@ -51,20 +53,36 @@ def index(request, highlight=''):
             strikes[m]["dias"][hoje]["alias"] = "Hoje"
             if fix:
                 strikes[m]["dias"][hoje]["fix"] = "fixAmanha"
+            for c in strikes[m]["dias"][hoje]["greves"]:
+                cc = strikes[m]["dias"][hoje]["greves"][c]
+                if len(cc) > 1:
+                    strikes[m]["dias"][hoje]["greves"][c] = sorted(cc, key=MYattrgetter('start_date.day'), reverse=True)
 
     
     #strikes['04']["dias"] = sorted(strikes['04']["dias"])
+
 
     context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
     
     return render_to_response('index.html', context)
 
-	if highlight == '':
-	    highlight = '-1'
 
-	context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies, 'highlights': [int(highlight)] }
-	return render_to_response('index.html', context)
-	
+def MYattrgetter(*items):
+    if len(items) == 1:
+        attr = items[0]
+        def g(obj):
+            return resolve_attr(obj, attr)
+    else:
+        def g(obj):
+            return tuple(resolve_att(obj, attr) for attr in items)
+    return g
+
+def resolve_attr(obj, attr):
+    for name in attr.split("."):
+        obj = getattr(obj, name)
+    return obj
+
+
 
 def thanks(request):
     return render_to_response('thanks.html')
