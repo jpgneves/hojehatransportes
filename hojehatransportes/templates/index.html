@@ -45,7 +45,7 @@
                 <p class="multiday">Prolonga-se até dia {{ strike.end_date.date|date:"j \de F" }}</p>
             {% endif %}
             <span class="description">{{strike.description|linebreaksbr}}</span>
-            <a href="{{ strike.get_absolute_url }}" title="Link para esta greve" class="permalink">#</a>
+            <!--<a href="{{ strike.get_absolute_url }}" title="Link para esta greve" class="permalink">#</a>-->
             {% if strike.source_link %} 
                 <a href="{{strike.source_link}}" title="Fonte oficial" class="source">Fonte</a>
             {% endif %}
