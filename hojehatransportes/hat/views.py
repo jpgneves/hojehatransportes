@@ -1,6 +1,7 @@
 # coding=utf-8
 from models import Strike, Region, Company
 from forms import SubmitForm
+from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
@@ -179,3 +180,7 @@ def submissions(request):
 
 def login(request):
     return render_to_response('login.html')
+    
+def logout(request):
+    django_logout(request)
+    return index(request)
