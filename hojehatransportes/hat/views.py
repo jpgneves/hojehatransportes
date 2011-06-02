@@ -140,6 +140,7 @@ def submit(request):
 @csrf_protect
 def edit(request, strike_id):
     strike = get_object_or_404(Strike, pk=strike_id)
+    
     if request.method == 'POST':
         form = SubmitForm(request.POST, instance=strike)
         if form.is_valid():
