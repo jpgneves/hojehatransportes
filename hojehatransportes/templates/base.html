@@ -48,7 +48,8 @@ _gaq.push(['_trackPageview']);
 <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="hagreve">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 <iframe id="fb" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhagreve.com&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></div>
 {% if user.is_authenticated %}
-<div id="submit">Bem-vindo {{ user.first_name }} {{ user.last_name }}!
+<div id="submit">Bem-vindo <a href="/profile">{{ user.first_name }} {{ user.last_name }}</a>!
+<p id="user_links"><a href="/submit">Submeter greve</a> <a href="/submissions">Ver submissões</a></p>
 <p id="logout"><a href="/logout">Logout</a></p>
 {% else %}
 <div id="submit"><p class="info">Faça login num destes serviços para submeter greves:</p>
