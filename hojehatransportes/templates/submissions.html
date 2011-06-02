@@ -31,7 +31,7 @@
          <span class="summary" style="display:none;">Greve: {{transporte}}</span>
          <abbr class="dtstart" title="{{strike.start_date|date:"Y-m-d"}}"></abbr>
 {% endif %}
-        <div class="msg"><span class="description">{{strike.description}}</span>{% if strike.source_link %} <a href="{{strike.source_link}}" title="Fonte oficial" class="source">Fonte</a>{% endif %}</div></li>
+        <div class="msg"><span class="description">{{strike.description}}</span>{% if strike.source_link %} <a href="{{strike.source_link}}" title="Fonte oficial" class="source">Fonte</a>{% endif %}<span class="submitter">Submetido por: {{ strike.submitter.first_name }} {{ strike.submitter.last_name }}</span></div></li>
 {% endfor %}
       </ul><!-- mensagens -->
      </li>

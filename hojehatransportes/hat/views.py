@@ -1,5 +1,6 @@
 # coding=utf-8
 from models import Strike, Region, Company
+from django.contrib.auth.models import User
 from forms import SubmitForm
 from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required
@@ -133,6 +134,22 @@ def submit(request):
     else:
         form = SubmitForm(initial={'submitter': request.user.id})
 
+    return render_to_response('submit.html', { 'form': form }, context_instance=RequestContext(request))
+    
+@login_required
+@csrf_protect
+def edit(request, strike_id):
+    strike = Strike.objects.get(pk=strike_id)
+    if request.method == 'POST':
+        form = SubmitForm(request.POST, instance=strike)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/thanks')
+    elif strike is not None:
+        form = SubmitForm(instance=strike)
+    else:
+        return HttpResponseNotFound()
+    
     return render_to_response('submit.html', { 'form': form }, context_instance=RequestContext(request))
 
 @login_required    

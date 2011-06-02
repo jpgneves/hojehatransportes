@@ -11,3 +11,7 @@ TWITTER_CONSUMER_SECRET = ''
 # Facebook login details
 FACEBOOK_APP_ID = ''
 FACEBOOK_API_SECRET = ''
+
+# Sapo login details
+SAPO_CONSUMER_KEY = ''
+SAPO_CONSUMER_SECRET = ''

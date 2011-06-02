@@ -112,9 +112,18 @@ INSTALLED_APPS = (
 
 # Auth
 
+SOCIAL_AUTH_IMPORT_BACKENDS = (
+    'social_auth_extra',
+)
+
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
     'social_auth.backends.facebook.FacebookBackend',
     'social_auth.backends.google.GoogleBackend',
+    'social_auth_extra.sapo.SapoBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+# Additional user data
+
+AUTH_PROFILE_MODEL = "hat.UserProfile"

@@ -39,7 +39,7 @@ _gaq.push(['_trackPageview']);
 <script type="text/javascript" async="true" src="http://api.flattr.com/js/0.6/load.js?mode=auto"></script>
 </head>
 <body>
-<h1>Hoje há greve? <span>Veja se consegue chegar ao trabalho.</span></h1>
+<h1><a href="/">Hoje há greve?</a> <span>Veja se consegue chegar ao trabalho.</span></h1>
 {% block content %}
 
 {% endblock %}
@@ -54,6 +54,7 @@ _gaq.push(['_trackPageview']);
 {% else %}
 <div id="submit"><p class="info">Faça login num destes serviços para submeter greves:</p>
 	<ul class="buttons">
+		<li class="sapo"><a href="/login/sapo?next={{request.path}}">Sapo</a></li>
 		<li class="facebook"><a href="/login/facebook?next={{request.path}}">Facebook</a></li>
 		<li class="twitter"><a href="/login/twitter?next={{request.path}}">Twitter</a></li>
 		<li class="google"><a href="/login/google?next={{request.path}}">Google</a></li>

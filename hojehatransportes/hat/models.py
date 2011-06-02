@@ -67,3 +67,9 @@ class Strike(models.Model):
         return ('strike_view',  [str(self.id)])
     #def get_absolute_url(self):
     #    return '/s/' + str(self.id)
+
+
+class UserProfile(models.Model):
+    user = models.ForeignKey(User, unique=True)
+    
+    mail_notifications = models.BooleanField(default=False)
