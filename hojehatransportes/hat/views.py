@@ -64,7 +64,7 @@ def index(request):
 
     context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
     
-    return render_to_response('index.html', context)
+    return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 
 def MYattrgetter(*items):
@@ -85,7 +85,7 @@ def resolve_attr(obj, attr):
 
 
 def thanks(request):
-    return render_to_response('thanks.html')
+    return render_to_response('thanks.html', context_instance=RequestContext(request))
 
 @require_POST
 def upvote(request):
@@ -133,9 +133,10 @@ def submit(request):
         form = SubmitForm()
 
     return render_to_response('submit.html', { 'form': form }, context_instance=RequestContext(request))
-    
+
+@login_required    
 def submissions(request):
-    latest_strikes = Strike.objects.filter(start_date__gte=datetime.today().date()).order_by('start_date').filter(approved=False)
+    latest_strikes = Strike.objects.filter(start_date__gte=datetime.today().date()).order_by('start_date').filter(approved=False).exclude(submitter=1)
     companies = Company.objects.all()
     regions = Region.objects.all()
     
@@ -174,7 +175,7 @@ def submissions(request):
 
     context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
     
-    return render_to_response('submissions.html', context)
+    return render_to_response('submissions.html', context, context_instance=RequestContext(request))
 
 def login(request):
     return render_to_response('login.html')

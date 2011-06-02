@@ -47,13 +47,17 @@ _gaq.push(['_trackPageview']);
 <a class="FlattrButton" style="display:none;" data-flattr-button="compact" href="http://hagreve.com"></a><noscript><a href="http://flattr.com/thing/180236/Hoje-Ha-Greve" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
 <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="hagreve">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 <iframe id="fb" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhagreve.com&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></div>
+{% if user.is_authenticated %}
+<div id="submit">Bem-vindo {{ user.first_name }} {{ user.last_name }}!
+{% else %}
 <div id="submit"><p class="info">Faça login num destes serviços para submeter greves:</p>
 	<ul class="buttons">
 		<li class="facebook"><a href="/login/facebook">Facebook</a></li>
 		<li class="twitter"><a href="/login/twitter">Twitter</a></li>
 		<li class="google"><a href="/login/google">Google</a></li>
 	</ul>
-Ou enviem para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a>.
+Ou envie para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a>.
+{% endif %}
 <p id="subscribe" style="margin-top:8px;">Subscrever: 
 <a type="text/calendar" href="webcal://hagreve.com/ics" id="ics" title="Subscreva ao calendário de greves na sua aplicação de calendário">iCal</a> <a href="rss" id="rss" title="Subscreva à lista de greves no seu leitor de RSS">RSS</a></p></div>
 </div>

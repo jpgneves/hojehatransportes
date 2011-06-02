@@ -108,6 +108,5 @@ AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
     'social_auth.backends.facebook.FacebookBackend',
     'social_auth.backends.google.GoogleBackend',
-    'django.contrib.auth.backends.ModelBackend'
-    'south',
+    'django.contrib.auth.backends.ModelBackend',
 )
