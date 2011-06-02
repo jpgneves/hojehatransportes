@@ -53,9 +53,9 @@ _gaq.push(['_trackPageview']);
 {% else %}
 <div id="submit"><p class="info">Faça login num destes serviços para submeter greves:</p>
 	<ul class="buttons">
-		<li class="facebook"><a href="/login/facebook">Facebook</a></li>
-		<li class="twitter"><a href="/login/twitter">Twitter</a></li>
-		<li class="google"><a href="/login/google">Google</a></li>
+		<li class="facebook"><a href="/login/facebook?next={{request.path}}">Facebook</a></li>
+		<li class="twitter"><a href="/login/twitter?next={{request.path}}">Twitter</a></li>
+		<li class="google"><a href="/login/google?next={{request.path}}">Google</a></li>
 	</ul>
 Ou envie para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a>.
 {% endif %}
