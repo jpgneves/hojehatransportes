@@ -131,7 +131,7 @@ def submit(request):
             form.save()
             return HttpResponseRedirect('/thanks')
     else:
-        form = SubmitForm()
+        form = SubmitForm(initial={'submitter': request.user.id})
 
     return render_to_response('submit.html', { 'form': form }, context_instance=RequestContext(request))
 
