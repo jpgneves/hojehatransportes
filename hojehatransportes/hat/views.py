@@ -6,7 +6,7 @@ from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
-from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.datastructures import SortedDict
@@ -139,10 +139,7 @@ def submit(request):
 @login_required
 @csrf_protect
 def edit(request, strike_id):
-    try:
-        strike = Strike.objects.get(pk=strike_id)
-    except ObjectDoesNotExist:
-        return HttpResponseNotFound()
+    strike = get_object_or_404(Strike, pk=strike_id)
     if request.method == 'POST':
         form = SubmitForm(request.POST, instance=strike)
         if form.is_valid():
