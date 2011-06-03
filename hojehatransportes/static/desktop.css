@@ -288,7 +288,7 @@ li.Hoje, li.Amanhã {
 	margin-left: 60px;
 }
 
-p.nostrikes {
+p.nostrikes, p.error {
 	padding: 100px 0;
 	text-align: center;
 }
