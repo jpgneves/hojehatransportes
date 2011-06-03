@@ -61,7 +61,7 @@ h1 span {
 .closeBtn {
 	position: absolute;
 	right: -2px;
-	background: white url(http://localhost/~carlos/hagreve/hojehatransportes/static/x.png) no-repeat 40px center;
+	background: white url(x.png) no-repeat 47px center;
 	border: 1px solid #ddd;
 	top: -35px;
 	padding: 4px 20px 4px 6px;
@@ -69,6 +69,10 @@ h1 span {
 
 .closeBtn:hover {
 	background-color: #eee;
+}
+
+.closeBtn:active {
+	background-color: #ddd;
 }
 
 .shadow {
@@ -385,7 +389,7 @@ li.Hoje, li.Amanhã {
 }
 
 .buttons > li > a {
-	background: url(http://localhost/~carlos/hagreve/hojehatransportes/static/oauth-icons.png) no-repeat;
+	background: url(oauth-icons.png) no-repeat;
 	display: inline-block;
 	text-align: left;
 	text-decoration: underline;
