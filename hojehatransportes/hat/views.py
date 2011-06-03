@@ -145,7 +145,7 @@ def edit(request, strike_id):
         form = SubmitForm(request.POST, instance=strike)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/thanks')
+            return HttpResponseRedirect('/submissions')
     else:
         form = SubmitForm(instance=strike)
     
