@@ -199,4 +199,4 @@ def login(request):
     
 def logout(request):
     django_logout(request)
-    return index(request)
+    return HttpResponseRedirect('/')
