@@ -1,9 +1,14 @@
+/* @override http://static.hagreve.com/desktop.min.css */
+
 body {
-	width: 800px;
 	font: 11pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
 	color: #2a2a2a;
-	margin: auto;
+}
+
+#content {
+	width: 800px;
 	position: relative;
+	margin: auto;
 }
 
 a {
@@ -22,6 +27,7 @@ h1 {
 
 h1 a{
     text-decoration:none;
+	color: #727272;
 }
 
 h1 span {
@@ -36,7 +42,7 @@ h1 span {
 }
 
 
-#filterbar, #submit {
+#filterbar, #asubmit {
 	position: absolute;
 	width: 250px;
 	right: 0;
@@ -46,6 +52,89 @@ h1 span {
 
 #submit {
 	text-align: center;
+}
+
+#submit > p {
+	margin-bottom: 15px;
+}
+
+.closeBtn {
+	position: absolute;
+	right: -2px;
+	background: white url(http://localhost/~carlos/hagreve/hojehatransportes/static/x.png) no-repeat 40px center;
+	border: 1px solid #ddd;
+	top: -35px;
+	padding: 4px 20px 4px 6px;
+}
+
+.closeBtn:hover {
+	background-color: #eee;
+}
+
+.shadow {
+	position: absolute;
+	margin: auto;
+	width: 100%;
+	height: 150%;
+	top: 0;
+	background-color: rgba(176,176,176,0.7);
+}
+
+.whitepart {
+	position: absolute;
+	top: 0;
+	background-color: white;
+	margin: 8px auto auto;
+	right: 0;
+	left: 0;
+	top: 90px;
+	padding: 80px 60px 60px;
+	-webkit-box-shadow: 5px 5px 15px gray;
+	-moz-box-shadow: 5px 5px 15px gray;
+	-o-box-shadow: 5px 5px 15px gray;
+	box-shadow: 5px 5px 15px gray;
+}
+
+/*.whitepart:after {
+	content: " .";
+	position: absolute;
+	bottom: -9px;
+	display: block;
+	height: 9px;
+	width: 81%;
+background: -moz-linear-gradient(top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);  FF3.6+ 
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.5)), color-stop(100%,rgba(0,0,0,0)));  Chrome,Safari4+ 
+background: -webkit-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%);  Chrome10+,Safari5.1+ 
+background: -o-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%);  Opera11.10+ 
+background: -ms-linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%);  IE10+ 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80000000', endColorstr='#00000000',GradientType=0 );  IE6-9 
+background: linear-gradient(top, rgba(0,0,0,0.5) 0%,rgba(0,0,0,0) 100%);
+	margin-left: -37px;
+}*/
+
+.overlay {
+	width: 500px;
+	background-color: #f6f5f6;
+	margin: auto;
+	right: 0;
+	left: 0;
+	padding: 30px;
+	border-bottom: 10px solid #ddd;
+	position: relative;
+	border-top: 2px solid #ddd;
+}
+
+.overlay > div > h3 {
+	margin: auto;
+	font: bold 20pt Georgia, "Times New Roman", Times, serif;
+	color: #727272;
+	text-shadow: rgba(0,0,0,0.26) 1px 1px 0;
+	position: absolute;
+	width: 76%;
+	left: 0;
+	right: 0;
+	margin-top: -70px;
+	margin-bottom: 20px;
 }
 
 #filterbar li {
@@ -290,25 +379,39 @@ li.Hoje, li.Amanhã {
 
 .buttons > li {
 	display: inline-block;
-	margin: 0px 10px;
+	margin: 0px 7px;
+	padding-left: 7px;
+	border: 1px solid #f6f5f6;
 }
 
 .buttons > li > a {
-	padding: 7px 0 7px 35px;
-	background-repeat: no-repeat;
-	background-position: left center;
+	background: url(http://localhost/~carlos/hagreve/hojehatransportes/static/oauth-icons.png) no-repeat;
+	display: inline-block;
+	text-align: left;
+	text-decoration: underline;
+	padding: 5px 7px 5px 20px;
 }
 
-.buttons > li.google > a {
-	background-image: url(google_32.png);
+.buttons > li:hover {
+	background-color: #e0e0e0;
+	border: 1px solid silver;
+}
+
+
+.buttons > li.sapo > a {
+	background-position: 0 -54px;
 }
 
 .buttons > li.facebook > a {
-	background-image: url(facebook_32.png);
+	background-position: 0 5px;
 }
 
 .buttons > li.twitter > a {
-	background-image: url(twitter_32.png);
+	background-position: 0 -81px;
+}
+
+.buttons > li.google > a {
+	background-position: 0 -20px;
 }
 
 p.nostrikes {
@@ -316,3 +419,34 @@ p.nostrikes {
 	text-align: center;
 }
 
+
+#submitButton,#subscribeButton {
+	position: absolute;
+	width: 180px;
+	right: 0;
+	margin: 0 15px 15px;
+	top: 0;
+	text-align: center;
+	background-color: #f8f8f8;
+	padding: 6px;
+	text-shadow: #f8f8f8 0 2px 10px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	border: 1px solid #dbdbdb;
+}
+
+#subscribeButton {
+	top: 33px;
+}
+
+#submitButton:hover,
+#subscribeButton:hover {
+	background-color: #f0f0f0;
+}
+
+#submitButton:active,
+#subscribeButton:active {
+	margin-top: 1px;
+	margin-right: 16px;
+	padding: 5px;
+	text-shadow: none;
+}
