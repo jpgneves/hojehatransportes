@@ -4,9 +4,11 @@
 <div id="login_block">
 	<h2>Fa&ccedil;a login com as suas contas do Sapo, Google, Facebook, Twitter!</h2>
 	<h3>N&atilde;o precisa de decorar mais um username e password para usar este site.</h3>
-	<li class="sapo"><a href="/login/sapo?next={{request.path}}">Sapo</a></li>
-	<a href="/login/google"><div class="login_button">Google</div></a>
-	<a href="/login/facebook"><div class="login_button">Facebook</div></a>
-	<a href="/login/twitter"><div class="login_button">Twitter</div></a>
+	<ul class="buttons">
+		<li class="facebook"><a href="/login/facebook?next={{request.path}}">Facebook</a></li>
+		<li class="google"><a href="/login/google?next={{request.path}}">Google</a></li>
+		<li class="sapo"><a href="/login/sapo?next={{request.path}}">Sapo</a></li>
+		<li class="twitter"><a href="/login/twitter?next={{request.path}}">Twitter</a></li>
+	</ul>
 </div>
 {% endblock %}
