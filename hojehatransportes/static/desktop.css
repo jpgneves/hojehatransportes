@@ -63,7 +63,7 @@ h1 span {
 
 .closeBtn {
 	position: absolute;
-	right: -2px;
+	right: 0;
 	background: white url(x.png) no-repeat 47px center;
 	border: 1px solid #ddd;
 	top: -35px;
