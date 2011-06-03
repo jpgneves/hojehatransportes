@@ -53,9 +53,9 @@ _gaq.push(['_trackPageview']);
 <p id="user_links"><a href="/submit">Submeter greve</a> <a href="/submissions">Ver submissões</a></p>
 <p id="logout"><a href="/logout">Logout</a></p>
 {% else %}
-<div id="submitButton">Submeta greves</div>
+<div id="submitButton" onclick="displaySubmit()">Submeta greves</div>
 <div id="subscribeButton">Subscreva iCal RSS …</div>
-    <div id="submit">Submeta uma greve!<p class="info"> Faça login num destes serviços:</p>
+    <div id="submitOLD">Submeta uma greve!<p class="info"> Faça login num destes serviços:</p>
 	<ul class="buttons">
 		<li class="sapo"><a href="/login/sapo?next={{request.path}}">Sapo</a></li>
 		<li class="facebook"><a href="/login/facebook?next={{request.path}}">Facebook</a></li>
@@ -70,9 +70,9 @@ Ou envie para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a>.
 <div id="disclaimer"><strong>Atenção:</strong> Toda a informação contida neste site é apenas informativa e não é garantida a sua correcção.<br>Deverá sempre consultar informações junto das empresas aqui referidas. Não nos responsabilizamos por despedimentos por ficar em casa a preguiçar ou qualquer outra coisa seja ela qual for.<br/>Este site não está afiliado a qualquer empresa ou sindicato.</div>
 <div id="fotter">&copy; 2011 &mdash; <a href="http://twitter.com/jpgneves" title="@jpgneves">João Neves</a>, <a href="http://twitter.com/carlosefonseca" title="@carlosefonseca">Carlos Fonseca</a> e <a href="http://twitter.com/filcab" title="@filcab">Filipe Cabecinhas</a> &mdash; <a href="mailto:info@hagreve.com">info@hagreve.com</a></div>
 </div>
-<div class="shadow"><div class="whitepart">
-    <div class="overlay"><button class="closeBtn" value="coiso">voltar</button>
-        <div id="submit"><h3>Submeta uma greve!</h3>
+<div id="overlaywrapper" class="shadow" style="display:none"><div class="whitepart">
+    <div class="overlay"><a class="closeBtn" href="javascript:close();">voltar</a>
+        <div id="submit" style="display:none"><h3>Submeta uma greve!</h3>
 			<p>Por email, para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a> e nós tratamos do resto</p>
 			<p>ou</p>
 			<p>Directamente no site, fazendo login num destes serviços:</p>
@@ -83,6 +83,19 @@ Ou envie para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a>.
 				<li class="twitter"><a href="/login/twitter?next={{request.path}}">Twitter</a></li>
 			</ul>
 		</div>
-	</div></div></div>
+	</div>
+</div></div>
 </body>
+<script type="text/javascript">
+function close() {
+	document.getElementById("overlaywrapper").style.display = "none";
+	document.getElementById("submit").style.display = "none";
+}
+function displaySubmit() {
+	document.getElementById("overlaywrapper").style.display = "";
+	document.getElementById("submit").style.display = "";
+}
+
+
+</script>
 </html>
