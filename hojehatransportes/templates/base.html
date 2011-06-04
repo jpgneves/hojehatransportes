@@ -39,17 +39,20 @@ _gaq.push(['_trackPageview']);
 <script type="text/javascript" async="true" src="http://api.flattr.com/js/0.6/load.js?mode=auto"></script>
 </head>
 <body>
-<div id="content">
+<div id="page">
 <h1><a href="/">Hoje há greve?</a> <span>Veja se consegue chegar ao trabalho.</span></h1>
+<div id="content">
 {% block content %}
 
 {% endblock %}
+</div>
+
 <div id="snAndSubmit"><div id="sn">
 <a class="FlattrButton" style="display:none;" data-flattr-button="compact" href="http://hagreve.com"></a><noscript><a href="http://flattr.com/thing/180236/Hoje-Ha-Greve" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>
 <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="hagreve">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 <iframe id="fb" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhagreve.com&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></div>
 
-<p id="subscribe" style="margin-top:8px;">Subscrever: 
+<p id="subscribe" style="display:none;margin-top:8px;">Subscrever: 
 <a type="text/calendar" href="webcal://hagreve.com/ics" id="ics" title="Subscreva ao calendário de greves na sua aplicação de calendário">iCal</a> <a href="rss" id="rss" title="Subscreva à lista de greves no seu leitor de RSS">RSS</a></p></div>
 
 <div id="user_links">
@@ -72,7 +75,7 @@ _gaq.push(['_trackPageview']);
 <div id="overlaywrapper" class="shadow" style="display:none"><div class="whitepart">
     <div class="overlay"><a class="closeBtn" href="javascript:close();">voltar</a>
         <div id="submit" style="display:none"><h3>Submeta uma greve!</h3>
-			<p>Por email, para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a> e nós tratamos do resto</p>
+			<p>Por <strong>email</strong>, para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a> e nós tratamos do resto</p>
 			<p>ou</p>
 			<p>Directamente no site, fazendo login num destes serviços:</p>
 			<ul class="buttons">
@@ -91,11 +94,21 @@ function close() {
 	document.getElementById("submit").style.display = "none";
 }
 function displaySubmit() {
-	document.getElementById("overlaywrapper").style.display = "";
 	document.getElementById("submit").style.display = "";
+	var w = document.getElementById("overlaywrapper");
+	w.style.display = "";
+	w.style.height = getDocHeight()+"px";
 	return false;
 }
 
+function getDocHeight() {
+	var D = document;
+	return Math.max(
+		Math.max(D.body.scrollHeight, D.documentElement.scrollHeight),
+		Math.max(D.body.offsetHeight, D.documentElement.offsetHeight),
+		Math.max(D.body.clientHeight, D.documentElement.clientHeight)
+	);
+}
 
 </script>
 </html>
