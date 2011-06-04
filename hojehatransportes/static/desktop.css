@@ -158,7 +158,7 @@ h1 span {
 	background-color: rgba(176,176,176,0.7);
 }
 
-.whitepart {
+#whitepart {
 	position: absolute;
 	top: 0;
 	background-color: white;
@@ -493,5 +493,25 @@ p.nostrikes {
 }
 
 /* @end */
+
+/* @end */
+
+/* @group Subscribe */
+
+#subscribe > ul {
+	margin: 10px;
+}
+
+#subscribe > ul > li {
+	margin: 20px 0;
+}
+
+#subscribe span.type {
+	display: inline-block;
+	width: 90px;
+	margin: 10px 20px 10px 0;
+	float: left;
+	text-align: center;
+}
 
 /* @end */
