@@ -93,23 +93,26 @@ _gaq.push(['_trackPageview']);
 	<p>Pode receber informações actualizadas nas seguintes formas:</p>
 	
 	<ul>
-		<li><span class="type">Calendário</span>
+		<li id="ics">
+			<h4>Calendário</h4>
+			<div class="subsc-wrapper">
 			<span class="description">Na sua aplicação de calendário.</span>
-			<ul class="links">
-				<li><a type="text/calendar" href="webcal://hagreve.com/ics" id="ics" title="Subscreva ao calendário de greves na sua aplicação de calendário">Calendário com todas as greves</a></li>
-			</ul>
+				<p><a type="text/calendar" href="webcal://hagreve.com/ics" title="Subscreva ao calendário de greves na sua aplicação de calendário">Calendário com todas as greves</a></p>
+			</div>
 		</li>
-		<li><span class="type">RSS</span>
+		<li id="rss">
+			<h4>RSS</h4>
+			<div class="subsc-wrapper">
 			<span class="description">No seu leitor de notícias.</span>
-			<ul class="links">
-				<li><a href="rss" id="rss" title="Subscreva à lista de greves no seu leitor de RSS">RSS</a></li>
-			</ul>
+				<p><a href="rss" id="rss" title="Subscreva à lista de greves no seu leitor de RSS">RSS</a></p>
+			</div>
 		</li>
-		<li><span class="type">Email</span>
-			<span class="description">Na sua caixa de email.</span>
-			<ul class="links">
-				<li><a href="email" id="email" title="Subscreva à lista de greves no seu leitor de RSS">email</a></li>
-			</ul>
+		<li id="email">
+			<h4>Email</h4>
+			<div class="subsc-wrapper">
+				<span class="description">Na sua caixa de email.</span>
+				<p><a id="email" title="Subscreva à lista de greves no seu leitor de RSS">email</a></p>
+			</div>
 		</li>
 	</ul>
 </div>
