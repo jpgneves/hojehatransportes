@@ -1,3 +1,5 @@
+/* @override http://localhost/~carlos/hagreve/hojehatransportes/static/desktop.css */
+
 /* @group Page */
 
 body {
@@ -196,6 +198,7 @@ h1 span {
 	right: 0;
 	margin-top: -70px;
 	margin-bottom: 20px;
+	text-align: center;
 }
 
 /* @end */
@@ -499,19 +502,63 @@ p.nostrikes {
 /* @group Subscribe */
 
 #subscribe > ul {
-	margin: 10px;
+	margin: 20px 10px;
+	position: relative;
+	height: 100px;
 }
 
 #subscribe > ul > li {
-	margin: 20px 0;
+	margin: 50px 0;
+	position: absolute;
+	width: 100%;
+	height: 0px;
+	z-index: 0;
 }
 
-#subscribe span.type {
-	display: inline-block;
-	width: 90px;
-	margin: 10px 20px 10px 0;
-	float: left;
+#subscribe h4 {
+	position: absolute;
+	margin-top: -49px;
+	width: 68px;
+	display: block;
+	background: url(subscribe-icons.png) no-repeat 3px -71px;
+	padding: 15px 30px 17px 62px;
 	text-align: center;
+}
+
+#subscribe #rss h4 {
+	right: 0;
+	left: 0;
+	margin-left: auto;
+	margin-right: auto;
+	background-position-y: -6px;
+}
+
+
+#subscribe #email h4 {
+	right: 0;
+	background-position-y: -135px;
+}
+
+#subscribe .subsc-wrapper {
+	display: none;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-right: 13px;
+	padding: 15px;
+}
+
+#subscribe li:hover .subsc-wrapper {
+	display: inherit;
+}
+
+#subscribe li:hover {
+	z-index: 100;
+	height: inherit;
+}
+
+#subscribe li:hover h4,
+#subscribe .subsc-wrapper {
+	background-color: #ddd;
 }
 
 /* @end */
