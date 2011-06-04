@@ -22,6 +22,10 @@ DATABASES = {
     }
 }
 
+#Root URL for Static files
+#STATIC_URL = 'http://localhost/~carlos/hagreve/hojehatransportes/static'
+STATIC_URL = 'http://static.hagreve.com'
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -87,12 +91,14 @@ TEMPLATE_DIRS = (
     "%s/templates" % os.getcwd()
 )
 
+
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.auth",
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
+    "hojehatransportes.settings.static_url_processor",
 )
 
 INSTALLED_APPS = (
@@ -127,3 +133,12 @@ AUTHENTICATION_BACKENDS = (
 # Additional user data
 
 AUTH_PROFILE_MODEL = "hat.UserProfile"
+
+
+########## Add setting to thre request
+def static_url_processor(request):
+    my_dict = {
+        'static_url': STATIC_URL,
+    }
+    return my_dict
+
