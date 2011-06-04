@@ -13,6 +13,7 @@ from django.utils.datastructures import SortedDict
 from django.template import RequestContext
 import locale
 from datetime import datetime, date, timedelta
+import calendar
 from operator import itemgetter, attrgetter
 
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
@@ -25,18 +26,21 @@ def index(request):
     strikes = SortedDict()
     
     hoje = datetime.today().strftime("%d")
+    todayMonth = datetime.today().strftime("%m")
     amanha = datetime.today().date() + timedelta(days=1)
     amanha = amanha.strftime("%d")
 
     for strike in latest_strikes:
         m = strike.start_date.strftime("%m")
+        if m < todayMonth:
+            m = todayMonth
         d = strike.start_date.strftime("%d")
         
         if strike.start_date < datetime.today():
             d = hoje
         
         if not strikes.has_key(m):
-            strikes[m] = {"nome":strike.start_date.strftime("%B"), "dias":SortedDict()}
+            strikes[m] = {"nome":calendar.month_name[int(m)], "dias":SortedDict()}
         if not strikes[m]["dias"].has_key(d):
             strikes[m]["dias"][d] = {'greves':{}}
         if not strikes[m]["dias"][d]['greves'].has_key(strike.company):
