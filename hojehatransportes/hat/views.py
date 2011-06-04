@@ -199,7 +199,7 @@ def submissions(request):
     return render_to_response('submissions.html', context, context_instance=RequestContext(request))
 
 def login(request):
-    return render_to_response('login.html')
+    return render_to_response('login.html', context_instance=RequestContext(request))
     
 def logout(request):
     django_logout(request)
