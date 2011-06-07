@@ -13,7 +13,7 @@ from operator import itemgetter, attrgetter
 
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
-def index(request):
+def index(request, highlight='-1'):
     latest_strikes = Strike.objects.filter(end_date__gte=datetime.today().date()).order_by('start_date')[:20]
     companies = Company.objects.all()
     regions = Region.objects.all()
@@ -63,7 +63,7 @@ def index(request):
     #strikes['04']["dias"] = sorted(strikes['04']["dias"])
 
 
-    context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
+    context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies, 'highlights': [int(highlight)] }
     
     return render_to_response('index.html', context)
 

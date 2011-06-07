@@ -36,7 +36,7 @@
          <span class="time start"><abbr class="dtstart" title="{{strike.start_date|date:"c"}}">{{strike.start_date|date:"G:i"}}</abbr></span>
          <span class="time end"><abbr class="dtend" title="{{strike.end_date|date:"c"}}">{{strike.end_date|date:"G:i"}}</abbr></span></div>
 {% else %}
-        <li class="{% if strike.canceled %}canceled{% else %}vevent{% endif %}">
+        <li class="{% if strike.canceled %}canceled{% else %}vevent{% endif %}{% if strike.id in highlights %} highlight{% endif %}">
          <span class="summary" style="display:none;">Greve: {{transporte}}</span>
          <abbr class="dtstart" title="{{strike.start_date|date:"Y-m-d"}}"></abbr>
 {% endif %}
@@ -46,7 +46,7 @@
             {% endif %}
             <span class="description">{{strike.description|linebreaksbr}}</span>
             <!--<a href="{{ strike.get_absolute_url }}" title="Link para esta greve" class="permalink">#</a>-->
-            {% if strike.source_link %} 
+            {% if strike.source_link %}
                 <a href="{{strike.source_link}}" title="Fonte oficial" class="source">Fonte</a>
             {% endif %}
          </div>
