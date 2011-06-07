@@ -155,7 +155,7 @@ class RssFeed(Feed):
         return strike.company.name + ' - ' + strike.region.name
 
     def item_link(self, strike):
-        return strike.get_absolute_url().replace('example', 'hagreve')
+        return 'http://hagreve.com'
 
     def item_pubdate(self, strike):
         return strike.start_date
