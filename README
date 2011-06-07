@@ -3,7 +3,10 @@ Prerequisites:
 	- Python 2.6
 	- vobject
 	- South
+
 	
+Copy settings.default.py to settings.py and change the db settings
+
 On the first run (or when models are heavily changed):
 	python manage.py syncdb
 	python manage.py migrate hat	
