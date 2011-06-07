@@ -1,8 +1,8 @@
 Prerequisites:
 	- Django 1.2
-	- Python 2.6
-	- vobject
-	- South
+	- Python 2.5
+	- vobject — http://pypi.python.org/pypi/vobject
+	- South — http://pypi.python.org/pypi/South
 
 	
 Copy settings.default.py to settings.py and change the db settings
