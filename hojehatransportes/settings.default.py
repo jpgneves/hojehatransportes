@@ -1,5 +1,6 @@
 # Django settings for hojehatransportes project.
 import os
+from social_auth_settings import *
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -20,6 +21,10 @@ DATABASES = {
 		'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+#Root URL for Static files
+#STATIC_URL = 'http://localhost/~carlos/hagreve/hojehatransportes/static'
+STATIC_URL = 'http://static.hagreve.com'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -86,6 +91,16 @@ TEMPLATE_DIRS = (
     "%s/templates" % os.getcwd()
 )
 
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.request",
+    "hojehatransportes.settings.static_url_processor",
+)
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -97,5 +112,33 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'hojehatransportes.hat',
-    'south',
+    'social_auth',
+    'south'
 )
+
+# Auth
+
+SOCIAL_AUTH_IMPORT_BACKENDS = (
+    'social_auth_extra',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleBackend',
+    'social_auth_extra.sapo.SapoBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# Additional user data
+
+AUTH_PROFILE_MODEL = "hat.UserProfile"
+
+
+########## Add setting to thre request
+def static_url_processor(request):
+    my_dict = {
+        'static_url': STATIC_URL,
+    }
+    return my_dict
+

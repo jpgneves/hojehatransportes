@@ -1,5 +1,6 @@
 # coding=utf-8
 from django.db import models
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from datetime import datetime
@@ -16,7 +17,6 @@ class Company(models.Model):
     
     def __unicode__(self):
         return self.name
-        
 
 class Region(models.Model):
     """Represents a region"""
@@ -41,6 +41,10 @@ class Strike(models.Model):
     canceled = models.BooleanField(default=False)
     source_link = models.URLField(blank=True)
     approved = models.BooleanField(default=False)
+    submitter = models.ForeignKey(User, default=1)
+    
+    def __unicode__(self):
+        return "%s - %s : %s" % (self.start_date, self.end_date, self.company)
     
     def __unicode__(self):
         description = self.description
@@ -64,3 +68,8 @@ class Strike(models.Model):
     #def get_absolute_url(self):
     #    return '/s/' + str(self.id)
 
+
+class UserProfile(models.Model):
+    user = models.ForeignKey(User, unique=True)
+    
+    mail_notifications = models.BooleanField(default=False)
