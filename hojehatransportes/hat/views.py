@@ -14,7 +14,7 @@ from operator import itemgetter, attrgetter
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
 def index(request):
-    latest_strikes = Strike.objects.filter(end_date__gte=datetime.today().date()).order_by('start_date')[:20]
+    latest_strikes = Strike.objects.filter(end_date__gte=datetime.today().date()).order_by('start_date').exclude(approved=False)[:20]
     companies = Company.objects.all()
     regions = Region.objects.all()
     
