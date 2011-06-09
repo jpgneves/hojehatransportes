@@ -1,5 +1,3 @@
-/* @override http://localhost/~carlos/hagreve/hojehatransportes/static/desktop.css */
-
 /* @group Page */
 
 body {
@@ -370,16 +368,17 @@ span.transporte,
 	margin-left: 60px;
 }
 
-.canceled:after {
+.canceled .description:after {
 	content: "";
-	background-image: url(desconvocada.png);
 	display: block;
 	width: 173px;
-	height: 50px;
+	height: 100%;
 	position: absolute;
-	top: -11px;
+	top: 0;
 	left: 150px;
+	background: url(desconvocada.png) no-repeat 0 center;
 }
+
 
 a.source {
 	text-indent: -5000px;
