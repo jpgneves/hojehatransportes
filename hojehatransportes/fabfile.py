@@ -6,13 +6,13 @@ REPO_URL = "git://github.com/jpgneves/hojehatransportes.git"
 
 env.user = "hagreve"
 
-def _deploy(path):
-    # with settings(warn_only=True):
-    #     local("python manage.py schemamigration hat --auto")
-    # local("git add hat/migrations/*.py")
-    # with settings(warn_only=True):
-    #     local("git commit -m '[Fabric] Added new migrations'")
-    # local("git push")
+def _deploy(path, branch):
+    with settings(warn_only=True):
+        local("python manage.py schemamigration hat --auto")
+    local("git add hat/migrations/*.py")
+    with settings(warn_only=True):
+        local("git commit -m '[Fabric] Added new migrations'")
+    local("git push")
     with settings(warn_only=True):
 
         # REPO
@@ -42,11 +42,12 @@ def _deploy(path):
 
 def deploy_to_testing():
     path = '/home/hagreve/test.hagreve.com'
-    _deploy(path)
+    branch = 'stagingBeta'
+    _deploy(path, branch)
 
 def deploy_to_production():
     path = '/home/hagreve/hagreve.com'
-    _deploy(path)
+    _deploy(path, branch)
 
 
 def howto():
