@@ -291,6 +291,7 @@ span.month,
 	display: table-cell;
 	font: 20pt Georgia, "Times New Roman", Times, serif;
 	margin-top: 10px;
+	text-align:center;
 }
 
 span.day,

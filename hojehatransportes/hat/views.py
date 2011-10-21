@@ -40,7 +40,11 @@ def index(request, highlight='-1'):
             d = todaysDay
         
         if not strikes.has_key(m):
-            strikes[m] = {"name":calendar.month_name[int(m)], "days":SortedDict()}
+            if not strikes.has_key(m):
+                mName = calendar.month_name[int(m)]
+                if len(mName) > 7:  #shrink months that don't fit
+                    mName = mName[0:3]+"."
+            strikes[m] = {"nome":mName, "dias":SortedDict()}
         if not strikes[m]["days"].has_key(d):
             strikes[m]["days"][d] = {'strikes':{}}
         if not strikes[m]["days"][d]['strikes'].has_key(strike.company):
