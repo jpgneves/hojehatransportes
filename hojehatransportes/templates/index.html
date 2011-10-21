@@ -4,8 +4,8 @@
 
 {% if false %}
 <div id="filterbar">
- Transportes:
- <ul id="transportes-filter">
+ companies:
+ <ul id="companies-filter">
   {% for company in companies %}
   <li class="on">{{ company.name }}</li>
   {% endfor %}
@@ -14,38 +14,48 @@
 {% endif %}
 
 {% if strikes %}
-<ul id="meses">
+<ul id="months">
 {% for month in strikes.values %}
  <li>
-  <span class="mes">{{ month.nome }}</span>
-  <ul class="dias">
-{% for dia, diastuff in month.dias.items %}
-   <li class="{{diastuff.alias}} {{diastuff.fix}}">
-    <span class="dia ">{{dia}}</span>
-	{% if diastuff.alias %}<div class="alias">{{diastuff.alias}}</div>{%endif%}
-    <ul class="transportes">
-{% for transporte, strikes in diastuff.greves.items %}
-     <li class="transporte {{transporte|cut:" "}}">
-      <span>{{transporte}}</span>
-      <ul class="mensagens">
+  <span class="month">{{ month.name }}</span>
+  <ul class="days">
+{% for day, daystuff in month.days.items %}
+   <li class="{{daystuff.alias}} {{daystuff.fix}}">
+    <span class="day ">{{day}}</span>
+	{% if daystuff.alias %}<div class="alias">{{daystuff.alias}}</div>{%endif%}
+    <ul class="companies">
+{% for company, strikes in daystuff.strikes.items %}
+     <li class="company {{company|cut:" "}}">
+      <span>{{company}}</span>
+      <ul class="strikes">
 {% for strike in strikes %}
 {% if strike.start_date != strike.end_date and not strike.all_day %}
        <li class="wtime{% if strike.canceled %} canceled{% else %} vevent{% endif %}{% if strike.id in highlights %} highlight{% endif %}">
-        <span class="summary" style="display:none;">Greve: {{transporte}}</span>
+        <span class="summary" style="display:none;">Greve: {{company}}</span>
         <div class="time">
          <span class="time start"><abbr class="dtstart" title="{{strike.start_date|date:"c"}}">{{strike.start_date|date:"G:i"}}</abbr></span>
          <span class="time end"><abbr class="dtend" title="{{strike.end_date|date:"c"}}">{{strike.end_date|date:"G:i"}}</abbr></span></div>
 {% else %}
-        <li class="{% if strike.canceled %}canceled{% else %}vevent{% endif %}">
-         <span class="summary" style="display:none;">Greve: {{transporte}}</span>
+        <li class="{% if strike.canceled %}canceled{% else %}vevent{% endif %}{% if strike.id in highlights %} highlight{% endif %}">
+         <span class="summary" style="display:none;">Greve: {{company}}</span>
          <abbr class="dtstart" title="{{strike.start_date|date:"Y-m-d"}}"></abbr>
 {% endif %}
-        <div class="msg">{% if strike.start_date.date != strike.end_date.date %}<p class="multiday">Prolonga-se até dia {{ strike.end_date.date|date:"j \de F" }}</p>{% endif %}<span class="description">{{strike.description|linebreaksbr}}</span>{% if strike.source_link %} <a href="{{strike.source_link}}" title="Fonte oficial" class="source">Fonte</a>{% endif %}<a href="{{ strike.get_absolute_url }}" title="Link" class="source">Link</a></div></li>
+         <div class="msg">
+            {% if strike.start_date.date != strike.end_date.date %}
+                <p class="multiday">Prolonga-se até dia {{ strike.end_date.date|date:"j \de F" }}</p>
+            {% endif %}
+            <span class="description">{{strike.description|linebreaksbr}}</span>
+            <!--<a href="{{ strike.get_absolute_url }}" title="Link para esta greve" class="permalink">#</a>-->
+            {% if strike.source_link %}
+                <a href="{{strike.source_link}}" title="Fonte oficial" class="source">Fonte</a>
+            {% endif %}
+         </div>
+        </li>
 {% endfor %}
-      </ul><!-- mensagens -->
+      </ul><!-- strikes -->
      </li>
 {% endfor %}
-    </ul><!-- transportes -->
+    </ul><!-- companys -->
    </li>
 {% endfor %}
   </ul>

@@ -104,6 +104,11 @@ h1 {
     font: bold 36pt Georgia, "Times New Roman", Times, serif;
     text-shadow: rgba(0,0,0,0.26) 1px 1px 0;
     font-size: 2.5em;
+    text-decoration: none;
+}
+
+h1 a{
+    text-decoration:none;
 }
  
 h1 span {

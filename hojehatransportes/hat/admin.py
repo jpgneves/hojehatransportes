@@ -26,7 +26,7 @@ class StrikeAdminForm(forms.ModelForm):
 
 class StrikeAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {'fields': ['company', 'region', 'description', 'canceled', 'source_link']}),
+        ('Strike info', {'fields': ['company', 'region', 'description', 'canceled', 'source_link', 'submitter']}),
         ('Strike dates', {'fields': ['start_date', 'all_day', 'end_date']}),
         ('Approve', {'fields': ['approved']})
     ]

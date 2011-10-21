@@ -188,8 +188,8 @@ class IcsFeed(Events):
         return strike.start_date.replace(tzinfo=tzlx)
 
     def item_end(self, strike):
-        if strike.start_date == strike.end_date or strike.all_day:
-          return strike.end_date.date() + timedelta(days=1)
+        if strike.all_day or strike.start_date == strike.end_date:
+          return strike.start_date.date() + timedelta(days=1)
         return strike.end_date.replace(tzinfo=tzlx)
 
     def item_description(self, strike):
