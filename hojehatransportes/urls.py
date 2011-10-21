@@ -29,5 +29,5 @@ urlpatterns = patterns('',
     (r'^atom', AtomFeed()),
     (r'^ics', IcsFeed()),
     (r'^strike/(?P<highlight>\d+)$', 'hat.views.index', {}, 'strike_view'),
-    (r'^api/(?P<rpc>\w+)$', 'hat.views.api'),
+    (r'^api/', include('hat.api.urls')),
 )
