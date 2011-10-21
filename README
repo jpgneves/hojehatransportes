@@ -2,6 +2,8 @@ Prerequisites:
 	- Django 1.2
 	- Python 2.5
 	- vobject — http://pypi.python.org/pypi/vobject
+    - django-cal
+      -> git://github.com/gabrielgrant/django-cal.git
 	- django-social-auth
 	  -> django-openid-auth
 	- South — http://pypi.python.org/pypi/South
