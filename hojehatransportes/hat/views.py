@@ -44,7 +44,7 @@ def index(request, highlight='-1'):
                 mName = calendar.month_name[int(m)]
                 if len(mName) > 7:  #shrink months that don't fit
                     mName = mName[0:3]+"."
-            strikes[m] = {"nome":mName, "dias":SortedDict()}
+            strikes[m] = {"name":mName, "days":SortedDict()}
         if not strikes[m]["days"].has_key(d):
             strikes[m]["days"][d] = {'strikes':{}}
         if not strikes[m]["days"][d]['strikes'].has_key(strike.company):
@@ -176,26 +176,26 @@ def submissions(request):
         d = strike.start_date.strftime("%d")
         
         if not strikes.has_key(m):
-            strikes[m] = {"nome":strike.start_date.strftime("%B"), "dias":SortedDict()}
-        if not strikes[m]["dias"].has_key(d):
-            strikes[m]["dias"][d] = {'greves':{}}
-        if not strikes[m]["dias"][d]['greves'].has_key(strike.company):
-            strikes[m]["dias"][d]['greves'][strike.company] = []
-        strikes[m]["dias"][d]['greves'][strike.company].append(strike)
+            strikes[m] = {"name":strike.start_date.strftime("%B"), "days":SortedDict()}
+        if not strikes[m]["days"].has_key(d):
+            strikes[m]["days"][d] = {'greves':{}}
+        if not strikes[m]["days"][d]['greves'].has_key(strike.company):
+            strikes[m]["days"][d]['greves'][strike.company] = []
+        strikes[m]["days"][d]['greves'][strike.company].append(strike)
 
     if len(strikes) > 0:
         fix = False
-        if strikes[m]["dias"].has_key(amanha):
-            strikes[m]["dias"][amanha]["alias"] = "Amanhã"
+        if strikes[m]["days"].has_key(amanha):
+            strikes[m]["days"][amanha]["alias"] = "Amanhã"
             fix = True        
 
-        if strikes[m]["dias"].has_key(hoje):
-            strikes[m]["dias"][hoje]["alias"] = "Hoje"
+        if strikes[m]["days"].has_key(hoje):
+            strikes[m]["days"][hoje]["alias"] = "Hoje"
             if fix:
-                strikes[m]["dias"][hoje]["fix"] = "fixAmanha"
+                strikes[m]["days"][hoje]["fix"] = "fixAmanha"
 
     
-    #strikes['04']["dias"] = sorted(strikes['04']["dias"])
+    #strikes['04']["days"] = sorted(strikes['04']["days"])
 
 
     context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
