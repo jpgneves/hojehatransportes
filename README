@@ -6,6 +6,7 @@ Prerequisites:
       -> git://github.com/gabrielgrant/django-cal.git
 	- django-social-auth
 	  -> django-openid-auth
+    - django-piston 0.2.2
 	- South — http://pypi.python.org/pypi/South
 	
 Copy settings.default.py to settings.py and change the db settings
