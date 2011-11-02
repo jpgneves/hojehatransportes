@@ -5,14 +5,14 @@ from datetime import datetime
 
 class AnonymousStrikeListHandler:
   model = Strike
-  fields = ('company', 'start_date', 'end_date', 'all_day', 'description', 'region', 'canceled', 'source_link', 'submitter')
+  fields = ('company', 'start_date', 'end_date', 'all_day', 'description', 'canceled', 'source_link', 'submitter')
   #exclude = ('id', 'upvotes', 'downvotes', 'approved')
 
 class StrikeListHandler(BaseHandler):
   allowed_methods = ('GET',)
 
   model = Strike
-  fields = ('company', 'start_date', 'end_date', 'all_day', 'description', 'region', 'canceled', 'source_link', ('submitter', ('first_name', 'last_name')), ('company', ('name',)), ('region', ('name',)))
+  fields = ('company', 'start_date', 'end_date', 'all_day', 'description', 'canceled', 'source_link', ('submitter', ('first_name', 'last_name')), ('company', ('name',)))
 
   def read(self, request, post_slug=None):
     """
