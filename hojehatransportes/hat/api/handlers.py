@@ -3,16 +3,16 @@ from hat.models import Strike
 
 from datetime import datetime
 
-class AnonymousStrikeListHandler:
-  model = Strike
-  fields = ('company', 'start_date', 'end_date', 'all_day', 'description', 'canceled', 'source_link', 'submitter')
+#class AnonymousStrikeListHandler:
+  #model = Strike
+  #fields = ('id', 'company', 'start_date', 'end_date', 'all_day', 'description', 'canceled', 'source_link', 'submitter')
   #exclude = ('id', 'upvotes', 'downvotes', 'approved')
 
 class StrikeListHandler(BaseHandler):
   allowed_methods = ('GET',)
 
   model = Strike
-  fields = ('company', 'start_date', 'end_date', 'all_day', 'description', 'canceled', 'source_link', ('submitter', ('first_name', 'last_name')), ('company', ('name',)))
+  fields = ('id', 'company', 'start_date', 'end_date', 'all_day', 'description', 'canceled', 'source_link', ('submitter', ('first_name', 'last_name')), ('company', ('name', 'id')))
 
   def read(self, request, post_slug=None):
     """
