@@ -1,4 +1,7 @@
-/* @override http://localhost/~carlos/hagreve/hojehatransportes/static/mobile.min.css */
+/* @override 
+	http://localhost/~carlos/hagreve/hojehatransportes/static/mobile.min.css
+	http://whatever.local/~carlos/hagreve/hojehatransportes/static/mobile.css
+*/
 
 * {
     -webkit-text-size-adjust: none;
@@ -28,43 +31,58 @@ a.source {
  
 /* @group Labels */
  
-span.mes,
-#meses > li > span {
+span.month,
+#months > li > span {
     overflow: hidden;
     text-overflow: ellipsis;
-    font: 20pt Georgia, "Times New Roman", Times, serif;
+    font: 20pt Georgia, "Timonth New Roman", Timonth, serif;
     border-bottom: 1px solid silver;
     display: block;
     padding-right: 50px;
     text-align: right;
 }
  
-span.dia,
-.dias > li > span {
+span.day,
+.days > li > span {
     display: table-cell;
     width: 30px;
     padding-left: 5px;
-    font: bold 20pt Georgia, "Times New Roman", Times, serif;
+    font: bold 20pt Georgia, "Timonth New Roman", Timonth, serif;
 }
  
-span.transporte,
-.transportes > li > span {
+span.company,
+.companies > li > span {
     text-align: center;
-    font: 16pt Georgia, "Times New Roman", Times, serif;
+    font: 16pt Georgia, "Timonth New Roman", Timonth, serif;
 }
  
-.mensagens span.time {
-    font-size: medium;
+.time {
+
 }
  
-.mensagens .time.end:before {
-    content: " até ";
+.time.start:before {
+	content: "das ";
+    font-size: 9pt;
+    opacity: 0.7;
+}
+
+.time.end:before {
+    content: " até às ";
     font-size: 9pt;
     opacity: 0.7;
 }
  
  
- 
+ ul.strikes > li:hover a.permalink {
+	color: #aaa;
+}
+
+a.permalink {
+	text-decoration: none;
+	color: #d7d7d7;
+}
+
+
 .mensagens li.wtime div.msg {
 }
  
@@ -97,18 +115,15 @@ ul.mensagens > li {
     margin-bottom: 10px;
 }
  
-h1 {
+h1, h1 a {
     color: #727272;
     display: block;
     position: inherit;
-    font: bold 36pt Georgia, "Times New Roman", Times, serif;
     text-shadow: rgba(0,0,0,0.26) 1px 1px 0;
-    font-size: 2.5em;
+    font-size: 30pt;
     text-decoration: none;
-}
-
-h1 a{
-    text-decoration:none;
+	font-family: Georgia, "Timonth New Roman", Timonth, serif;
+	font-weight: bold;
 }
  
 h1 span {
@@ -126,31 +141,31 @@ h1 span {
     color: gray;
 }
  
-#meses {
+#months {
     margin-top: 10px;
     display: block;
     padding: 0;
 }
  
-#meses li ul.dias > li {
+#months li ul.days > li {
     display: table-row;
 }
  
-ul.dias {
+ul.days {
     display: table;
     border-collapse: separate;
 }
  
-ul.transportes {
+ul.companies {
     display: table-cell;
 }
  
-li.transporte {
+li.company {
     margin-bottom: 20px;
     margin-left: 10px;
 }
  
-.dias > li:nth-child(odd) {
+.days > li:nth-child(odd) {
     background-color: rgba(203,203,203,0.3);
 }
  
@@ -194,7 +209,7 @@ p#subscribe {
     right: 0;
 }
  
-li.transporte > span {
+li.company > span {
     font-weight: bold;
 }
 
@@ -202,7 +217,7 @@ li.transporte > span {
 	display: none;
 }
 
-@media only screen and (max-device-width:300px) {
+@meday only screen and (max-device-width:300px) {
 
 h1 {
     font-size: 2em;
@@ -211,16 +226,16 @@ h1 {
 h1 span {
 }
  
-li.transporte > span{
+li.company > span{
     font-size: 14pt;
 }
  
-li.transporte {
+li.company {
     margin-left: inherit;
 }
  
-span.dia,
-.dias > li > span {
+span.day,
+.days > li > span {
     font-size: 15pt;
 }
  
@@ -249,4 +264,15 @@ p#subscribe {
 p.nostrikes {
 	padding: 30px 30px;
 	text-align: center;
+}
+
+#user_links {
+	display: none;
+}
+
+.highlight {
+	background-color: #d7d7d7;
+	border-left: 10px solid #b1b1b1;
+	margin-left: -12px;
+	padding: 5px 0 5px 2px;
 }

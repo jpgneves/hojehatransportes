@@ -46,7 +46,7 @@ def index(request, highlight='-1'):
                     mName = mName[0:3]+"."
             strikes[m] = {"name":mName, "days":SortedDict()}
         if not strikes[m]["days"].has_key(d):
-            strikes[m]["days"][d] = {'strikes':{}}
+            strikes[m]["days"][d] = {'strikes':{}, "date":strike.start_date.strftime("%Y-%m-%d")}
         if not strikes[m]["days"][d]['strikes'].has_key(strike.company):
             strikes[m]["days"][d]['strikes'][strike.company] = []
         strikes[m]["days"][d]['strikes'][strike.company].append(strike)
