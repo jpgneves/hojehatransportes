@@ -7,3 +7,7 @@ strikelist_handler = Resource(StrikeListHandler)
 urlpatterns = patterns('',
   url(r'^v1/strikes', strikelist_handler),
 )
+
+urlpatterns += patterns('django.views.generic.simple',
+    (r'^$', 'direct_to_template', {'template': 'api.html'}),
+)

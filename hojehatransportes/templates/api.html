@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Há greve? • API</title>
+<link rel="stylesheet" href="{{ static_url }}/markdown.css"/>
+<meta name="description=" content="Descubra quando são as próximas greves nos transportes públicos porugueses, e se tem que ir a pé até ao trabalho." />
+<link type="text/plain" rel="author" href="http://static.hagreve.com/humans.txt" />
+
+
+
+<h1>Há greve.get<strong>API</strong>()</h1>
+
+<p><code>hagreve.com</code> providencia uma API simples para obter a lista das próximas greves.</p>
+
+<p>Para a versão <code>v1</code>, apenas um método está disponível. Esse método devolve a lista das próximas greves, com greves activas e canceladas.</p>
+
+<p>Por omissão, o método a usar para pedidos à API é o método GET do protocolo http. A autenticação, por enquanto, é inexistente. Deve ser utilizado um user-agent relevante à aplicação que invoca a API.</p>
+
+<h2 id="objectos">Objectos</h2>
+
+<h3 id="strike">Strike</h3>
+
+<p>O objecto <code>strike</code> tem os seguintes atributos:</p>
+
+<ul>
+<li><code>description</code>:string - Uma descrição da greve (<code>"This is a strike description."</code>);</li>
+<li><code>start_date</code>, <code>end_date</code>:string - Datas para o início e fim da greve (<code>"2011-11-30 20:25:23"</code>);</li>
+<li><code>source_link</code>:string -  URL da fonte dos dados (<code>"http://example.com"</code>);</li>
+<li><code>all_day</code>:boolean - <code>true</code> se a greve for de dias inteiros (<code>true</code>) <br />
+NOTA: as horas são irrelevantes e não devem ser mostradas se for uma greve de dia inteiro;</li>
+<li><code>canceled</code>:boolean - <code>true</code> se a greve tiver sido cancelada (<code>false</code>);</li>
+<li><code>submitter</code>:object - Descreve o autor do aviso. Tem os seguintes campos:
+<ul><li><code>first_name</code>:string - Primeiro nome do autor do aviso (<code>"José"</code>);</li>
+<li><code>last_name</code>:string - Último nome do autor do aviso (<code>"Silva"</code>);</li></ul></li>
+<li><code>company</code>:object - Descreve a empresa afectada pela greve. Tem os seguintes campos:
+<ul><li><code>name</code>:string - Nome da empresa (<code>"Empresa A"</code>)</li></ul></li>
+</ul>
+
+<h2 id="mtodos">Métodos</h2>
+
+<h3 id="obteralistadasprximasgreves">Obter a lista das próximas greves</h3>
+
+<p>URL: <code>http://hagreve.com/api/v1/strikes</code> <br />
+Argumentos: nenhum <br />
+Resposta: A lista de objectos que descrevem as próximas greves.</p>
+
+<p>Resposta exemplo:</p>
+
+<pre>json
+[
+    { "description": "Esta é uma descrição de uma greve.", 
+      "end_date": "2011-11-30 20:25:23", 
+      "source_link": "http://example.com", 
+      "all_day": true, 
+      "start_date": "2011-11-03 20:25:17", 
+      "canceled": false, 
+      "submitter": {
+          "first_name": "José", 
+          "last_name": "Silva"
+      }, 
+      "company": {
+          "name": "Empresa B"
+      }
+    }, 
+    {
+      "description": "Descrição dois.", 
+      "end_date": "2011-11-12 23:00:00", 
+      "source_link": "http://example.com/greve2", 
+      "all_day": true, 
+      "start_date": "2011-11-12 20:00:00", 
+      "canceled": true, 
+      "submitter": {
+          "first_name": "José", 
+          "last_name": "Silva"
+      }, 
+      "company": {
+          "name": "Empresa A"
+      }
+    }, 
+    {
+      "description": "Descrição um.", 
+      "end_date": "2011-11-22 18:53:09", 
+      "source_link": "http://example.com/greve", 
+      "all_day": true, 
+      "start_date": "2011-11-22 18:53:08", 
+      "canceled": false, 
+      "submitter": {
+          "first_name": "João", 
+          "last_name": "Cruz"
+      }, 
+      "company": {
+          "name": "Empresa A"
+      }
+    }
+]
+</pre>
+
+
+<div id="fotter">&copy; 2011 &mdash; <a href="http://twitter.com/jpgneves" title="@jpgneves">João Neves</a>, <a href="http://twitter.com/carlosefonseca" title="@carlosefonseca">Carlos Fonseca</a> e <a href="http://twitter.com/filcab" title="@filcab">Filipe Cabecinhas</a> &mdash; <a href="mailto:info@hagreve.com">info@hagreve.com</a></div>
