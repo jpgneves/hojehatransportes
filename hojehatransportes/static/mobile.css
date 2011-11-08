@@ -35,7 +35,7 @@ span.month,
 #months > li > span {
     overflow: hidden;
     text-overflow: ellipsis;
-    font: 20pt Georgia, "Timonth New Roman", Timonth, serif;
+    font: 20pt Georgia, "Times New Roman", Times, serif;
     border-bottom: 1px solid silver;
     display: block;
     padding-right: 50px;
@@ -47,13 +47,13 @@ span.day,
     display: table-cell;
     width: 30px;
     padding-left: 5px;
-    font: bold 20pt Georgia, "Timonth New Roman", Timonth, serif;
+    font: bold 20pt Georgia, "Times New Roman", Times, serif;
 }
  
 span.company,
 .companies > li > span {
     text-align: center;
-    font: 16pt Georgia, "Timonth New Roman", Timonth, serif;
+    font: 16pt Georgia, "Times New Roman", Times, serif;
 }
  
 .time {
@@ -122,7 +122,7 @@ h1, h1 a {
     text-shadow: rgba(0,0,0,0.26) 1px 1px 0;
     font-size: 30pt;
     text-decoration: none;
-	font-family: Georgia, "Timonth New Roman", Timonth, serif;
+	font-family: Georgia, "Times New Roman", Times, serif;
 	font-weight: bold;
 }
  
@@ -217,7 +217,7 @@ li.company > span {
 	display: none;
 }
 
-@meday only screen and (max-device-width:300px) {
+@media only screen and (max-device-width:300px) {
 
 h1 {
     font-size: 2em;
