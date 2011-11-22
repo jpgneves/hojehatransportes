@@ -43,10 +43,11 @@ class Strike(models.Model):
     approved = models.BooleanField(default=False)
     
     def __unicode__(self):
-        description = self.description
-        if len(description) > 25:
-            description = self.description[0:25] + u"…"
-        return "%s : %s - %s" % (self.start_date, self.company, description)
+        description = unicode(self.description)
+        if len(description) > 30:
+            description = description[0:30] + u"…"
+        c = unicode(self.company)
+        return "%s : %s - %s" % (self.start_date, c, description)
     
     # Model validation
     def clean(self):
