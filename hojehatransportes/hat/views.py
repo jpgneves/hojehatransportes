@@ -31,42 +31,48 @@ def index(request, highlight='-1'):
     tomorrowsDay = tomorrow.strftime("%d")
 
     for strike in latest_strikes:
+        y = strike.start_date.strftime("%Y")
+
         m = strike.start_date.strftime("%m")
-        if m < todayMonth:
-            m = todayMonth
+        # if m < todayMonth:
+        #     m = todayMonth
         d = strike.start_date.strftime("%d")
         
         if strike.start_date < datetime.today():
             d = todaysDay
         
-        if not strikes.has_key(m):
-            if not strikes.has_key(m):
-                mName = calendar.month_name[int(m)]
-                if len(mName) > 7:  #shrink months that don't fit
-                    mName = mName[0:3]+"."
-            strikes[m] = {"name":mName, "days":SortedDict()}
-        if not strikes[m]["days"].has_key(d):
-            strikes[m]["days"][d] = {'strikes':{}, "date":strike.start_date.strftime("%Y-%m-%d")}
-        if not strikes[m]["days"][d]['strikes'].has_key(strike.company):
-            strikes[m]["days"][d]['strikes'][strike.company] = []
-        strikes[m]["days"][d]['strikes'][strike.company].append(strike)
+        if not strikes.has_key(y):
+            strikes[y] = {}
+
+        if not strikes[y].has_key(m):
+            mName = calendar.month_name[int(m)]
+            if len(mName) > 7:  #shrink months that don't fit
+                mName = mName[0:3]+"."
+            strikes[y][m] = {"name":mName, "days":SortedDict()}
+        if not strikes[y][m]["days"].has_key(d):
+            strikes[y][m]["days"][d] = {'strikes':{}, "date":strike.start_date.strftime("%Y-%m-%d")}
+        if not strikes[y][m]["days"][d]['strikes'].has_key(strike.company):
+            strikes[y][m]["days"][d]['strikes'][strike.company] = []
+        strikes[y][m]["days"][d]['strikes'][strike.company].append(strike)
 
 
+    y = datetime.today().strftime("%Y")
     m = datetime.today().strftime("%m")
-    if len(strikes) > 0 and strikes.has_key(m):
+    if len(strikes) > 0 and (strikes.has_key(y)
+       and len(strikes[y]) >0 and strikes[y].has_key(m)):
         fix = False
-        if strikes[m]["days"].has_key(tomorrowsDay):
-            strikes[m]["days"][tomorrowsDay]["alias"] = "Amanhã"
+        if strikes[y][m]["days"].has_key(tomorrowsDay):
+            strikes[y][m]["days"][tomorrowsDay]["alias"] = "Amanhã"
             fix = True        
 
-        if strikes[m]["days"].has_key(todaysDay):
-            strikes[m]["days"][todaysDay]["alias"] = "Hoje"
+        if strikes[y][m]["days"].has_key(todaysDay):
+            strikes[y][m]["days"][todaysDay]["alias"] = "Hoje"
             if fix:
-                strikes[m]["days"][todaysDay]["fix"] = "fixTomorrow"
-            for c in strikes[m]["days"][todaysDay]["strikes"]:
-                cc = strikes[m]["days"][todaysDay]["strikes"][c]
+                strikes[y][m]["days"][todaysDay]["fix"] = "fixTomorrow"
+            for c in strikes[y][m]["days"][todaysDay]["strikes"]:
+                cc = strikes[y][m]["days"][todaysDay]["strikes"][c]
                 if len(cc) > 1:
-                    strikes[m]["days"][todaysDay]["strikes"][c] = sorted(cc, key=MYattrgetter('start_date.day'), reverse=True)
+                    strikes[y][m]["days"][todaysDay]["strikes"][c] = sorted(cc, key=MYattrgetter('start_date.day'), reverse=True)
 
     
     #strikes['04']["days"] = sorted(strikes['04']["days"])
@@ -172,27 +178,33 @@ def submissions(request):
     amanha = amanha.strftime("%d")
 
     for strike in latest_strikes:
+        y = strike.start_date.strftime("%Y")
         m = strike.start_date.strftime("%m")
         d = strike.start_date.strftime("%d")
         
-        if not strikes.has_key(m):
-            strikes[m] = {"name":strike.start_date.strftime("%B"), "days":SortedDict()}
-        if not strikes[m]["days"].has_key(d):
-            strikes[m]["days"][d] = {'greves':{}}
-        if not strikes[m]["days"][d]['greves'].has_key(strike.company):
-            strikes[m]["days"][d]['greves'][strike.company] = []
-        strikes[m]["days"][d]['greves'][strike.company].append(strike)
+        if not strikes.has_key(y):
+            strikes[y] = {}
 
+        if not strikes[y].has_key(m):
+            strikes[y][m] = {"name":strike.start_date.strftime("%B"), "days":SortedDict()}
+        if not strikes[y][m]["days"].has_key(d):
+            strikes[y][m]["days"][d] = {'greves':{}}
+        if not strikes[y][m]["days"][d]['greves'].has_key(strike.company):
+            strikes[y][m]["days"][d]['greves'][strike.company] = []
+        strikes[y][m]["days"][d]['greves'][strike.company].append(strike)
+
+    y = datetime.today().strftime("%Y")
+    m = datetime.today().strftime("%m")
     if len(strikes) > 0:
         fix = False
-        if strikes[m]["days"].has_key(amanha):
-            strikes[m]["days"][amanha]["alias"] = "Amanhã"
+        if strikes[y][m]["days"].has_key(amanha):
+            strikes[y][m]["days"][amanha]["alias"] = "Amanhã"
             fix = True        
 
-        if strikes[m]["days"].has_key(hoje):
-            strikes[m]["days"][hoje]["alias"] = "Hoje"
+        if strikes[y][m]["days"].has_key(hoje):
+            strikes[y][m]["days"][hoje]["alias"] = "Hoje"
             if fix:
-                strikes[m]["days"][hoje]["fix"] = "fixAmanha"
+                strikes[y][m]["days"][hoje]["fix"] = "fixAmanha"
 
     
     #strikes['04']["days"] = sorted(strikes['04']["days"])

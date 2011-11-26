@@ -14,6 +14,14 @@
 {% endif %}
 
 {% if strikes %}
+<ul id="years">
+{% for year, strikes in strikes.items %}
+<li>
+{% if forloop.counter != 1 %}
+<span class="year">{{ year }}</span>
+{% else %}
+<!-- current year -->
+{% endif %}
 <ul id="months">
 {% for month in strikes.values %}
  <li>
@@ -55,12 +63,15 @@
       </ul><!-- strikes -->
      </li>
 {% endfor %}
-    </ul><!-- companys -->
+    </ul><!-- companies -->
    </li>
-{% endfor %}
+{% endfor %} <!-- days -->
   </ul>
  </li>
-{% endfor %}
+{% endfor %} <!-- months -->
+</ul>
+</li>
+{% endfor %} <!-- years -->
 </ul>
 
 {% else %}
