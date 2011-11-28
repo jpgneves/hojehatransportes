@@ -1,6 +1,7 @@
 /* @override 
 	http://localhost/~carlos/hagreve/hojehatransportes/static/mobile.min.css
 	http://whatever.local/~carlos/hagreve/hojehatransportes/static/mobile.css
+	http://static.hagreve.com/test/mobile.min.css
 */
 
 * {
@@ -140,6 +141,15 @@ h1 span {
 #submit a {
     color: gray;
 }
+
+.year {
+	display: block;
+	width: 5em;
+	margin-bottom: -35px;
+	margin-top: 35px;
+	margin-left: 45px;
+	font: 150%/0.9em Georgia, "Times New Roman", Times, serif;
+}
  
 #months {
     margin-top: 10px;
@@ -149,11 +159,13 @@ h1 span {
  
 #months li ul.days > li {
     display: table-row;
+	width: 100%;
 }
  
 ul.days {
     display: table;
     border-collapse: separate;
+	width: 100%;
 }
  
 ul.companies {
@@ -163,6 +175,7 @@ ul.companies {
 li.company {
     margin-bottom: 20px;
     margin-left: 10px;
+	line-height: 1.3em;
 }
  
 .days > li:nth-child(odd) {

@@ -2,6 +2,7 @@
 	http://localhost/~carlos/hagreve/hojehatransportes/static/desktop.css
 	http://static.hagreve.com/new/desktop.css
 	http://whatever.local/~carlos/hagreve/hojehatransportes/static/desktop.css
+	http://static.hagreve.com/test/desktop.min.css
 */
 
 /* @group Page */
@@ -17,6 +18,7 @@ body {
 	font-family: Georgia, "Times New Roman", Times, serif;
 	margin: auto;
 }
+
 
 #content {
 	margin: 70px 0 30px;
@@ -223,6 +225,18 @@ h1 span {
 }
 
 /* @group Greves */
+
+#years .year {
+	display: block;
+	text-align: center;
+	font: 20pt/0 Georgia, "Times New Roman", Times, serif;
+	border-right: 330px solid #eaeaea;
+	border-left: 330px solid #eaeaea;
+	height: 6px;
+	color: #919191;
+	margin-bottom: 30px;
+	margin-top: 10px;
+}
 
 #months {
 	margin-top: 20px;
