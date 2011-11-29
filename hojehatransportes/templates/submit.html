@@ -1,9 +1,17 @@
 {% extends "base.html" %}
 
+
 {% block content %}
-<form action="{{ request.path }}" method="post">
+
+<h2 class="strikeSubmission">Submeter Greve</h2>
+
+
+<form id="strikeSubmission" action="{{ request.path }}" method="post">
 	{% csrf_token %}
-	{{ form.as_p }}
+	
+	
+	
+	
 	<input type="submit" value="Submeter" />
 </form>
 {% endblock %}
