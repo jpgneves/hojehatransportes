@@ -1,9 +1,3 @@
-/* @override 
-	http://localhost/~carlos/hagreve/hojehatransportes/static/mobile.min.css
-	http://whatever.local/~carlos/hagreve/hojehatransportes/static/mobile.css
-	http://static.hagreve.com/test/mobile.min.css
-*/
-
 * {
     -webkit-text-size-adjust: none;
 }
@@ -99,18 +93,6 @@ strong {
     font-weight: bold;
 }
  
- 
-.canceled:after {
-    content: "";
-    background-image: url(desconvocada.png);
-    display: block;
-    width: 173px;
-    height: 50px;
-    position: absolute;
-    top: -11px;
-    left: 150px;
-}
- 
 ul.mensagens > li {
     position: relative;
     margin-bottom: 10px;
@@ -181,16 +163,22 @@ li.company {
 .days > li:nth-child(odd) {
     background-color: rgba(203,203,203,0.3);
 }
- 
+
+.canceled {
+}
+
 .canceled:after {
     content: "";
+    background: url(desconvocada.png) no-repeat right;
     display: block;
-    width: 100%;
-    height: 50px;
+    height: 62px;
     position: absolute;
-    top: -8px;
-    background: url(desconvocada.png) no-repeat center;
-    left: 0;
+    width: 100%;
+	margin-top: -45px;
+	right: 20px;
+}
+
+.canceled:after {
 }
  
  
@@ -288,4 +276,10 @@ p.nostrikes {
 	border-left: 10px solid #b1b1b1;
 	margin-left: -12px;
 	padding: 5px 0 5px 2px;
+}
+
+iframe#fb {
+	 overflow:hidden;
+	 width:120px;
+	 height: 24px;
 }
