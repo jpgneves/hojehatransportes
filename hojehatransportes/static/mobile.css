@@ -67,6 +67,20 @@ span.company,
     opacity: 0.7;
 }
  
+.strikes li {
+	margin-bottom: 10px;
+	border-top: 1px solid #eaeaea;
+	padding-top: 9px;
+}
+
+.days > li:nth-child(odd) .strikes li {
+	border-top-color: #d5d5d5;
+}
+
+.strikes li:nth-child(1) {
+	border-top: none;
+	padding-top: 0;
+}
  
  ul.strikes > li:hover a.permalink {
 	color: #aaa;
@@ -172,14 +186,13 @@ li.company {
     content: "";
     background: url(desconvocada.png) no-repeat right center;
     display: block;
-    min-height: 62px;
+    min-height: 50px;
     height: 100%;
     position: absolute;
     width: 100%;
 	right: 20px;
-	top:0;
-	bottom: 0;
-	margin-top: -24px;
+	top: -5px;
+	margin-top: 0;
 }
 
 .canceled:after {
