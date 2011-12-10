@@ -165,17 +165,21 @@ li.company {
 }
 
 .canceled {
+	position: relative;
 }
 
-.canceled:after {
+.canceled div:after {
     content: "";
-    background: url(desconvocada.png) no-repeat right;
+    background: url(desconvocada.png) no-repeat right center;
     display: block;
-    height: 62px;
+    min-height: 62px;
+    height: 100%;
     position: absolute;
     width: 100%;
-	margin-top: -45px;
 	right: 20px;
+	top:0;
+	bottom: 0;
+	margin-top: -24px;
 }
 
 .canceled:after {
