@@ -42,7 +42,7 @@ def index(request, highlight='-1'):
             d = todaysDay
         
         if not strikes.has_key(y):
-            strikes[y] = {}
+            strikes[y] = SortedDict()
 
         if not strikes[y].has_key(m):
             mName = calendar.month_name[int(m)]
