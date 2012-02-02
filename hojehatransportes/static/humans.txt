@@ -19,7 +19,7 @@
 
 
 /* SITE */
-	Last Update: 2011/??
+	Last Update: 2011/12/10
 	Language: Portuguese
 	Standards: HTML5, CSS3...
 	Components: Python, Django, social-auth, django_cal

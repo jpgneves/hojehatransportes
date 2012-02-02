@@ -1,8 +1,3 @@
-/* @override 
-	http://localhost/~carlos/hagreve/hojehatransportes/static/mobile.min.css
-	http://whatever.local/~carlos/hagreve/hojehatransportes/static/mobile.css
-*/
-
 * {
     -webkit-text-size-adjust: none;
 }
@@ -72,6 +67,20 @@ span.company,
     opacity: 0.7;
 }
  
+.strikes li {
+	margin-bottom: 10px;
+	border-top: 1px solid #eaeaea;
+	padding-top: 9px;
+}
+
+.days > li:nth-child(odd) .strikes li {
+	border-top-color: #d5d5d5;
+}
+
+.strikes li:nth-child(1) {
+	border-top: none;
+	padding-top: 0;
+}
  
  ul.strikes > li:hover a.permalink {
 	color: #aaa;
@@ -96,18 +105,6 @@ a.permalink {
  
 strong {
     font-weight: bold;
-}
- 
- 
-.canceled:after {
-    content: "";
-    background-image: url(desconvocada.png);
-    display: block;
-    width: 173px;
-    height: 50px;
-    position: absolute;
-    top: -11px;
-    left: 150px;
 }
  
 ul.mensagens > li {
@@ -140,6 +137,15 @@ h1 span {
 #submit a {
     color: gray;
 }
+
+.year {
+	display: block;
+	width: 5em;
+	margin-bottom: -35px;
+	margin-top: 35px;
+	margin-left: 45px;
+	font: 150%/0.9em Georgia, "Times New Roman", Times, serif;
+}
  
 #months {
     margin-top: 10px;
@@ -149,11 +155,13 @@ h1 span {
  
 #months li ul.days > li {
     display: table-row;
+	width: 100%;
 }
  
 ul.days {
     display: table;
     border-collapse: separate;
+	width: 100%;
 }
  
 ul.companies {
@@ -163,21 +171,31 @@ ul.companies {
 li.company {
     margin-bottom: 20px;
     margin-left: 10px;
+	line-height: 1.3em;
 }
  
 .days > li:nth-child(odd) {
     background-color: rgba(203,203,203,0.3);
 }
- 
-.canceled:after {
+
+.canceled {
+	position: relative;
+}
+
+.canceled div:after {
     content: "";
+    background: url(desconvocada.png) no-repeat right center;
     display: block;
-    width: 100%;
-    height: 50px;
+    min-height: 50px;
+    height: 100%;
     position: absolute;
-    top: -8px;
-    background: url(desconvocada.png) no-repeat center;
-    left: 0;
+    width: 100%;
+	right: 20px;
+	top: -5px;
+	margin-top: 0;
+}
+
+.canceled:after {
 }
  
  
@@ -275,4 +293,10 @@ p.nostrikes {
 	border-left: 10px solid #b1b1b1;
 	margin-left: -12px;
 	padding: 5px 0 5px 2px;
+}
+
+iframe#fb {
+	 overflow:hidden;
+	 width:120px;
+	 height: 24px;
 }
