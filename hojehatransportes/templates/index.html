@@ -34,7 +34,7 @@
     <ul class="companies">
 {% for company, strikes in daystuff.strikes.items %}
      <li class="company {{company|cut:" "}}">
-      <span>{{company}}</span>
+      <span>{{company.short_name}}</span>
       <ul class="strikes">
 {% for strike in strikes %}
 {% if strike.start_date != strike.end_date and not strike.all_day %}
