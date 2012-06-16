@@ -131,6 +131,77 @@ h1 span {
 	margin: 0 15px;
 }
 
+/* @group Menu */
+
+#tabs li {
+	display: inline-block;
+	padding: 5px;
+	margin: 0 1px 0 0;
+	background-color: white;
+	-webkit-transition: background-color 300ms ease-in-out;
+	-moz-transition: background-color 300ms ease-in-out;
+	-o-transition: background-color 300ms ease-in-out;
+	-ms-transition: background-color 300ms ease-in-out;
+	transition: background-color 300ms ease-in-out;
+}
+
+#tabs li:hover,
+#tabs .active {
+	background-color: #EEE;
+	-webkit-transition: background-color 200ms ease-in-out;
+	-moz-transition: background-color 200ms ease-in-out;
+	-o-transition: background-color 200ms ease-in-out;
+	-ms-transition: background-color 200ms ease-in-out;
+	transition: background-color 200ms ease-in-out;
+}
+
+#tabs li > a {
+  z-index:100;
+  font-size: 95%;
+  text-decoration:none;
+  color:#444;
+}
+
+#tabs li:hover .tabbody,
+.active .tabbody {
+	visibility: visible;
+	opacity: 1;
+	-webkit-transition: all 300ms ease-in-out;
+}
+
+.tabbody {
+	visibility: collapse;
+	z-index:10;
+	width: 100%;
+	position: absolute;
+	background: #EEE;
+	right: 0;
+	margin-top: 2px;
+	padding: 5px 0px;
+	text-align: center;
+	opacity: 0;
+	-webkit-transition: all 300ms ease-in-out;
+	-moz-transition: all 300ms ease-in-out;
+	-o-transition: all 300ms ease-in-out;
+	-ms-transition: all 300ms ease-in-out;
+	transition: all 300ms ease-in-out;
+}
+
+#tabs li:hover #sharetab *,
+#tabs li#sharing.active #sharetab * {
+	right: inherit;
+	display: inline;
+}
+
+#tabs li #sharetab * {
+	right:-5000px;
+	display: none;
+}
+
+
+/* @end */
+
+
 /* @group Overlay */
 
 .closeBtn {

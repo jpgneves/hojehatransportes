@@ -50,16 +50,48 @@ _gaq.push(['_trackPageview']);
 {% endblock %}
 </div>
 
-<div id="snAndSubmit"><div id="sn">
-<div style="width: 56px; display: inline-block; overflow: hidden;"><a class="FlattrButton" style="display:none;" data-flattr-button="compact" href="http://hagreve.com"></a><noscript><a href="http://flattr.com/thing/180236/Hoje-Ha-Greve" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript></div>
+<div id="snAndSubmit">
+  <ul id="tabs" style="position: absolute;top: 30px;right: 0; text-align:right">
+    
+    <li class="tli">
+    	<a href="http://itunes.apple.com/pt/app/ha-greve/id515833945?l=en&mt=8">iPhone</a>
+    	<div class="tabbody">Aplicação Há Greve na <a href="http://itunes.apple.com/pt/app/ha-greve/id515833945?l=en&mt=8">AppStore</a>.</div>
+    </li><!--
+    
+ --><li class="tli">
+    	<a href="https://play.google.com/store/apps/details?id=com.hagreve.android">Android</a>
+    	<div class="tabbody">Aplicação Há Greve no <a href="https://play.google.com/store/apps/details?id=com.hagreve.android">Google Play</a>.</div>
+    </li><!--
+    
+ --><li class="tli">
+    	<a href="http://blog.hagreve.com">Blog</a>
+    	<div class="tabbody">Veja algumas novidades no nosso <a href="http://blog.hagreve.com">blog</a>.</div>
+    </li><!--
+    
+ --><li class="tli">
+    	<a href="mailto:submeter@hagreve.com" style="font-weight:bold">Submeter</a>
+    	<div class="tabbody">Ajude-nos a manter o site actualizado enviando-nos novas informações para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a></div>
+    </li><!--
+    
+ --><li class="tli">
+    	<a href="">Subscrever</a>
+		<div class="tabbody">
+			Mantenha-se actualizado pelos seguintes serviços<br/>
+    		<a href="http://hagreve.com/rss">RSS</a>&nbsp;&nbsp;
+    		<a href="http://twitter.com/hagreve">Twitter</a>&nbsp;&nbsp;
+    		<a href="http://facebook.com/hagreve">Facebook</a>&nbsp;&nbsp;
+    		<a href="webcal://hagreve.com/ics">iCal</a>
+    	</div>
+    </li><!--
+    
+ --><li id="sharing" class="tli active">
+    	<a href="">Partilhar</a><div id="sharetab" class="tabbody" style="text-align:center"><div style="width: 56px; display: inline-block; overflow: hidden;"><a class="FlattrButton" style="display:none;" data-flattr-button="compact" href="http://hagreve.com"></a><noscript><a href="http://flattr.com/thing/180236/Hoje-Ha-Greve" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript></div>
 <g:plusone size="medium" count="false" href="http://hagreve.com"></g:plusone>
 <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="hagreve">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-<iframe id="fb" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhagreve.com&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23&locale=pt_PT" scrolling="no" frameborder="0"  allowTransparency="true"></iframe>
-</div>
-<p id="subscribeOLD" style="display:none;margin-top:8px;">Subscrever: 
-<a type="text/calendar" href="webcal://hagreve.com/ics" id="ics" title="Subscreva ao calendário de greves na sua aplicação de calendário">iCal</a> <a href="rss" id="rss" title="Subscreva à lista de greves no seu leitor de RSS">RSS</a></p></div>
+<iframe id="fb" src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fhagreve.com&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23&locale=pt_PT" scrolling="no" frameborder="0"  allowTransparency="true"></iframe></div></li></ul>
 
-<div id="user_links"><!---------- USER -------->
+
+<div id="user_links" style="display:none"><!---------- USER -------->
 	{% if user.is_authenticated %}
 		<div id="submit">Olá <a href="/profile">{{ user.first_name }} {{ user.last_name }}</a>! <a href="/logout" id="logout">Sair</a></div>
 		<a href="/subscribe" id="subscribeButton" onclick="return displayOverlay('subscribe')">Subscrever iCal RSS …</a>
@@ -78,83 +110,42 @@ _gaq.push(['_trackPageview']);
 <div id="disclaimer"><strong>Atenção:</strong> Toda a informação contida neste site é apenas informativa e não é garantida a sua correcção.<br>Deverá sempre consultar informações junto das empresas aqui referidas. Não nos responsabilizamos por despedimentos por ficar em casa a preguiçar ou qualquer outra coisa seja ela qual for.<br/>Este site não está afiliado a qualquer empresa ou sindicato.</div>
 <div id="fotter">&copy; 2011 &mdash; <a href="http://twitter.com/jpgneves" title="@jpgneves">João Neves</a>, <a href="http://twitter.com/carlosefonseca" title="@carlosefonseca">Carlos Fonseca</a> e <a href="http://twitter.com/filcab" title="@filcab">Filipe Cabecinhas</a> &mdash; <a href="mailto:info@hagreve.com">info@hagreve.com</a> &mdash; <a href="/api">api</a></div>
 </div>
-<!---------- OVERLAY -------->
-<div id="overlaywrapper" class="shadow" style="display:none"><div id="whitepart">
-    <div class="overlay"><a class="closeBtn" href="javascript:close();">voltar</a>
-<!---------- Submit -------->
-<div id="submit" style="display:none"><h3>Submeta uma greve!</h3>
-	<p>Por <strong>email</strong>, para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a> e nós tratamos do resto</p>
-	<p>ou</p>
-	<p>Directamente no site, fazendo login num destes serviços:</p>
-	<ul class="buttons">
-		<li class="facebook"><a href="/login/facebook?next={{request.path}}">Facebook</a></li>
-		<li class="google"><a href="/login/google?next={{request.path}}">Google</a></li>
-		<li class="sapo"><a href="/login/sapo?next={{request.path}}">Sapo</a></li>
-		<li class="twitter"><a href="/login/twitter?next={{request.path}}">Twitter</a></li>
-	</ul>
-</div>
-<!---------- Subscribe -------->
-<div id="subscribe" style="display:none"><h3>Receba informações!</h3>
-	<p>Pode receber informações actualizadas nas seguintes formas:</p>
-	
-	<ul>
-		<li id="ics">
-			<h4>Calendário</h4>
-			<div class="subsc-wrapper">
-			<span class="description">Na sua aplicação de calendário.</span>
-				<p><a type="text/calendar" href="webcal://hagreve.com/ics" title="Subscreva ao calendário de greves na sua aplicação de calendário">Calendário com todas as greves</a></p>
-			</div>
-		</li>
-		<li id="rss">
-			<h4>RSS</h4>
-			<div class="subsc-wrapper">
-			<span class="description">No seu leitor de notícias.</span>
-				<p><a href="rss" id="rss" title="Subscreva à lista de greves no seu leitor de RSS">RSS</a></p>
-			</div>
-		</li>
-		<li id="email" style="display:none">
-			<h4>Email</h4>
-			<div class="subsc-wrapper">
-				<span class="description">Na sua caixa de email.</span>
-				<p><a id="email" title="Subscreva à lista de greves no seu leitor de RSS">email</a></p>
-			</div>
-		</li>
-	</ul>
-</div>
-</div></div></div><!-- /overlay-->
+
 <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
 </body>
+
 <script type="text/javascript">
-function close(e) {
-	document.getElementById("overlaywrapper").style.display = "none";
-	document.getElementById("submit").style.display = "none";
-	document.getElementById("subscribe").style.display = "none";
-}
-function displayOverlay(c) {
-	document.getElementById(c).style.display = "";
-	var w = document.getElementById("overlaywrapper");
-	w.style.display = "";
-	w.style.height = getDocHeight()+"px";
-	return false;
-}
-function dontclose(e) { //Avoid event bubbling from the overlay
-	if (!e) var e = window.event;
-	e.cancelBubble = true;
-	if (e.stopPropagation) e.stopPropagation();
+var menuTimer;
+var tabs = document.getElementById("tabs");
+
+function menuover() {
+	document.getElementById("sharing").className = "tli";	
+	clearTimeout(menuTimer);
 }
 
-function getDocHeight() {
-	var D = document;
-	return Math.max(
-		Math.max(D.body.scrollHeight, D.documentElement.scrollHeight),
-		Math.max(D.body.offsetHeight, D.documentElement.offsetHeight),
-		Math.max(D.body.clientHeight, D.documentElement.clientHeight)
-	);
+function menuout() {
+	menuTimer = setTimeout("showSharing()", 4000);
 }
 
-document.getElementById("overlaywrapper").addEventListener("click", close);
-document.getElementById("whitepart").addEventListener("click", dontclose);
+function showSharing() {
+	document.getElementById("sharing").className = "tli active";
+}
 
+showSharing();
+
+var lis = document.getElementsByClassName("tli");
+for(var i = 0; i<lis.length-1 ; i++) {
+	console.log(i);
+	lis[i].onmouseout = function(e) { menuout(); };
+	lis[i].onmouseover = function(e) { menuover(); };
+}
+
+var shareli = document.getElementById("sharing");
+
+shareli.onmouseover = function(e) {
+	shareli.className = "tli active";
+	clearInterval(menuTimer);
+}
 
 </script>
 </html>
