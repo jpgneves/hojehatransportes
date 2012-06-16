@@ -300,3 +300,7 @@ iframe#fb {
 	 width:120px;
 	 height: 24px;
 }
+
+#tabs {
+	display: none;
+}
