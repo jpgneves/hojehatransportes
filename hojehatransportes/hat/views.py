@@ -31,6 +31,7 @@ def index(request, highlight='-1'):
     tomorrowsDay = tomorrow.strftime("%d")
 
     for strike in latest_strikes:
+	sd = strike.start_date
         y = strike.start_date.strftime("%Y")
 
         m = strike.start_date.strftime("%m")
@@ -39,6 +40,7 @@ def index(request, highlight='-1'):
         d = strike.start_date.strftime("%d")
         
         if strike.start_date < datetime.today():
+            sd = datetime.today()
             d = todaysDay
         
         if not strikes.has_key(y):
@@ -46,11 +48,11 @@ def index(request, highlight='-1'):
 
         if not strikes[y].has_key(m):
             mName = calendar.month_name[int(m)]
-            if len(mName) > 7:  #shrink months that don't fit
+            if len(mName) >= 7:  #shrink months that don't fit
                 mName = mName[0:3]+"."
             strikes[y][m] = {"name":mName, "days":SortedDict()}
         if not strikes[y][m]["days"].has_key(d):
-            strikes[y][m]["days"][d] = {'strikes':{}, "date":strike.start_date.strftime("%Y-%m-%d")}
+            strikes[y][m]["days"][d] = {'strikes':{}, "date":sd.strftime("%A, %e de %B de %Y")}
         if not strikes[y][m]["days"][d]['strikes'].has_key(strike.company):
             strikes[y][m]["days"][d]['strikes'][strike.company] = []
         strikes[y][m]["days"][d]['strikes'][strike.company].append(strike)
