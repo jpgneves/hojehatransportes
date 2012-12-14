@@ -32,6 +32,7 @@ class StrikeAdmin(admin.ModelAdmin):
     ]
 
     form = StrikeAdminForm
+    save_as = True
 
 admin.site.register(Company)
 admin.site.register(Region)
