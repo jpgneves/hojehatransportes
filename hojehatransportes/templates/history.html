@@ -101,7 +101,7 @@ svg.selectAll(".month")
     .attr("d", monthPath);
 
  var data = d3.nest()
-    .key(function(d) { console.log(d.date); return d.date; })
+    .key(function(d) { return d.date; })
     .rollup(function(d) { return d.length; })
     .map(filtered);
 
