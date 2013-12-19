@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div id="explanation">
+<p>Nesta p&aacute;gina encontra um calend&aacute;rio de todos os dias nos quais houve uma greve
+marcada e registada por nós (independentemente se foi desconvocada ou não).</p>
+
+<p>Em breve introduziremos outras informa&ccedil;&otilde;es &uacute;teis!</p>
+<h2>Total de greves registadas: {{ total_strikes }}</h2>
+<h2>Desconvocadas: {{ canceled_strikes }}</h2>
+<h2>M&eacute;dia de greves por dia: {{ avg_per_day }}</h2>
+</div>
 <div id="strike_calendar">
 </div>
 {% endblock %}
@@ -52,7 +61,7 @@ function expandStrikes(strikes) {
   return data;
 }
 
-var strikes = expandStrikes(JSON.parse('{% autoescape off %} {{ strikes }} {% endautoescape %}'));
+var strikes = expandStrikes(JSON.parse('{% autoescape off %} {{ strikes_json }} {% endautoescape %}'));
 
 var width = 960,
     height = 136,
