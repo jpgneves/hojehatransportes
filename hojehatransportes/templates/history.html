@@ -50,7 +50,10 @@ function expandStrikes(strikes) {
   strikes.map(expand);
   return data;
 }
+
 var strikes = expandStrikes(JSON.parse('{% autoescape off %} {{ strikes }} {% endautoescape %}'));
+
+var filtered = expandStrikes(strikes);
 
 var width = 960,
     height = 136,
@@ -99,17 +102,17 @@ svg.selectAll(".month")
 
  var data = d3.nest()
     .key(function(d) { return d.date; })
-    .rollup(function(d) { console.log(d.length); return d.length; })
-    .map(strikes);
+    .rollup(function(d) { return d.length; })
+    .map(filtered);
 
     rect.filter(function(d) { return d in data; })
         .attr("class", function(d) { return "day " + color(data[d]); })
         .select("title")
-        .text(function(d) { return d + ": " + data[d] + " greves"; });
+        .text(function(d) { return d + ": " + data[d] + " greve(s)"; });
 
 function formatDate(date) {
    var d = new Date(date);
-   return d.toLocaleDateString("pt-PT");
+   return d3.time.format("%d/%m/%Y")(d);
 }
 
 function monthPath(t0) {
