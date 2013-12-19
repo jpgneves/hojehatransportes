@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 from hat.feeds import RssFeed, IcsFeed, AtomFeed
 from django.views.generic import TemplateView
 

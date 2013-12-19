@@ -23,8 +23,7 @@ DATABASES = {
 }
 
 #Root URL for Static files
-#STATIC_URL = 'http://localhost/~carlos/hagreve/hojehatransportes/static'
-STATIC_URL = 'http://static.hagreve.com'
+STATIC_URL = 'http://static.hagreve.com/'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -88,12 +87,12 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "%s/templates" % os.getcwd()
+    "%s/hojehatransportes/templates" % os.getcwd()
 )
 
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.core.context_processors.auth",
+    "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
@@ -141,4 +140,3 @@ def static_url_processor(request):
         'static_url': STATIC_URL,
     }
     return my_dict
-
