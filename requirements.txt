@@ -1,7 +1,6 @@
 django>=1.5
 vobject
 django-cal
-django-social-auth
-django-openid-auth
+python-social-auth
 django-piston
 South

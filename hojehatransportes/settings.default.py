@@ -111,7 +111,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'hojehatransportes.hat',
-    'social_auth',
+    'social.apps.django_app.default',
     'south'
 )
 
@@ -122,9 +122,9 @@ SOCIAL_AUTH_IMPORT_BACKENDS = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    'social_auth.backends.twitter.TwitterBackend',
-    'social_auth.backends.facebook.FacebookBackend',
-    'social_auth.backends.google.GoogleBackend',
+    'social.backends.twitter.TwitterBackend',
+    'social.backends.facebook.FacebookBackend',
+    'social.backends.google.GoogleBackend',
     'social_auth_extra.sapo.SapoBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
