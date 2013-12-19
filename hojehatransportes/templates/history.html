@@ -35,12 +35,13 @@
 <script type="text/javascript">
 
 function expandStrikes(strikes) {
-  var start = new Date(strikes[0].start_date);
-  var end   = new Date(strikes[strikes.length - 1].end_date);
+  var format = d3.time.format("%Y-%m-%d %X");
+  var start = format.parse(strikes[0].start_date);
+  var end   = format.parse(strikes[strikes.length - 1].end_date);
   var data = [];
   var expand = function(strike) {
-                 var st = new Date(strike.start_date);
-                 var et = new Date(strike.end_date);
+                 var st = format.parse(strike.start_date);
+                 var et = format.parse(strike.end_date);
                  if(st >= start && et <= end) {
                      while(st <= et) {
                         data.push({'date': formatDate(st)});
@@ -52,8 +53,6 @@ function expandStrikes(strikes) {
 }
 
 var strikes = expandStrikes(JSON.parse('{% autoescape off %} {{ strikes }} {% endautoescape %}'));
-
-var filtered = expandStrikes(strikes);
 
 var width = 960,
     height = 136,
@@ -103,7 +102,7 @@ svg.selectAll(".month")
  var data = d3.nest()
     .key(function(d) { return d.date; })
     .rollup(function(d) { return d.length; })
-    .map(filtered);
+    .map(strikes);
 
     rect.filter(function(d) { console.log(d); return d in data; })
         .attr("class", function(d) { return "day " + color(data[d]); })
