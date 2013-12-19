@@ -33,5 +33,6 @@ urlpatterns = patterns('',
     (r'^strike/(?P<highlight>\d+)$', 'hat.views.index', {}, 'strike_view'),
     (r'^api', include('hat.api.urls')),
     (r'^api/', include('hat.api.urls')),
+    (r'^history', 'hat.views.history'),
     (r'', TemplateView.as_view(template_name='404.html'))
 )

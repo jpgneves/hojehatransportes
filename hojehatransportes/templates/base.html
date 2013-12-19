@@ -20,7 +20,7 @@
 <meta property="fb:app_id" content="146062042128454" />
 <meta property="fb:title" content="Hoje há greve?" />
 <meta name="description=" content="Descubra quando são as próximas greves nos transportes públicos portugueses, e se tem que ir a pé até ao trabalho." />
-<link rel="alternate" type="application/rss+xml" title="Hoje há greve?" href="http://hagreve.com/rss" /> 
+<link rel="alternate" type="application/rss+xml" title="Hoje há greve?" href="http://hagreve.com/rss" />
 <meta name="google-site-verification" content="0lRRTSuqRs5PRoM9qJDfObwAbBCfYLW-M7f13RPLPbE" />
 <link rel="profile" href="http://microformats.org/profile/hcalendar">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -53,27 +53,27 @@ _gaq.push(['_trackPageview']);
 
 <div id="snAndSubmit">
   <ul id="tabs" style="position: absolute;top: 30px;right: 0; text-align:right">
-    
+
     <li class="tli">
     	<a href="http://itunes.apple.com/pt/app/ha-greve/id515833945?l=en&mt=8">iPhone</a>
     	<div class="tabbody">Aplicação Há Greve na <a href="http://itunes.apple.com/pt/app/ha-greve/id515833945?l=en&mt=8">AppStore</a>.</div>
     </li><!--
-    
+
  --><li class="tli">
     	<a href="https://play.google.com/store/apps/details?id=com.hagreve.android">Android</a>
     	<div class="tabbody">Aplicação Há Greve no <a href="https://play.google.com/store/apps/details?id=com.hagreve.android">Google Play</a>.</div>
     </li><!--
-    
+
  --><li class="tli">
     	<a href="http://blog.hagreve.com">Blog</a>
     	<div class="tabbody">Veja algumas novidades no nosso <a href="http://blog.hagreve.com">blog</a>.</div>
     </li><!--
-    
+
  --><li class="tli">
     	<a href="mailto:submeter@hagreve.com" style="font-weight:bold">Submeter</a>
     	<div class="tabbody">Ajude-nos a manter o site actualizado enviando-nos novas informações para <a href="mailto:submeter@hagreve.com">submeter@hagreve.com</a></div>
     </li><!--
-    
+
  --><li class="tli">
     	<a href="">Subscrever</a>
 		<div class="tabbody">
@@ -84,7 +84,7 @@ _gaq.push(['_trackPageview']);
     		<a href="webcal://hagreve.com/ics">iCal</a>
     	</div>
     </li><!--
-    
+
  --><li id="sharing" class="tli active">
     	<a href="">Partilhar</a><div id="sharetab" class="tabbody" style="text-align:center"><div style="width: 56px; display: inline-block; overflow: hidden;"><a class="FlattrButton" style="display:none;" data-flattr-button="compact" href="http://hagreve.com"></a><noscript><a href="http://flattr.com/thing/180236/Hoje-Ha-Greve" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript></div>
 <g:plusone size="medium" count="false" href="http://hagreve.com"></g:plusone>
@@ -114,13 +114,14 @@ _gaq.push(['_trackPageview']);
 
 <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>
 </body>
-
+{% block pagescripts %}
+{% endblock %}
 <script type="text/javascript">
 var menuTimer;
 var tabs = document.getElementById("tabs");
 
 function menuover() {
-	document.getElementById("sharing").className = "tli";	
+	document.getElementById("sharing").className = "tli";
 	clearTimeout(menuTimer);
 }
 
@@ -136,7 +137,6 @@ showSharing();
 
 var lis = document.getElementsByClassName("tli");
 for(var i = 0; i<lis.length-1 ; i++) {
-	console.log(i);
 	lis[i].onmouseout = function(e) { menuout(); };
 	lis[i].onmouseover = function(e) { menuover(); };
 }
@@ -149,4 +149,5 @@ shareli.onmouseover = function(e) {
 }
 
 </script>
+
 </html>

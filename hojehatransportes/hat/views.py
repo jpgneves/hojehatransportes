@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from forms import SubmitForm
 from django.contrib.auth import logout as django_logout
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse, HttpResponseServerError, HttpResponseRedirect
@@ -15,6 +16,7 @@ import locale
 from datetime import datetime, date, timedelta
 import calendar
 from operator import itemgetter, attrgetter
+import json
 
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
@@ -22,9 +24,9 @@ def index(request, highlight='-1'):
     latest_strikes = Strike.objects.filter(end_date__gte=datetime.today().date()).order_by('start_date').exclude(approved=False)[:30]
     companies = Company.objects.all()
     regions = Region.objects.all()
-    
+
     strikes = SortedDict()
-    
+
     todaysDay = datetime.today().strftime("%d")
     todayMonth = datetime.today().strftime("%m")
     tomorrow = datetime.today().date() + timedelta(days=1)
@@ -38,11 +40,11 @@ def index(request, highlight='-1'):
         # if m < todayMonth:
         #     m = todayMonth
         d = strike.start_date.strftime("%d")
-        
+
         if strike.start_date < datetime.today():
             sd = datetime.today()
             d = todaysDay
-        
+
         if not strikes.has_key(y):
             strikes[y] = SortedDict()
 
@@ -65,7 +67,7 @@ def index(request, highlight='-1'):
         fix = False
         if strikes[y][m]["days"].has_key(tomorrowsDay):
             strikes[y][m]["days"][tomorrowsDay]["alias"] = "Amanhã"
-            fix = True        
+            fix = True
 
         if strikes[y][m]["days"].has_key(todaysDay):
             strikes[y][m]["days"][todaysDay]["alias"] = "Hoje"
@@ -76,14 +78,26 @@ def index(request, highlight='-1'):
                 if len(cc) > 1:
                     strikes[y][m]["days"][todaysDay]["strikes"][c] = sorted(cc, key=MYattrgetter('start_date.day'), reverse=True)
 
-    
+
     #strikes['04']["days"] = sorted(strikes['04']["days"])
 
 
     context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies, 'highlights': [int(highlight)] }
-    
+
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
+def history(request):
+    raw_strikes = Strike.objects.order_by('start_date').exclude(approved=False)
+    use_fields = ('id', 'company', 'start_date', 'end_date', 'all_day', 'description', 'canceled', 'source_link', ('submitter', ('first_name', 'last_name')), ('company', ('name', 'id')))
+
+    serialized_strikes = serializers.serialize('json', raw_strikes, fields=use_fields)
+    strikes = [s['fields'] for s in json.loads(serialized_strikes)]
+    for strike in strikes:
+        strike['end_date'] = str(strike['end_date']).replace("T", " ")
+        strike['start_date'] = str(strike['start_date']).replace("T", " ")
+    context = { 'strikes': json.dumps(strikes) }
+
+    return render_to_response('history.html', context, context_instance=RequestContext(request))
 
 def MYattrgetter(*items):
     if len(items) == 1:
@@ -103,7 +117,7 @@ def resolve_attr(obj, attr):
 
 
 def thanks(request):
-    return render_to_response('thanks.html', context_instance=RequestContext(request))
+    return render_to_response('thanks.html', context, context_instance=RequestContext(request))
 
 @require_POST
 def upvote(request):
@@ -121,7 +135,7 @@ def upvote(request):
         strike.upvotes += 1
         strike.save()
         return HttpResponse()
-    
+
 @require_POST
 def downvote(request):
     """Add a downvote to a strike"""
@@ -138,7 +152,7 @@ def downvote(request):
         strike.downvotes += 1
         strike.save()
         return HttpResponse()
-        
+
 @login_required
 @csrf_protect
 def submit(request):
@@ -151,12 +165,12 @@ def submit(request):
         form = SubmitForm(initial={'submitter': request.user.id})
 
     return render_to_response('submit.html', { 'form': form }, context_instance=RequestContext(request))
-    
+
 @login_required
 @csrf_protect
 def edit(request, strike_id):
     strike = get_object_or_404(Strike, pk=strike_id)
-    
+
     if request.method == 'POST':
         form = SubmitForm(request.POST, instance=strike)
         if form.is_valid():
@@ -164,17 +178,17 @@ def edit(request, strike_id):
             return HttpResponseRedirect('/submissions')
     else:
         form = SubmitForm(instance=strike)
-    
+
     return render_to_response('submit.html', { 'form': form }, context_instance=RequestContext(request))
 
-@login_required    
+@login_required
 def submissions(request):
     latest_strikes = Strike.objects.filter(start_date__gte=datetime.today().date()).order_by('start_date').filter(approved=False).exclude(submitter=1)
     companies = Company.objects.all()
     regions = Region.objects.all()
-    
+
     strikes = SortedDict()
-    
+
     hoje = datetime.today().strftime("%d")
     amanha = datetime.today().date() + timedelta(days=1)
     amanha = amanha.strftime("%d")
@@ -183,7 +197,7 @@ def submissions(request):
         y = strike.start_date.strftime("%Y")
         m = strike.start_date.strftime("%m")
         d = strike.start_date.strftime("%d")
-        
+
         if not strikes.has_key(y):
             strikes[y] = {}
 
@@ -201,24 +215,24 @@ def submissions(request):
         fix = False
         if strikes[y][m]["days"].has_key(amanha):
             strikes[y][m]["days"][amanha]["alias"] = "Amanhã"
-            fix = True        
+            fix = True
 
         if strikes[y][m]["days"].has_key(hoje):
             strikes[y][m]["days"][hoje]["alias"] = "Hoje"
             if fix:
                 strikes[y][m]["days"][hoje]["fix"] = "fixAmanha"
 
-    
+
     #strikes['04']["days"] = sorted(strikes['04']["days"])
 
 
     context = { 'strikes': strikes, 'regions': regions, 'host': request.get_host(), 'companies': companies }
-    
+
     return render_to_response('submissions.html', context, context_instance=RequestContext(request))
 
 def login(request):
     return render_to_response('login.html', context_instance=RequestContext(request))
-    
+
 def logout(request):
     django_logout(request)
     return HttpResponseRedirect('/')
