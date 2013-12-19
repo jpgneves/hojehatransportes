@@ -88,7 +88,7 @@ def index(request, highlight='-1'):
 
 def history(request):
     raw_strikes = Strike.objects.order_by('start_date').exclude(approved=False)
-    use_fields = ('id', 'company', 'start_date', 'end_date', 'all_day', 'description', 'canceled', 'source_link', ('submitter', ('first_name', 'last_name')), ('company', ('name', 'id')))
+    use_fields = ('company', 'start_date', 'end_date', 'all_day', 'canceled')
 
     serialized_strikes = serializers.serialize('json', raw_strikes, fields=use_fields)
     strikes = [s['fields'] for s in json.loads(serialized_strikes)]
