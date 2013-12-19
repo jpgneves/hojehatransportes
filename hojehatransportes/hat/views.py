@@ -87,7 +87,9 @@ def index(request, highlight='-1'):
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 def history(request):
-    raw_strikes = Strike.objects.order_by('start_date').exclude(approved=False)
+    all_strikes = Strike.objects.order_by('start_date')
+    raw_strikes = all_strikes.exclude(approved=False);
+    inactive_strikes = all_strikes.exclude(canceled=False);
     use_fields = ('company', 'start_date', 'end_date', 'all_day', 'canceled')
 
     serialized_strikes = serializers.serialize('json', raw_strikes, fields=use_fields)
@@ -95,7 +97,11 @@ def history(request):
     for strike in strikes:
         strike['end_date'] = str(strike['end_date']).replace("T", " ")
         strike['start_date'] = str(strike['start_date']).replace("T", " ")
-    context = { 'strikes': json.dumps(strikes) }
+    context = { 'strikes_json': json.dumps(strikes),
+                'total_strikes': len(strikes),
+                'canceled_strikes': len(inactive_strikes),
+                'avg_per_day': (len(set(all_strikes) - set(inactive_strikes))) / 365.0
+    }
 
     return render_to_response('history.html', context, context_instance=RequestContext(request))
 
