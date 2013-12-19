@@ -1,23 +1,12 @@
-Prerequisites:
-    - Django 1.2
-    - Python 2.5
-    - vobject — http://pypi.python.org/pypi/vobject
-    - django-cal
-      -> git://github.com/gabrielgrant/django-cal.git
-    - django-social-auth
-      -> django-openid-auth
-    - django-piston 0.2.3
-    - South — http://pypi.python.org/pypi/South
-	
 Copy settings.default.py to settings.py and change the db settings
 
 On the first run (or when models are heavily changed):
     python manage.py syncdb
-    python manage.py migrate hat	
+    python manage.py migrate hat
 
 Afterwards:
     python manage.py runserver
-	
+
 The app will be running on http://localhost:8000
 
 Admin console: http://your-host/admin
