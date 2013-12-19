@@ -13,6 +13,12 @@
 
 <p><code>hagreve.com</code> providencia uma API simples para obter a lista das próximas greves.</p>
 
+<h1><code>V2</code></h1>
+
+<p>Na <code>v2</code> adicionámos o método <code>allstrikes</code> para obter todas as greves que a base de dados contém. É igual ao método <code>strikes</code> mas sem as restrições temporais deste. O URL da invocação é <code>http://hagreve.com/api/v2/allstrikes</code>. Não damos quaisquer garantias de que a informação fornecida seja completa ou correcta. A <code>v2</code> contém também o mesmo método da <code>v1</code>, o <code>strikes</code>, cuja documentação se encontra abaixo.</p>
+
+<h1><code>V1</code></h1>
+
 <p>Para a versão <code>v1</code>, apenas um método está disponível. Esse método devolve a lista das próximas greves, com greves activas e canceladas.</p>
 
 <p>Por omissão, o método a usar para pedidos à API é o método GET do protocolo http. A autenticação, por enquanto, é inexistente. Deve ser utilizado um user-agent relevante à aplicação que invoca a API.</p>

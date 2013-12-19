@@ -1,5 +1,7 @@
 from django.conf.urls.defaults import *
 from hat.feeds import RssFeed, IcsFeed, AtomFeed
+from django.views.generic import TemplateView
+
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -29,5 +31,7 @@ urlpatterns = patterns('',
     (r'^atom', AtomFeed()),
     (r'^ics', IcsFeed()),
     (r'^strike/(?P<highlight>\d+)$', 'hat.views.index', {}, 'strike_view'),
+    (r'^api', include('hat.api.urls')),
     (r'^api/', include('hat.api.urls')),
+    (r'', TemplateView.as_view(template_name='404.html'))
 )

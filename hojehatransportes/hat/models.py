@@ -61,8 +61,8 @@ class Strike(models.Model):
             raise ValidationError('Start date cannot be after end date')
         
         # Don't allow strikes starting in the past (in days)
-        if self.start_date.date() < datetime.today().date():
-            raise ValidationError('Strike cannot start in the past')
+        #if self.start_date.date() < datetime.today().date():
+        #    raise ValidationError('Strike cannot start in the past')
 
     @models.permalink
     def get_absolute_url(self):

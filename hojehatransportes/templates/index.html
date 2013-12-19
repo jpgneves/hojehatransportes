@@ -50,7 +50,7 @@
 {% endif %}
          <div class="msg">
             {% if strike.start_date.date != strike.end_date.date %}
-                <p class="multiday">Prolonga-se até <strong>{{ strike.end_date.date|date:"j \de F" }}</strong></p>
+                <p class="multiday">Prolonga-se até <strong>{{ strike.end_date.date|date:"j \d\e F" }}</strong></p>
             {% endif %}
             <span class="description">{{strike.description|linebreaksbr}}</span>
             <a href="{{ strike.get_absolute_url }}" title="Link para esta greve" class="permalink">#</a>
