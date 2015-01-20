@@ -1,0 +1,7 @@
+django
+vobject
+django-cal
+django-social-auth
+django-openid-auth
+django-piston
+South

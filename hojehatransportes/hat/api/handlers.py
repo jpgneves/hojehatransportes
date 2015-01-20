@@ -1,5 +1,5 @@
 from piston.handler import AnonymousBaseHandler, BaseHandler
-from hat.models import Strike
+from hat.models import Strike, Company
 
 from datetime import datetime
 from copy import deepcopy
@@ -8,6 +8,19 @@ from copy import deepcopy
   #model = Strike
   #fields = ('id', 'company', 'start_date', 'end_date', 'all_day', 'description', 'canceled', 'source_link', 'submitter')
   #exclude = ('id', 'upvotes', 'downvotes', 'approved')
+
+class CompanyHandler(BaseHandler):
+  allowed_methods = ('GET',)
+
+  model = Company
+  fields = ('id', 'name')
+
+  def read(self, request, post_slug=None):
+
+    anonymous = AnonymousBaseHandler
+
+    return list(Company.objects.all())
+
 
 class StrikeListHandler(BaseHandler):
   allowed_methods = ('GET',)
