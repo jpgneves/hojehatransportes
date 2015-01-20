@@ -1,6 +1,7 @@
-django>=1.5
+django==1.5
 vobject
 django-cal
 python-social-auth
 django-piston
 South
+django-toolbelt

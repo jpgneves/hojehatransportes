@@ -1,8 +1,8 @@
 from django.conf.urls import *
 from piston.resource import Resource
-from hat.api.handlers import CompanyHandler
-from hat.api.handlers import StrikeListHandler
-from hat.api.handlers import AllStrikeListHandler
+from hojehatransportes.hat.api.handlers import CompanyHandler
+from hojehatransportes.hat.api.handlers import StrikeListHandler
+from hojehatransportes.hat.api.handlers import AllStrikeListHandler
 from django.views.generic import TemplateView
 
 strikelist_handler = Resource(StrikeListHandler)

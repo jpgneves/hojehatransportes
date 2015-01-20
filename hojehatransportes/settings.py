@@ -2,6 +2,10 @@
 import os
 from social_auth_settings import *
 
+from django.conf import settings
+if not settings.configured:
+    settings.configure(DEBUG=True)
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -12,17 +16,39 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'hagreve', # Or path to database file if using sqlite3.
-        'HOST': 'localhost',
-        'USER': 'root',
-        'PASSWORD': 'ahp0ise!'
+    # 'mysql': {
+    #     'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+    #     'NAME': 'hagreve', # Or path to database file if using sqlite3.
+    #     'HOST': 'localhost',
+    #     'USER': 'root',
+    #     'PASSWORD': 'ahp0ise!'
 
 #		'ENGINE': 'django_mongodb_engine', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 #		'NAME': 'hagreve', # Or path to database file if using sqlite3.
-    }
+#    }
 }
+
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+# Static asset configuration
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'static'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 
 #Root URL for Static files
 #STATIC_URL = 'http://localhost/~carlos/hagreve/hojehatransportes/static'
@@ -45,11 +71,14 @@ SITE_ID=1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale
 USE_L10N = True
+
+import locale
+locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 
 DATETIME_INPUT_FORMATS=('%Y/%m/%d %H:%M:%S',  '%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M', '%Y-%m-%d', '%m/%d/%Y %H:%M:%S', '%m/%d/%Y %H:%M', '%m/%d/%Y','%m/%d/%y %H:%M:%S', '%m/%d/%y %H:%M', '%m/%d/%y')
 
@@ -119,7 +148,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'hojehatransportes.hat',
-    'social_auth'#,
+    #'social_auth'#,
     #'django_mongodb_engine'
 )
 

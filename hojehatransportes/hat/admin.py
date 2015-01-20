@@ -1,4 +1,4 @@
-from hat.models import Company, Region, Strike
+from hojehatransportes.hat.models import Company, Region, Strike
 from django.contrib import admin
 from django import forms
 

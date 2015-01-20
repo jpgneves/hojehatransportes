@@ -13,7 +13,7 @@ import django_cal
 import locale
 import dateutil
 
-from hat.models import Strike, Region
+from hojehatransportes.hat.models import Strike, Region
 
 locale.setlocale(locale.LC_ALL, "pt_PT.UTF-8")
 

@@ -1,5 +1,5 @@
 from django.conf.urls import *
-from hat.feeds import RssFeed, IcsFeed, AtomFeed
+from hojehatransportes.hat.feeds import RssFeed, IcsFeed, AtomFeed
 from django.views.generic import TemplateView
 
 
@@ -16,23 +16,23 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
-    (r'^$', 'hat.views.index'),
-    (r'^upgoat', 'hat.views.upvote'),
-    (r'^downgoat', 'hat.views.downvote'),
-    (r'^login$', 'hat.views.login'),
-    (r'^logout$', 'hat.views.logout'),
+    (r'^$', 'hojehatransportes.hat.views.index'),
+    (r'^upgoat', 'hojehatransportes.hat.views.upvote'),
+    (r'^downgoat', 'hojehatransportes.hat.views.downvote'),
+    (r'^login$', 'hojehatransportes.hat.views.login'),
+    (r'^logout$', 'hojehatransportes.hat.views.logout'),
     (r'', include('social.apps.django_app.urls')),
-    (r'^submit$', 'hat.views.submit'),
-    (r'^edit/(?P<strike_id>\d+)$', 'hat.views.edit'),
-    (r'^thanks', 'hat.views.thanks'),
-    (r'^submissions$', 'hat.views.submissions'),
-    (r'^profile$', 'hat.views.index'),
+    (r'^submit$', 'hojehatransportes.hat.views.submit'),
+    (r'^edit/(?P<strike_id>\d+)$', 'hojehatransportes.hat.views.edit'),
+    (r'^thanks', 'hojehatransportes.hat.views.thanks'),
+    (r'^submissions$', 'hojehatransportes.hat.views.submissions'),
+    (r'^profile$', 'hojehatransportes.hat.views.index'),
     (r'^rss', RssFeed()),
     (r'^atom', AtomFeed()),
     (r'^ics', IcsFeed()),
-    (r'^strike/(?P<highlight>\d+)$', 'hat.views.index', {}, 'strike_view'),
-    (r'^api', include('hat.api.urls')),
-    (r'^api/', include('hat.api.urls')),
-    (r'^history', 'hat.views.history'),
+    (r'^strike/(?P<highlight>\d+)$', 'hojehatransportes.hat.views.index', {}, 'strike_view'),
+    (r'^api', include('hojehatransportes.hat.api.urls')),
+    (r'^api/', include('hojehatransportes.hat.api.urls')),
+    (r'^history', 'hojehatransportes.hat.views.history'),
     (r'', TemplateView.as_view(template_name='404.html'))
 )

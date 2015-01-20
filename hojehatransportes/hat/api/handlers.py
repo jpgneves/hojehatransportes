@@ -1,5 +1,5 @@
 from piston.handler import AnonymousBaseHandler, BaseHandler
-from hat.models import Strike, Company
+from hojehatransportes.hat.models import Strike, Company
 
 from datetime import datetime
 from copy import deepcopy
