@@ -1,26 +1,22 @@
 /* TEAM */
-	Developer: Jo√£o Neves
-	Twitter: @jpgneves
-	From: Lisbon, Portugal
 
-	Web Designer: Carlos Fonseca
-	About.me: http://about.me/carlosefonseca
-	Twitter: @carlosefonseca
-	From: Lisbon, Portugal
+Developer: Jo„o Neves
+Twitter: @jpgneves
+From: Lisbon, Portugal
 
-	Developer: Filipe Cabecinhas
-	Twitter: @filcab
-	From: Leiria, Portugal
+Devloper, Maintainer: Carlos Fonseca
+Twitter: @carlosefonseca
+From: Lisbon, Portugal
 
-
-/* THANKS */
-
-	...
-
+Developer: Filipe Cabecinhas
+Twitter: @filcab
+From: Leiria, Portugal
 
 /* SITE */
-	Last Update: 2011/12/10
-	Language: Portuguese
-	Standards: HTML5, CSS3...
-	Components: Python, Django, social-auth, django_cal
-	IDE: TextMate, Coda, CSS-Edit...
+
+Last Update: 2015/01/22
+Language: Portuguese
+Standards: HTML5, CSS3
+Languages: HTML, CSS, Javascript
+Components: python2, django, social-auth, django_cal, gunicorn, dj-static
+Software: sublime, textmate, git, sourcetree, css-edit, coda, osx

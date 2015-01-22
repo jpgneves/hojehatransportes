@@ -39,10 +39,13 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-# Static asset configuration
-import os
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.7/howto/static-files/
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'static'
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
@@ -52,7 +55,7 @@ STATICFILES_DIRS = (
 
 #Root URL for Static files
 #STATIC_URL = 'http://localhost/~carlos/hagreve/hojehatransportes/static'
-STATIC_URL = 'https://static.hagreve.com/'
+#STATIC_URL = 'https://static.hagreve.com/'
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -143,6 +146,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
+    'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -177,4 +181,3 @@ def static_url_processor(request):
         'static_url': STATIC_URL,
     }
     return my_dict
-
