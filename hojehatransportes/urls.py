@@ -1,7 +1,6 @@
 from django.conf.urls import *
 from hojehatransportes.hat.feeds import RssFeed, IcsFeed, AtomFeed
-from django.views.generic import TemplateView
-
+from django.views.generic import TemplateView, RedirectView
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -34,5 +33,6 @@ urlpatterns = patterns('',
     (r'^api', include('hojehatransportes.hat.api.urls')),
     (r'^api/', include('hojehatransportes.hat.api.urls')),
     (r'^history', 'hojehatransportes.hat.views.history'),
+    (r'^humans.txt', RedirectView.as_view(url='/static/humans.txt')),
     (r'', TemplateView.as_view(template_name='404.html'))
 )

@@ -1,1 +1,1 @@
-web: gunicorn hojehatransportes.wsgi --log-file -
+web: newrelic-admin run-program gunicorn hojehatransportes.wsgi --log-file -

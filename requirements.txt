@@ -18,3 +18,4 @@ South==1.0.2
 static3==0.5.1
 vobject==0.6.6
 whitenoise==1.0.6
+newrelic
